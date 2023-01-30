@@ -122,7 +122,7 @@ class SaleOrder(models.Model):
     # @api.depends('purchase_id')
     def _compute_internal_number(self):
         for requisition in self: 
-            requisition.internal_count = len(requisition.purchase_ids)
+            requisition.internal_count = len(requisition.requisition_id)
 
     def action_purchase_requisition(self):
         if not self.order_line:
@@ -153,7 +153,7 @@ class SaleOrder(models.Model):
             # "domain": [("rab_id", "=", self.id)],
             "context": {'default_quotation_id':self.id},
             "res_id": self.requisition_id.id,
-            "target": "new"
+            # "target": "new"
         }
 
     def view_internal(self):
@@ -161,7 +161,7 @@ class SaleOrder(models.Model):
         purchase_ids = self.mapped('purchase_ids.quotation_id')
         if len(purchase_ids) >= 1: 
             action['domain'] = [('id', 'in', purchase_ids.ids)]
-        # elif purchase_ids:
+        # elif len(purchase_ids) >= 1:
         #     action['views'] = [
         #         (self.env.ref('purchase_requisition.view_purchase_requisition_tree').id, 'from')
         #     ]
