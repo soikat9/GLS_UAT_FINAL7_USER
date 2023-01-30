@@ -27,7 +27,7 @@ class SaleOrder(models.Model):
     ], string='Payment Scheme')
     requisition_id = fields.Many2one('purchase.requisition', string='Requisition')
     internal_count = fields.Integer(string="Internal Request", compute="_compute_internal_number")
-    # purchase_ids = fields.One2many('internal.list', 'parent_id', string='History')
+    purchase_ids = fields.One2many('purchase.request', 'quotation_id', string='History')
 
     ## Other Info
     attn_id = fields.Many2one('res.partner', string='Attn')
@@ -158,9 +158,9 @@ class SaleOrder(models.Model):
 
     def view_internal(self):
         action = self.env.ref('purchase_requisition.action_purchase_requisition').read()[0]
-        requisition_id = self.mapped('requisition_id')
-        if len(requisition_id) >= 1: 
-            action['domain'] = [('id', 'in', requisition_id.id)]
+        purchase_ids = self.mapped('purchase_ids.quotation_id')
+        if len(purchase_ids) >= 1: 
+            action['domain'] = [('id', 'in', purchase_ids.ids)]
         # elif purchase_ids:
         #     action['views'] = [
         #         (self.env.ref('purchase_requisition.view_purchase_requisition_tree').id, 'from')
