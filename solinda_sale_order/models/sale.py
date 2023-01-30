@@ -130,7 +130,7 @@ class SaleOrder(models.Model):
                 }])
             ir = self.env['purchase.requisition'].create({
                 'user_id':self.env.user.id,
-                'quotation_id': self.ids[0],
+                # 'quotation_id': self.ids[0],
                 })
             ir.update({
                 'name_project': self.origin,
@@ -157,7 +157,7 @@ class SaleOrder(models.Model):
             action['views'] = [
                 (self.env.ref('purchase_requisition.view_purchase_requisition_tree').id, 'tree')
             ]
-            action['res_id'] = purchase_ids.id
+            action['res_id'] = self.requisition_id.id
         return action
             
 
