@@ -27,7 +27,7 @@ class SaleOrder(models.Model):
     ], string='Payment Scheme')
     requisition_id = fields.Many2one('purchase.requisition', string='Requisition')
     internal_count = fields.Integer(string="Internal Request", compute="_compute_internal_number")
-    purchase_ids = fields.One2many('purchase.request', 'quotation_id', string='History')
+    purchase_ids = fields.One2many('purchase.requisition', 'quotation_id', string='History')
 
     ## Other Info
     attn_id = fields.Many2one('res.partner', string='Attn')
@@ -122,7 +122,7 @@ class SaleOrder(models.Model):
     # @api.depends('purchase_id')
     def _compute_internal_number(self):
         for requisition in self: 
-            requisition.internal_count = len(requisition.requisition_id)
+            requisition.internal_count = len(requisition.purchase_ids)
 
     def action_purchase_requisition(self):
         if not self.order_line:
