@@ -53,6 +53,11 @@ class Item(models.Model):
     edited_field = fields.Text('Edited Field')
     status_button = fields.Char(compute='_compute_status_button', string='Status Button')
     
+    @api.onchange('display_type')
+    def _onchange_display_type(self):
+        if self.display_type:
+            self.product_qty = 0
+
     @api.depends('total_price','price_po')
     def _compute_status_button(self):
         for i in self:
@@ -67,6 +72,8 @@ class Item(models.Model):
         res = super(Item, self).write(vals)
         if self.data_type != 'add' and self.rap_id.revision_on:
             self.data_type = 'edit'
+        if self.display_type:
+            self.product_qty = 0
         return res
     
     def status(self):
