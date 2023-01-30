@@ -152,13 +152,14 @@ class SaleOrder(models.Model):
             "res_model": "purchase.requisition",
             # "domain": [("rab_id", "=", self.id)],
             "context": {'default_quotation_id':self.id},
-            "res_id": self.requisition_id.id
+            "res_id": self.requisition_id.id,
+            "target": "new"
         }
 
     def view_internal(self):
         action = self.env.ref('purchase_requisition.action_purchase_requisition').read()[0]
         requisition_id = self.mapped('requisition_id')
-        if len(requisition_id) > 1: 
+        if len(requisition_id) >= 1: 
             action['domain'] = [('id', 'in', requisition_id.id)]
         # elif purchase_ids:
         #     action['views'] = [
