@@ -124,7 +124,8 @@ class CsRAP(models.Model):
                 'res_model': 'item.item',
                 'view_id' : self.env.ref('sol_cost_sheet.rap_component_view_tree').id,
                 'search_view_id': self.env.ref('sol_cost_sheet.item_item_view_search').id,
-                'domain': [('rap_id','=',self.id),('display_type','=',False)],
+                'domain': [('rap_id','=',self.id)],
+                # 'domain': [('rap_id','=',self.id),('display_type','=',False)],
                 'context': {
                     'search_default_group_by_rap':1,
                     'search_default_group_by_category':2,
