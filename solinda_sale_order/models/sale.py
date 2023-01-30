@@ -161,7 +161,7 @@ class SaleOrder(models.Model):
 
     def view_internal(self):
         action = self.env.ref('purchase_requisition.action_purchase_requisition').read()[0]
-        purchase_ids = self.mapped('purchase_ids.quotation_id')
+        purchase_ids = self.mapped('purchase_ids.parent_id')
         if len(purchase_ids) > 1: 
             action['domain'] = [('id', 'in', purchase_ids.ids)]
         # elif purchase_ids:
