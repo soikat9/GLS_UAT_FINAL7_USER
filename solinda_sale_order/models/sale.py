@@ -153,11 +153,11 @@ class SaleOrder(models.Model):
         purchase_ids = self.mapped('purchase_ids.quotation_id')
         if len(purchase_ids) > 1: 
             action['domain'] = [('id', 'in', purchase_ids.ids)]
-        # elif purchase_pattern_ids:
-        #     action['views'] = [
-        #         (self.env.ref('purchase_request.view_purchase_request_form').id, 'form')
-        #     ]
-        #     action['res_id'] = purchase_pattern_ids.id
+        elif purchase_ids:
+            action['views'] = [
+                (self.env.ref('purchase_requisition.view_purchase_requisition_form').id, 'form')
+            ]
+            action['res_id'] = purchase_ids.id
         return action
             
 
