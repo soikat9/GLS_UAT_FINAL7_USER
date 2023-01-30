@@ -130,7 +130,7 @@ class SaleOrder(models.Model):
                 }])
             ir = self.env['purchase.requisition'].create({
                 'user_id':self.env.user.id,
-                # 'parent_purchase_id': self.ids[0],
+                'quotation_id': self.ids[0],
                 })
             ir.update({
                 'name_project': self.origin,
