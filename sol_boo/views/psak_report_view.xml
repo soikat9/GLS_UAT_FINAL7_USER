@@ -1,0 +1,80 @@
+<odoo>
+    <data>
+
+        <record id="psak_report_view_tree" model="ir.ui.view">
+            <field name="name">psak.report.view.tree</field>
+            <field name="model">psak.report</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="warehouse_id" optional="show"/>
+                    <field name="date_from" optional="show"/>
+                    <field name="date_to" optional="show"/>
+                    <field name="minimum_consumption_per_year" optional="hide"/>
+                    <field name="minimum_consumption_per_month" optional="hide" />
+                    <field name="adendum" optional="hide"/>
+                    <field name="date_from_adendum" optional="hide"/>
+                    <field name="date_to_adendum" optional="hide"/>
+                    <field name="addition_construction" optional="hide"/>
+                    <field name="eir_year" optional="hide"/>
+                    <field name="eir_month" optional="hide"/>
+                    <field name="pvmlp_lease_asset" optional="hide"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="report_psak_report_form_view" model="ir.ui.view">
+            <field name="name">psak.report.form</field>
+            <field name="model">psak.report</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <header>
+                        <button name="download_report" string="Generate" type="object" class="btn-primary"/>
+                        <!-- <button string="Cancel" special="cancel" class="btn-default"/> -->
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="warehouse_id" required="1"/>
+                                <field name="date_from" required="1"/>
+                                <field name="date_to" required="1"/>
+                            </group>
+                            <group string="Minimum Consumption">
+                                <field name="minimum_consumption_per_year" required="1"/>
+                                <field name="minimum_consumption_per_month" force_save="1" readonly="1"/>
+                                <field name="adendum" required="1"/>
+                                <field name="date_from_adendum" required="1"/>
+                                <field name="date_to_adendum" required="1"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="addition_construction" required="1"/>
+                        </group>
+                        <group string="Effective Interest Rate (EIR)">
+                            <field name="eir_year" required="1"/>
+                            <field name="eir_month" force_save="1" readonly="1"/>
+                            <field name="pvmlp_lease_asset" required="1"/>
+                        </group>
+                        <group>
+                            <field name="selling_price_ids">
+                                <tree editable="bottom" create="false">
+                                    <field name="no_sequence" force_save="1" readonly="1"/>
+                                    <field name="price"/>
+                                    <field name="no_year" invisible="1"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_psak_report" model="ir.actions.act_window">
+            <field name="name">PSAK 73 Report</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">psak.report</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <report id="psak_report_xlsx" model="psak.report" string="PSAK 73 Report" report_type="xlsx" name="sol_boo.psak_report_excel.xlsx" file="PSAK Report.xlsx" menu="False" attachment_use="False"/>
+    </data>
+</odoo>

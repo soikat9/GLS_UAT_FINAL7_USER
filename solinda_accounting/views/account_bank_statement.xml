@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <data>
+
+    <record id="view_bank_statement_form_inherit_account" model="ir.ui.view">
+      <field name="name">account.bank.statement.view.form.inherit</field>
+      <field name="model">account.bank.statement</field>
+      <field name="inherit_id" ref="account.view_bank_statement_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//notebook/page/field[@name='line_ids']/tree/field[@name='payment_ref']" position="after">
+          <field name="analytic_account_id" />
+        </xpath>
+        <xpath expr="//group/group/div[2]" position="after">
+          <field name="cash_type" />
+        </xpath>
+      </field>
+    </record>
+
+  </data>
+
+
+</odoo>

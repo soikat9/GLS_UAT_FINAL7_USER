@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="gls_reportingexternal_layout_standard_printout">
+        <div class="header">
+            <div class="col-xs-2">
+                <image src="/ati_srf_report/static/src/img/logo2.png" style="display: inline;width: 120px;height: 75px;margin: 10px;"/>
+            </div>
+        </div>
+        <div class="article o_report_layout_standard">
+            <t t-raw="0" />
+        </div>
+    </template>
+
+    <template id="report_acc_invoice_turnkey">
+        <t t-call="web.basic_layout">
+            <div class="page">
+                <t t-foreach="docs" t-as="doc">
+                    <header>
+                        <div class="row">
+                            <div class="col-xs-2">
+                                <img t-if="doc.company_id.logo" t-att-src="image_data_uri(doc.company_id.logo)" style="max-height: 125px;" alt="Logo"/>
+                            </div>
+                            <div class="col-xs-2">
+                            </div>
+                        </div>
+                    </header>
+                    
+                    <div class="container">
+                        <h1 style="text-align: right;">SALES INVOICE</h1>
+                            <table style="border-collapse: collapse; width: 100%; height: 72px;" border="0">
+                            <tbody style="font-size: 12px;">
+                                <tr style="height: 18px;">
+                                    <td style="width: 8%; height: 18px;"></td>
+                                    <td style="width: 20%; height: 18px; border: 1px solid black;">
+                                        <strong>PT. GAPURA LIQUA SOLUTIONS</strong>
+                                    </td>
+                                    <td
+                                        style="width: 4.6875%; text-align: right; padding-right: 10px; height: 18px;"></td>
+                                    <td
+                                        style="height: 18px; text-align: right; padding-right: 10px; width: 20%;"
+                                        colspan="2"></td>
+                                </tr>
+                                <tr style="height: 18px;">
+                                    <td style="width: 8%; height: 18px;"></td>
+                                    <td style="width: 20%; height: 18px; border: 1px solid black;">Jl. Cihampelas No. 214A<br/>Kel. Cipaganti Kec. Coblong<br/>Bandung - West Java</td>
+                                    <td style="width: 4.6875%; height: 54px;" rowspan="3"></td>
+                                    <td style="height: 54px; width: 20%;" colspan="2" rowspan="3">
+                                        <table
+                                            style="border-collapse: collapse; width: 100.822%; height: 100px;"
+                                            border="1">
+                                            <tbody>
+                                                <tr style="height: 10px;">
+                                                    <td
+                                                        style="width: 100%; height: 10px; border-width: 1px 1px 0px; border-style: solid; border-color: black black transparent; border-image: initial; padding-left: 2px;">Reference :</td>
+                                                </tr>
+                                                <tr style="height: 10px;">
+                                                    <td
+                                                        style="width: 100%; height: 10px; text-align: center; border-width: 0px 1px 1px; border-style: solid; border-color: transparent black black; border-image: initial;">
+                                                            <t t-esc="doc.ref"/>
+                                                        </td>
+                                                </tr>
+                                                <tr style="height: 10px;">
+                                                    <td
+                                                        style="width: 100%; height: 10px; border-width: 1px 1px 0px; border-style: solid; border-color: black black transparent; border-image: initial; padding-left: 2px;">Invoice No. :</td>
+                                                </tr>
+                                                <tr style="height: 10px;">
+                                                    <td
+                                                        style="width: 100%; height: 10px; text-align: center; border-width: 0px 1px 1px; border-style: solid; border-color: transparent black black; border-image: initial;">
+                                                            <t t-esc="doc.name"/>
+                                                        </td>
+                                                </tr>
+                                                <tr style="height: 10px;">
+                                                    <td
+                                                        style="width: 100%; height: 10px; border-width: 1px 1px 0px; border-style: solid; border-color: black black transparent; border-image: initial; padding-left: 2px;">Inv. Tax No. :</td>
+                                                </tr>
+                                                <tr style="height: 10px;">
+                                                    <td
+                                                        style="width: 100%; height: 10px; text-align: center; border-width: 0px 1px 1px; border-style: solid; border-color: transparent black black; border-image: initial;">
+                                                            <t t-esc="doc.l10n_id_tax_number"/>
+                                                        </td>
+                                                </tr>
+                                                <tr style="height: 10px;">
+                                                    <td
+                                                        style="width: 100%; height: 10px; border-width: 1px 1px 0px; border-style: solid; border-color: black black transparent; border-image: initial; padding-left: 2px;">Invoice Date :</td>
+                                                </tr>
+                                                <tr style="height: 10px;">
+                                                    <td
+                                                        style="width: 100%; height: 10px; text-align: center; border-width: 0px 1px 1px; border-style: solid; border-color: transparent black black; border-image: initial;">
+                                                            <t t-esc="doc.invoice_date"/>
+                                                        </td>
+                                                </tr>
+                                                <tr style="height: 10px;">
+                                                    <td
+                                                        style="width: 100%; height: 10px; border-width: 1px 1px 0px; border-style: solid; border-color: black black transparent; border-image: initial; padding-left: 2px;">Due Date :</td>
+                                                </tr>
+                                                <tr style="height: 10px;">
+                                                    <td
+                                                        style="width: 100%; height: 10px; text-align: center; border-width: 0px 1px 1px; border-style: solid; border-color: transparent black black; border-image: initial;">
+                                                          <t t-esc="doc.invoice_date_due"/>
+                                                        </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr style="height: 18px;">
+                                    <td style="width: 8%; height: 18px;">Bills To :</td>
+                                    <td style="width: 20%; height: 18px; border: 1px solid black;">
+                                        <strong><span t-field="doc.partner_id"/></strong>
+                                    </td>
+                                </tr>
+                                <tr style="height: 18px;">
+                                    <td style="width: 8%; height: 18px;"></td>
+                                    <td style="width: 20%; height: 18px; border: 1px solid black;">
+                                        <span><t t-esc="doc.partner_id.street"/></span><br/>
+                                        <span><t t-esc="doc.partner_id.city"/></span><br/>
+                                        <span><span t-field="doc.partner_id.country_id"/></span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p></p>
+                    <div class="container">
+                        <table style="border-collapse: collapse; width: 100%; height: 54px;" border="1">
+                            <thead style="font-size: 12px;">
+                                <tr style="height: 36px;">
+                                    <td
+                                        style="width: 3.57667%; text-align: center; border: 1px solid black; height: 36px;">No</td>
+                                    <td
+                                        style="width: 37.8402%; text-align: center; border: 1px solid black; height: 36px;">Description</td>
+                                    <td
+                                        style="width: 17.9676%; text-align: center; border: 1px solid black; height: 36px;">Amount</td>
+                                </tr>
+                            </thead>
+                            <tbody style="font-size: 12px;">
+                                <t t-set="no" t-value="1"/>
+                                <t t-foreach="doc.invoice_line_ids" t-as="line">
+                                    <tr style="height: 18px;">
+                                        <td
+                                            style="width: 3.57667%; border: 1px solid black; height: 18px; text-align: center;">
+                                                <t t-esc="no"/>
+                                            </td>
+                                        <td style="width: 37.8402%; border: 1px solid black; height: 18px;">
+                                            <t t-esc="line.product_id.name"/>
+                                        </td>
+                                        <td
+                                            style="width: 17.9676%; text-align: right; border: 1px solid black; height: 18px;">
+                                                <t t-esc="line.price_subtotal" t-options="{'widget': 'monetary','display_currency': res_company.currency_id}"/>
+                                            </td>
+                                    </tr>
+                                <t t-set="no" t-value="no + 1"/>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p></p>
+                    <table style="border-collapse: collapse; width: 100%;" border="1">
+                        <tbody>
+                            <tr>
+                                <td style="width: 47.0772%;">
+                                    <table style="border-collapse: collapse; width: 99.6906%; border: 1px solid black;">
+                                        <tbody style="font-size: 12px;">
+                                            <tr>
+                                                <td style="width: 45.5939%;">Say</td>
+                                                <td style="width: 3.83142%;">:</td>
+                                                <td style="width: 65.0266%;">
+                                                    <t t-esc="doc.currency_id.with_context(lang=doc.partner_id.lang or 'id_ID').amount_to_text(doc.amount_total)"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 45.5939%;">Description</td>
+                                                <td style="width: 3.83142%;">:</td>
+                                                <td style="width: 65.0266%;">
+                                                    <t t-esc="doc.narration"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 45.5939%;"><strong>Please Transfer To</strong></td>
+                                                <td style="width: 3.83142%;"><strong>:</strong></td>
+                                                <td style="width: 65.0266%;">
+                                                    <strong><span t-field="doc.transfer"></span></strong><br/>
+                                                    <strong><span t-field="doc.transfer.default_account_id"></span></strong><br/>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                                <td style="width: 52.9228%;">
+                                    <table class="table table-sm" style="border-collapse: collapse; width: 100%;">
+                                        <tbody style="font-size: 12px;">
+                                            <tr>
+                                                <td style="width: 100%;">
+                                                    <t t-set="tax_totals" t-value="json.loads(doc.tax_totals_json)"/>
+                                                    <t t-call="account.document_tax_totals"/>
+
+                                                    <t t-set="payments_vals" t-value="doc.sudo()._get_reconciled_info_JSON_values()"/>
+                                                    <t t-foreach="payments_vals" t-as="payment_vals">
+                                                        <tr>
+                                                            <td>
+                                                                <i class="oe_form_field text-right oe_payment_label">Paid on <t t-esc="payment_vals['date']" t-options='{"widget": "date"}'/></i>
+                                                            </td>
+                                                            <td class="text-right">
+                                                                <span t-esc="payment_vals['amount']" t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                                                            </td>
+                                                        </tr>
+                                                    </t>
+                                                    <t t-if="len(payments_vals) > 0">
+                                                        <tr class="border-black">
+                                                            <td><strong>Amount Due</strong></td>
+                                                            <td class="text-right">
+                                                                <span t-field="doc.amount_residual"/>
+                                                            </td>
+                                                        </tr>
+                                                    </t>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <p></p>
+                    <div class="container">
+                        <table style="border-collapse: collapse; width: 100%; height: 144px;" border="">
+                            <tbody style="font-size: 12px;">
+                                <tr style="height: 36px;">
+                                    <td style="width: 20%; height: 36px;"></td>
+                                    <td style="width: 20%; height: 36px;"></td>
+                                    <td style="width: 10.9287%; height: 36px;"></td>
+                                    <td style="width: 45.918%; height: 36px; text-align: center;"><t t-esc="datetime.datetime.now().strftime('%b %d, %Y')"/></td>
+                                    <td style="width: 3.15331%; height: 36px;"></td>
+                                </tr>
+                                <tr style="height: 90px;">
+                                    <td style="width: 20%; height: 90px;"></td>
+                                    <td style="width: 20%; height: 90px; text-align: center;"><br/><br/><br/><br/></td>
+                                    <td style="width: 10.9287%; height: 90px;"></td>
+                                    <td style="width: 45.918%; height: 90px; text-align: center;"><br/><br/><br/><br/>
+                                        <span style="text-decoration: underline;">
+                                            <strong><span t-field='doc.approved'/></strong>
+                                        </span>
+                                    </td>
+                                    <td style="width: 3.15331%; height: 90px;"></td>
+                                </tr>
+                                <tr style="height: 18px;">
+                                    <td style="width: 20%; height: 18px;"></td>
+                                    <td style="width: 20%; height: 18px;"></td>
+                                    <td style="width: 10.9287%; height: 18px;"></td>
+                                    <td style="width: 45.918%; height: 18px; text-align: center;">Finance Accounting Manager</td>
+                                    <td style="width: 3.15331%; height: 18px;"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </t>
+            </div>
+        </t>
+    </template>
+</odoo>

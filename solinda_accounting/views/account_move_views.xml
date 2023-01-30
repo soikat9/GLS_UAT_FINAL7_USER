@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+    <record id="account_inherit_move_line" model="ir.ui.view">
+      <field name="name">account.move.line.view.list.inherit</field>
+      <field name="model">account.move.line</field>
+      <field name="inherit_id" ref="account.view_move_line_tree"/>
+      <field name="arch" type="xml">
+
+        <xpath expr="//field[@name='analytic_account_id']" position="after">
+          <field name="account_group_id" groups="account.group_account_readonly" optional="show" attrs="{'readonly':[('parent_state','=','posted')]}"/>
+        </xpath>
+
+      </field>
+    </record>
+  </data>
+</odoo>

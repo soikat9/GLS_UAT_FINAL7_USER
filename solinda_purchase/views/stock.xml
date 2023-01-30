@@ -1,0 +1,16 @@
+<odoo>
+    <data>
+        <record id="inherit_view_stock_picking_pur" model="ir.ui.view">
+            <field name="name">stock.picking.pr.view.form.inherit</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//button[@name='action_confirm']" position="attributes">
+                    <attribute name="groups">solinda_purchase.group_procurement_manager_approval2</attribute>
+                </xpath>
+
+            </field>
+        </record>
+    </data>
+</odoo>

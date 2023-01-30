@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+solinda_accounting.access_psak73_psak,access_psak73_psak,solinda_accounting.model_psak73_psak,base.group_user,1,1,1,1
+solinda_accounting.access_selling_price,access_selling_price,solinda_accounting.model_selling_price,base.group_user,1,1,1,1
+solinda_accounting.access_amortisation_amortisation,access_amortisation_amortisation,solinda_accounting.model_amortisation_amortisation,base.group_user,1,1,1,1
+solinda_accounting.access_addendum_addendum,access_addendum_addendum,solinda_accounting.model_addendum_addendum,base.group_user,1,1,1,1
+solinda_accounting.access_period_addendum,access_period_addendum,solinda_accounting.model_period_addendum,base.group_user,1,1,1,1

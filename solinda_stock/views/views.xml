@@ -1,0 +1,49 @@
+<odoo>
+  <data>
+
+    <record id="view_stock_return_picking_form_inherit_stock" model="ir.ui.view">
+      <field name="name">stock.return.picking.view.form.inherit</field>
+      <field name="model">stock.return.picking</field>
+      <field name="inherit_id" ref="stock.view_stock_return_picking_form"/>
+      <field name="arch" type="xml">
+
+        <xpath expr="//group[2]" position="before">
+          <group >
+            <field name="return_reasons" required="1"/>
+          </group>
+        </xpath>
+      </field>
+    </record>
+
+    <record id="inherit_view_stock_picking" model="ir.ui.view">
+      <field name="name">stock.picking.view.form.inherit</field>
+      <field name="model">stock.picking</field>
+      <field name="inherit_id" ref="stock.view_picking_form"/>
+      <field name="arch" type="xml">
+        <field name="move_type" position="before">
+          <field name="ship_via" />
+          <field name="serial" />
+        </field>
+        <xpath expr="//notebook/page[@name='extra']/group" position="inside">
+          <group string="Signature Naming">
+            <field name="prepared" />
+            <field name="verified" />
+            <field name="approved" />
+            <field name="received" />
+          </group>
+        </xpath>
+        <xpath expr="//button[@name='button_scrap']" position="attributes">
+          <attribute name="invisible">1</attribute>
+        </xpath>
+        <xpath expr="//field[@name='group_id']" position="after">
+          <field name="return_reasons" attrs="{'invisible': [('return_reasons', '=', False)]}"/>
+        </xpath>
+
+      </field>
+    </record>
+
+    <record model="ir.ui.menu" id="stock.menu_action_inventory_tree">
+      <field name="groups_id" eval="[(4,ref('solinda_stock.inventory_adjustment_access_group'))]" />
+    </record>
+  </data>
+</odoo>

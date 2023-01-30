@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+
+        <record id="product_inherit_viewtree" model="ir.ui.view">
+            <field name="name">product.product.view.tree.inherit</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_product_tree_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='default_code']" position="after">
+                    <field name="part_no" optional="hide"/>
+                    <field name="chemical_catridge_usage" optional="hide"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="product_view_form_add_sol_boo" model="ir.ui.view">
+            <field name="name">product.product.form.sol_boo</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='default_code']" position="after">
+                    <field name="part_no"/>
+                    <field name="chemical_catridge_usage"/>
+
+                </xpath>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

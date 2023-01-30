@@ -1,0 +1,120 @@
+<odoo>
+  <data>
+
+    <record id="view_order_form_inherit_sale" model="ir.ui.view">
+      <field name="name">sale.order.view.form.inherit</field>
+      <field name="model">sale.order</field>
+      <field name="inherit_id" ref="sale.view_order_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//notebook/page[@name='other_information']/group/group[@name='sales_person']/field[@name='client_order_ref']" position="attributes">
+          <attribute name="required">1</attribute>
+        </xpath>
+        <xpath expr="//form" position="attributes">
+          <attribute name="create">0</attribute>
+        </xpath>
+        <xpath expr="//button[@name='action_cancel']" position="attributes">
+          <attribute name="confirm">Are you sure want to cancel?</attribute>
+        </xpath>
+        <xpath expr="//header" position="inside">
+          <button name="action_print_quotation_boo" type="object" string="Print Quotation BOO" class="oe_highlight" attrs="{'invisible':[('print_button_visible','!=','boo')]}" />
+          <button name="action_print_quotation_oms" type="object" string="Print Quotation OMS" class="oe_highlight" attrs="{'invisible':[('print_button_visible','!=','oms')]}" />
+          <!-- <button name="action_print_quotation_turnkey" type="object" string="Print Quotation Turnkey" class="oe_highlight" attrs="{'invisible':[('print_button_visible','!=','turnkey')]}" /> -->
+          <button name="action_print_quotation_trading" type="object" string="Print Quotation Trading" class="oe_highlight" attrs="{'invisible':[('print_button_visible','!=','trading')]}" />
+          <button name="create_purchase_request" type="object" string="Create PR" class="btn btn-primary" attrs="{'invisible':['|',('print_button_visible','!=','trading'), ('state', '=', 'draft')]}" />
+          <field name="pr_state" invisible="1" />
+        </xpath>
+        <xpath expr="//div[@class='oe_button_box']/button[@name='preview_sale_order']" position="before">
+          <button name="action_purchase_requisition" class="oe_stat_button" icon="fa-shopping-cart" type="object" attrs="{'invisible':[('print_button_visible','!=','trading')]}">
+            <field name="requisition_id" widget="statinfo" string="Internal Request"/>
+          </button>
+        </xpath>
+        <notebook position="inside">
+          <page name="payment_schedule" string="Payment Schedule">
+            <group>
+              <!-- <field name="deduct_dp" widget="boolean_toggle" class="oe_inline oe_edit_only" /> -->
+              <field name="payment_scheme" widget="radio" options="{'horizontal': true}" />
+            </group>
+            <field name="payment_schedule_line_ids">
+              <tree editable="bottom">
+                <!-- <field name="product_id" required="1" /> -->
+                <field name="name" required="1" />
+                <field name="payment_type" required="1" />
+                <field name="account_id" required="1" />
+                <field name="progress" widget="percentage" required="1" />
+                <field name="bill" widget="percentage" required="1" sum="Bill"/>
+                <field name="currency_id" invisible="1" />
+                <field name="percentage_based_on" />
+                <field name="include_project_cost" />
+                <field name="include_dp" />
+                <field name="deduct_dp" />
+                <field name="total_amount" />
+                <field name="move_id" readonly="1"/>
+                <button name="create_invoice" type="object" icon="fa-pencil-square-o" attrs="{'invisible':[('move_id','=',True)]}" />
+              </tree>
+            </field>
+            <group class="oe_subtotal_footer oe_right" colspan="2" name="sale_total">
+              <!-- <field name="tax_totals_json" widget="account-tax-totals-field" nolabel="1" colspan="2"/> -->
+              <field name="amount_untaxed" nolabel="1" colspan="2" />
+            </group>
+            <div class="oe_clear"/>
+          </page>
+        </notebook>
+        <field name="source_id" position="after">
+          <field name="attn_id" />
+          <!-- <field name="director_info" /> -->
+          <field name="director_id" />
+          <field name="approved_by_id" />
+          <!-- <field name="received_id" /> -->
+          <field name="print_button_visible" invisible="1"/>
+          <field name="tag_string" invisible="1"/>
+        </field>
+
+        <xpath expr="//field[@name='analytic_account_id']" position="attributes">
+          <attribute name="required">1</attribute>
+        </xpath>
+        <xpath expr="//field[@name='tag_ids']" position="attributes">
+          <attribute name="required">1</attribute>
+        </xpath>
+        <xpath expr="//button[@id='action_confirm']" position="attributes">
+          <attribute name="groups">solinda_sale_order.group_sales_manager</attribute>
+          <attribute name="confirm">Are you sure want to continue?</attribute>
+        </xpath>
+        <xpath expr="//button[@name='action_confirm'][2]" position="attributes">
+          <attribute name="groups">solinda_sale_order.group_sales_manager</attribute>
+          <attribute name="confirm">Are you sure want to continue?</attribute>
+        </xpath>
+        <xpath expr="//group/group/field[@name='payment_term_id']" position="after">
+          <field name="pr_id" attrs="{'invisible':[('print_button_visible','!=','trading')]}" />
+        </xpath>
+        <xpath expr="//notebook/page/field/tree/field[@name='price_unit']" position="after">
+          <field name="pr_id" optional="show" />
+          <!-- <field name="line_id" domain="[('request_id', '=', pr_id)]" /> -->
+          <field name="purchase_state" optional="show" />
+        </xpath>
+      </field>
+    </record>
+
+    <record id="view_quotation_tree_with_onboarding_inherit_sale_order" model="ir.ui.view">
+      <field name="name">sale.order.view.tree.inherit</field>
+      <field name="model">sale.order</field>
+      <field name="inherit_id" ref="sale.view_quotation_tree_with_onboarding"/>
+      <field name="arch" type="xml">
+        <xpath expr="//tree" position="attributes">
+          <attribute name="create">0</attribute>
+        </xpath>
+      </field>
+    </record>
+
+    <record id="view_order_tree_inherit_sale_order" model="ir.ui.view">
+      <field name="name">sale.order.view.tree.inherit</field>
+      <field name="model">sale.order</field>
+      <field name="inherit_id" ref="sale.view_order_tree"/>
+      <field name="arch" type="xml">
+        <xpath expr="//tree" position="attributes">
+          <attribute name="create">0</attribute>
+        </xpath>
+      </field>
+    </record>
+
+  </data>
+</odoo>

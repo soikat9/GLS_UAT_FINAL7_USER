@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="psak73_psak_view_tree" model="ir.ui.view">
+            <field name="name">psak73.psak.view.tree</field>
+            <field name="model">psak73.psak</field>
+            <field name="arch" type="xml">
+                <tree string="PSAK 73">
+                    <field name="name" />
+                    <field name="location" />
+                    <field name="start_contract" />
+                    <field name="end_contract" />
+                    <field name="addition_construction" />
+                    <!-- <field name="adendum" /> -->
+                </tree>
+            </field>
+        </record>
+
+        <record id="psak73_psak_view_form" model="ir.ui.view">
+            <field name="name">psak73.psak.view.form</field>
+            <field name="model">psak73.psak</field>
+            <field name="arch" type="xml">
+                <form string="PSAK 73">
+                    <header>
+                        <button string="Confirm" name="confirm" type="object" class="oe_highlight" attrs="{'invisible':[('state', '!=', 'draft')]}"/>
+                        <button string="Generate" name="generate" type="object" class="oe_highlight" attrs="{'invisible':[('state', '!=', 'confirm')]}"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirm" />
+                    </header>
+                    <sheet>
+                        <group attrs="{'readonly':[('state', '!=', 'draft')]}">
+                            <group id="header_left_group">
+                                <field name="name" />
+                                <field name="location" />
+                                <field name="start_contract" />
+                                <field name="end_contract" />
+                                <field name="addition_construction" />
+                                <field name="pvmlp_lease_asset" widget="percentage" />
+                            </group>
+                            <group id="header_right_group">
+                                <field name="min_year" />
+                                <field name="min_month" />
+                                <field name="eir_year" widget="percentage" />
+                                <field name="eir_month" widget="percentage" />
+                                <!-- <field name="is_addendum" /> -->
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="amortisation" string="Amortisation">
+                                <field name="amortisation_ids" readonly="1">
+                                    <tree string="Amotisation" editable='bottom'>
+                                        <field name="period" />
+                                        <field name="interest_income" />
+                                        <field name="deduction_inflow" />
+                                        <field name="balance" />
+                                        <field name="period_n" />
+                                        <field name="pv_lease_asset" />
+                                        <field name="mlp_asset_service" />
+                                        <field name="pvmlp_asset_service" />
+                                        <field name="diff_receive_interest" />
+                                        <field name="journal_ref" />
+                                        <field name="current_date_int" invisible="1" />
+                                        <field name="period_int" invisible="1" />
+                                        <field name="show_button" invisible="1" />
+                                        <field name="state" invisible="1" />
+                                        <button string="Post to Journal" name="transfer_to_journal" type="object" class="btn btn-warning" attrs="{'invisible':['|',('show_button', '=', False), ('state', '=', 'posted')]}"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page name="selling_price" string="Selling Price">
+                                <field name="selling_price_ids" attrs="{'readonly':[('state', '!=', 'draft')]}">
+                                    <tree create="false" editable="bottom">
+                                        <field name="no_sequence" force_save="1" readonly="1"/>
+                                        <field name="no_year" invisible="1"/>
+                                        <field name="price" />
+                                    </tree>
+                                </field>
+                            </page>
+                            <page name="addendum" string="Addendum">
+                                <field name="addendum_ids">
+                                    <tree editable="bottom">
+                                        <field name="start_addendum"/>
+                                        <field name="finish_addendum"/>
+                                        <field name="addendum" />
+                                        <field name="months" />
+                                        <field name="periods_ids" />
+                                    </tree>
+                                </field>
+                            </page>
+                            <page name="account_config" string="Account Configuration">
+                                <group attrs="{'readonly':[('state', '!=', 'draft')]}">
+                                    <field name="lease_receivable_account" />
+                                    <field name="revenue_account" />
+                                    <field name="interest_income_account" />
+                                    <field name="analytic_account" />
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="psak73_action" model="ir.actions.act_window">
+            <field name="name">PSAK 73</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">psak73.psak</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="PSAK 73" action="solinda_accounting.psak73_action" id="psak73_submenu" parent="account.menu_finance_reports" sequence="1"/>
+    </data>
+</odoo>

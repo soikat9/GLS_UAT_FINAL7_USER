@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <record model="ir.ui.view" id="view_account_voucher_wizard_inherit">
+      <field name="name">Advance Payment</field>
+      <field name="model">account.voucher.wizard.purchase</field>
+      <field name="inherit_id" ref="purchase_advance_payment.view_account_voucher_wizard"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='amount_advance']" position="before">
+          <field name="tax_ids" widget="many2many_tags"/>
+        </xpath>
+        <xpath expr="//field[@name='currency_amount']" position="after">
+          <field name="total_amount_advance"/>
+        </xpath>
+      </field>
+    </record>
+  </data>
+</odoo>
