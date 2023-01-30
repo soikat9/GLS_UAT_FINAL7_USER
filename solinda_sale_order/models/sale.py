@@ -5,7 +5,15 @@ from dateutil.relativedelta import relativedelta
 class PurchaseRequisition(models.Model):
     _inherit = 'purchase.requisition'
 
-    quotation_id = fields.Many2one('sale.order', string='Sale Order')    
+    quotation_id = fields.Many2one('sale.order', string='Sale Order')
+
+class InternalList(models.Model):
+    _name = 'internal.list'
+    _description = 'Link Internal Request'
+
+    parent_id = fields.Many2one('purchase.requisition', string='Internl Req')
+    # pattern_id = fields.Many2one('purchase.request', string='Pattern Alteration')
+    user_id = fields.Many2one('res.users', string='User Pattern Alteration')    
 
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
@@ -128,9 +136,13 @@ class SaleOrder(models.Model):
                     'product_qty': i.product_uom_qty, 
                     'product_uom_id': i.product_uom.id,
                 }])
+            uid_id = self.env.user.id
+            self.env['internal.list'].create({
+                'user_id': uid_id,
+                'parent_id': self.ids[0],
+            })
             ir = self.env['purchase.requisition'].create({
                 'user_id':self.env.user.id,
-                'quotation_id': self.ids[0],
                 })
             ir.update({
                 'name_project': self.origin,
