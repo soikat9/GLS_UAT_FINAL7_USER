@@ -130,6 +130,7 @@ class CsRAP(models.Model):
                     'search_default_group_by_category':2,
                     'search_default_group_by_component':3
                     }
+                'domain': [('display_type','=',False)]
                 # 'domain': [('rap_id','=',self.id),('can_be_purchased','=',True)]
         }
     
