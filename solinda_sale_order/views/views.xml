@@ -24,7 +24,7 @@
           <!-- <button name="action_print_quotation_turnkey" type="object" string="Print Quotation Turnkey" class="oe_highlight" attrs="{'invisible':[('print_button_visible','!=','turnkey')]}" /> -->
           <button name="action_print_quotation_trading" type="object" string="Print Quotation Trading" class="oe_highlight" attrs="{'invisible':[('print_button_visible','!=','trading')]}" />
           <button name="action_purchase_requisition" type="object" string="Create Internal Request" class="oe_highlight" attrs="{'invisible':[('print_button_visible','!=','trading')]}"/>
-          <button name="create_purchase_request" type="object" string="Create PR" class="btn btn-primary" attrs="{'invisible':['|',('print_button_visible','!=','trading'), ('state', '=', 'draft')]}" />
+          <button name="action_sale_internal_new" type="object" string="Create PR" class="btn btn-primary" attrs="{'invisible':['|',('print_button_visible','!=','trading'), ('state', '=', 'draft')]}" />
           <field name="pr_state" invisible="1" />
         </xpath>
         <xpath expr="//div[@class='oe_button_box']/button[@name='preview_sale_order']" position="before">

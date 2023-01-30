@@ -27,7 +27,7 @@ class SaleOrder(models.Model):
     ], string='Payment Scheme')
     requisition_id = fields.Many2one('purchase.requisition', string='Requisition')
     internal_count = fields.Integer(string="Internal Request", compute="_compute_internal_number")
-    purchase_ids = fields.One2many('purchase.requisition', 'quotation_id', string='History')
+    internal_ids = fields.One2many('purchase.requisition', 'quotation_id', string='History')
 
     ## Other Info
     attn_id = fields.Many2one('res.partner', string='Attn')
@@ -122,7 +122,10 @@ class SaleOrder(models.Model):
     # @api.depends('purchase_id')
     def _compute_internal_number(self):
         for requisition in self: 
-            requisition.internal_count = len(requisition.requisition_id)
+            requisition.internal_count = len(requisition.internal_ids)
+
+    def action_sale_internal_new(self):
+        return self.action_purchase_requisition()
 
     def action_purchase_requisition(self):
         if not self.order_line:
@@ -158,14 +161,14 @@ class SaleOrder(models.Model):
 
     def view_internal(self):
         action = self.env.ref('purchase_requisition.action_purchase_requisition').read()[0]
-        purchase_ids = self.mapped('purchase_ids.quotation_id')
-        if len(purchase_ids) >= 1: 
-            action['domain'] = [('id', 'in', purchase_ids.ids)]
-        # elif len(purchase_ids) >= 1:
-        #     action['views'] = [
-        #         (self.env.ref('purchase_requisition.view_purchase_requisition_tree').id, 'from')
-        #     ]
-        #     action['res_id'] = self.requisition_id.id
+        internal = self.mapped('internal_ids')
+        if len(internal) == 1: 
+        #     action['domain'] = [('id', 'in', purchase_ids.ids)]
+        # # elif len(purchase_ids) >= 1:
+            action['views'] = [
+                (self.env.ref('purchase_requisition.view_purchase_requisition_form').id, 'from')
+            ]
+            action['res_id'] = internal.id
         return action
             
 
