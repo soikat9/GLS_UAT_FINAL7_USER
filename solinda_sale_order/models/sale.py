@@ -12,6 +12,7 @@ class InternalList(models.Model):
     _description = 'Link Internal Request'
 
     parent_id = fields.Many2one('sale.order', string='sale order')
+    list_id = fields.Many2one('sale.order')
     user_id = fields.Many2one('res.users', string='User Pattern Alteration')    
 
 class SaleOrder(models.Model):
@@ -26,7 +27,7 @@ class SaleOrder(models.Model):
     ], string='Payment Scheme')
     requisition_id = fields.Many2one('purchase.requisition', string='Requisition')
     internal_count = fields.Integer(string="Internal Request", compute="_compute_internal_number")
-    purchase_ids = fields.One2many('internal.list', 'parent_id', string='History')
+    # purchase_ids = fields.One2many('internal.list', 'parent_id', string='History')
 
     ## Other Info
     attn_id = fields.Many2one('res.partner', string='Attn')
@@ -121,7 +122,7 @@ class SaleOrder(models.Model):
     # @api.depends('purchase_id')
     def _compute_internal_number(self):
         for requisition in self: 
-            requisition.internal_count = len(requisition.purchase_ids)
+            requisition.internal_count = len(requisition.requisition_id)
 
     def action_purchase_requisition(self):
         if not self.order_line:
@@ -135,11 +136,6 @@ class SaleOrder(models.Model):
                     'product_qty': i.product_uom_qty, 
                     'product_uom_id': i.product_uom.id,
                 }])
-            uid_id = self.env.user.id
-            self.env['internal.list'].create({
-                'user_id': uid_id,
-                'parent_id': self.ids[0],
-            })
             ir = self.env['purchase.requisition'].create({
                 'user_id':self.env.user.id,
                 })
@@ -161,9 +157,9 @@ class SaleOrder(models.Model):
 
     def view_internal(self):
         action = self.env.ref('purchase_requisition.action_purchase_requisition').read()[0]
-        purchase_ids = self.mapped('purchase_ids.parent_id')
-        if len(purchase_ids) > 1: 
-            action['domain'] = [('id', 'in', purchase_ids.ids)]
+        requisition_id = self.mapped('requisition_id')
+        if len(requisition_id) > 1: 
+            action['domain'] = [('id', 'in', requisition_id.id)]
         # elif purchase_ids:
         #     action['views'] = [
         #         (self.env.ref('purchase_requisition.view_purchase_requisition_tree').id, 'from')
