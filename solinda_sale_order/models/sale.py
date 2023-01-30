@@ -27,7 +27,7 @@ class SaleOrder(models.Model):
     ], string='Payment Scheme')
     requisition_id = fields.Many2one('purchase.requisition', string='Requisition')
     internal_count = fields.Integer(string="Internal Request", compute="_compute_internal_number")
-    internal_ids = fields.One2many('purchase.requisition', 'quotation_id', string='History')
+    requisition_ids = fields.One2many('purchase.requisition', 'quotation_id', string='History')
 
     ## Other Info
     attn_id = fields.Many2one('res.partner', string='Attn')
@@ -122,7 +122,7 @@ class SaleOrder(models.Model):
     # @api.depends('purchase_id')
     def _compute_internal_number(self):
         for requisition in self: 
-            requisition.internal_count = len(requisition.internal_ids)
+            requisition.internal_count = len(requisition.requisition_ids)
 
     def action_sale_internal_new(self):
         return self.action_purchase_requisition()
@@ -130,7 +130,7 @@ class SaleOrder(models.Model):
     def action_purchase_requisition(self):
         if not self.order_line:
             raise ValidationError(_("Please fill a Product for Order Lines"))
-        if not self.requisition_id:            
+        if not self.requisition_ids:            
             updt= []
             for i in self.order_line:
                 updt.append([0,0,{
@@ -147,21 +147,21 @@ class SaleOrder(models.Model):
                 'origin': self.name,
                 'line_ids': updt,
             })
-            if ir:
-                self.requisition_id = ir.id
+            # if ir:
+            #     self.requisition_id = ir.id
         return {
             "type": "ir.actions.act_window",
             "view_mode": "form",
             "res_model": "purchase.requisition",
             # "domain": [("rab_id", "=", self.id)],
             "context": {'default_quotation_id':self.id},
-            "res_id": self.requisition_id.id,
+            "res_id": self.requisition_ids.ids,
             # "target": "new"
         }
 
     def view_internal(self):
         action = self.env.ref('purchase_requisition.action_purchase_requisition').read()[0]
-        internal = self.mapped('internal_ids')
+        internal = self.mapped('requisition_ids')
         if len(internal) == 1: 
         #     action['domain'] = [('id', 'in', purchase_ids.ids)]
         # # elif len(purchase_ids) >= 1:
