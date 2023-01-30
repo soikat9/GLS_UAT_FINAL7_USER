@@ -125,9 +125,9 @@
       <field name="type">ir.actions.act_window</field>
       <field name="res_model">purchase.requisition</field>
       <field name="view_mode">tree,form</field>
-      <field name="domain">[('requisition_id','=',active_id)]</field>
+      <field name="domain">[('purchase_ids','=',active_id)]</field>
       <field name="context">{
-          "default_requisition_id":active_id,
+          "default_purchase_ids":active_id,
           "default_user_id": False,
           }
       </field>
