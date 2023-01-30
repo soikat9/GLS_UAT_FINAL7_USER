@@ -130,7 +130,7 @@ class SaleOrder(models.Model):
                 }])
             ir = self.env['purchase.requisition'].create({
                 'user_id':self.env.user.id,
-                # 'quotation_id': self.ids[0],
+                'quotation_id': self.ids[0],
                 })
             ir.update({
                 'name_project': self.origin,
@@ -141,7 +141,7 @@ class SaleOrder(models.Model):
                 self.requisition_id = ir.id
         return {
             "type": "ir.actions.act_window",
-            "view_mode": "form,tree",
+            "view_mode": "form",
             "res_model": "purchase.requisition",
             # "domain": [("rab_id", "=", self.id)],
             "context": {'default_quotation_id':self.id},
@@ -153,11 +153,11 @@ class SaleOrder(models.Model):
         purchase_ids = self.mapped('purchase_ids.quotation_id')
         if len(purchase_ids) > 1: 
             action['domain'] = [('id', 'in', purchase_ids.ids)]
-        elif purchase_ids:
-            action['views'] = [
-                (self.env.ref('purchase_requisition.view_purchase_requisition_tree').id, 'tree')
-            ]
-            action['res_id'] = self.requisition_id.id
+        # elif purchase_ids:
+        #     action['views'] = [
+        #         (self.env.ref('purchase_requisition.view_purchase_requisition_tree').id, 'from')
+        #     ]
+        #     action['res_id'] = self.requisition_id.id
         return action
             
 
