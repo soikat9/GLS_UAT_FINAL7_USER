@@ -7,7 +7,10 @@
       <field name="inherit_id" ref="sale.view_order_form"/>
       <field name="arch" type="xml">
         <xpath expr="//notebook/page[@name='other_information']/group/group[@name='sales_person']/field[@name='client_order_ref']" position="attributes">
-          <attribute name="required">1</attribute>
+          <attribute name="attrs">{'required':[('state','=','sale')]}</attribute>
+        </xpath>
+        <xpath expr="//notebook/page[@name='other_information']/group/group[@name='sale_info']/field[@name='analytic_account_id']" position="attributes">
+          <attribute name="attrs">{'required':[('state','=','sale')]}</attribute>
         </xpath>
         <xpath expr="//form" position="attributes">
           <attribute name="create">0</attribute>
@@ -22,10 +25,11 @@
           <button name="action_print_quotation_trading" type="object" string="Print Quotation Trading" class="oe_highlight" attrs="{'invisible':[('print_button_visible','!=','trading')]}" />
           <button name="create_purchase_request" type="object" string="Create PR" class="btn btn-primary" attrs="{'invisible':['|',('print_button_visible','!=','trading'), ('state', '=', 'draft')]}" />
           <field name="pr_state" invisible="1" />
+          <buttton name="action_purchase_requisition" type="object" class="oe_highlight" attrs="{'invisible':[('print_button_visible','!=','trading')]}"/>
         </xpath>
         <xpath expr="//div[@class='oe_button_box']/button[@name='preview_sale_order']" position="before">
           <button name="action_purchase_requisition" class="oe_stat_button" icon="fa-shopping-cart" type="object" attrs="{'invisible':[('print_button_visible','!=','trading')]}">
-            <field name="requisition_id" widget="statinfo" string="Internal Request"/>
+            <field name="internal_count" widget="statinfo" string="Internal Request"/>
           </button>
         </xpath>
         <notebook position="inside">

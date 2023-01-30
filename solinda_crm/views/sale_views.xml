@@ -46,10 +46,10 @@
                         <field name="office_boo" />
                         <field name="operator" />
                     </group>
-                    <group string="Responsibility">
+                    <!-- <group string="Responsibility">
                         <field name="president_director" />
                         <field name="director" />
-                    </group>
+                    </group> -->
                 </page>
             </xpath>
         </field>

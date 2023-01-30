@@ -3,7 +3,7 @@
     <data noupdate="0">
 
       <record id="make_invisible" model="res.groups">
-          <field name="name">Show Crm Menu</field>
+          <field name="name">Hide Lost Reason CRM</field>
       </record>
       <record model="ir.ui.menu" id="crm.crm_menu_root">
           <field name="groups_id" eval="[(5,ref('make_invisible'))]"/>

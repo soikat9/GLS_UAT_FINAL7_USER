@@ -18,6 +18,7 @@ class SaleOrder(models.Model):
         ('deduct', 'Deduct'),
     ], string='Payment Scheme')
     requisition_id = fields.Many2one('purchase.requisition', string='Requisition')
+    internal_count = fields.Integer(string="Internal Request", compute="_compute_internal_number")
 
     ## Other Info
     attn_id = fields.Many2one('res.partner', string='Attn')
@@ -109,6 +110,11 @@ class SaleOrder(models.Model):
                 'res_id': purchase.id,
             } 
 
+    @api.depends('purchase_ids')
+    def _compute_internal_number(self):
+        for requisition in self:
+            requisition.order_count = len(requisition.requisition_id)
+
     def action_purchase_requisition(self):
         if not self.order_line:
             raise ValidationError(_("Please fill a Product for Order Lines"))
@@ -131,7 +137,7 @@ class SaleOrder(models.Model):
                 self.requisition_id = ir.id
         return {
             "type": "ir.actions.act_window",
-            "view_mode": "form",
+            "view_mode": "form,tree",
             "res_model": "purchase.requisition",
             # "domain": [("rab_id", "=", self.id)],
             "context": {'default_quotation_id':self.id},

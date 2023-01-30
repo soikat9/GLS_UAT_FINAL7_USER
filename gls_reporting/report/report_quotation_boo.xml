@@ -34,6 +34,7 @@
             <div class="page">
                 <t t-foreach="docs" t-as="doc">
                     <header>
+                        <t t-set="company" t-value="res_company"></t>
                         <div class="row">
                             <!-- <div class="col-xs-2">
                                 <image src="/gls_reporting/static/src/img/gls_logo.png" style="display: inline;width: 225px;height: 125px;"/>
