@@ -155,7 +155,7 @@ class SaleOrder(models.Model):
             action['domain'] = [('id', 'in', purchase_ids.ids)]
         elif purchase_ids:
             action['views'] = [
-                (self.env.ref('purchase_requisition.view_purchase_requisition_form').id, 'form')
+                (self.env.ref('purchase_requisition.view_purchase_requisition_tree').id, 'tree')
             ]
             action['res_id'] = purchase_ids.id
         return action
