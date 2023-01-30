@@ -11,8 +11,7 @@ class InternalList(models.Model):
     _name = 'internal.list'
     _description = 'Link Internal Request'
 
-    parent_id = fields.Many2one('sale.order', string='Internl Req')
-    # pattern_id = fields.Many2one('purchase.request', string='Pattern Alteration')
+    parent_id = fields.Many2one('sale.order', string='sale order')
     user_id = fields.Many2one('res.users', string='User Pattern Alteration')    
 
 class SaleOrder(models.Model):
@@ -27,7 +26,7 @@ class SaleOrder(models.Model):
     ], string='Payment Scheme')
     requisition_id = fields.Many2one('purchase.requisition', string='Requisition')
     internal_count = fields.Integer(string="Internal Request", compute="_compute_internal_number")
-    purchase_ids = fields.One2many('purchase.requisition', 'parent_id', string='History')
+    purchase_ids = fields.One2many('internal.list', 'parent_id', string='History')
 
     ## Other Info
     attn_id = fields.Many2one('res.partner', string='Attn')
