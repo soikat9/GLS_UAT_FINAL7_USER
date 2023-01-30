@@ -113,7 +113,7 @@ class SaleOrder(models.Model):
     # @api.depends('purchase_id')
     def _compute_internal_number(self):
         for requisition in self:
-            requisition.order_count = len(requisition.requisition_id)
+            requisition.internal_count = len(requisition.requisition_id)
 
     def action_purchase_requisition(self):
         if not self.order_line:
