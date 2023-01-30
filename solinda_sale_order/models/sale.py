@@ -11,7 +11,7 @@ class InternalList(models.Model):
     _name = 'internal.list'
     _description = 'Link Internal Request'
 
-    parent_id = fields.Many2one('purchase.requisition', string='Internl Req')
+    parent_id = fields.Many2one('sale.order', string='Internl Req')
     # pattern_id = fields.Many2one('purchase.request', string='Pattern Alteration')
     user_id = fields.Many2one('res.users', string='User Pattern Alteration')    
 
