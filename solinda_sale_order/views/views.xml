@@ -28,7 +28,7 @@
           <field name="pr_state" invisible="1" />
         </xpath>
         <xpath expr="//div[@class='oe_button_box']/button[@name='preview_sale_order']" position="before">
-          <button name="%(solinda_sale_order.action_internal_request_list)d" class="oe_stat_button" icon="fa-shopping-cart" type="object" attrs="{'invisible':[('print_button_visible','!=','trading')]}">
+          <button name="view_internal" class="oe_stat_button" icon="fa-shopping-cart" type="object" attrs="{'invisible':[('print_button_visible','!=','trading')]}">
             <field name="internal_count" widget="statinfo" string="Internal Request"/>
           </button>
         </xpath>
@@ -120,18 +120,6 @@
       </field>
     </record>
 
-    <record model="ir.actions.act_window" id="action_internal_request_list">
-      <field name="name">Internal Request</field>
-      <field name="type">ir.actions.act_window</field>
-      <field name="res_model">purchase.requisition</field>
-      <field name="view_mode">tree,form</field>
-      <field name="domain">[('purchase_ids','=',active_id)]</field>
-      <field name="context">{
-          "default_purchase_ids":active_id,
-          "default_user_id": False,
-          }
-      </field>
-    </record>
 
   </data>
 </odoo>
