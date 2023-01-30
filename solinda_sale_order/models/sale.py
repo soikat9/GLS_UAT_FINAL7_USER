@@ -19,6 +19,7 @@ class SaleOrder(models.Model):
     ], string='Payment Scheme')
     requisition_id = fields.Many2one('purchase.requisition', string='Requisition')
     internal_count = fields.Integer(string="Internal Request", compute="_compute_internal_number")
+    purchase_ids = fields.One2many('purchase.requisition', 'quotation_id', string='History')
 
     ## Other Info
     attn_id = fields.Many2one('res.partner', string='Attn')
@@ -127,7 +128,10 @@ class SaleOrder(models.Model):
                     'product_qty': i.product_uom_qty, 
                     'product_uom_id': i.product_uom.id,
                 }])
-            ir = self.env['purchase.requisition'].create({'user_id':self.env.user.id})
+            ir = self.env['purchase.requisition'].create({
+                'user_id':self.env.user.id,
+                # 'parent_purchase_id': self.ids[0],
+                })
             ir.update({
                 'name_project': self.origin,
                 'origin': self.name,
@@ -143,6 +147,18 @@ class SaleOrder(models.Model):
             "context": {'default_quotation_id':self.id},
             "res_id": self.requisition_id.id
         }
+
+    def view_internal(self):
+        action = self.env.ref('purchase_requition.view_purchase_requisition_tree').read()[0]
+        purchase_ids = self.mapped('purchase_ids.quotation_id')
+        if len(purchase_ids) > 1: 
+            action['domain'] = [('id', 'in', purchase_ids.ids)]
+        # elif purchase_pattern_ids:
+        #     action['views'] = [
+        #         (self.env.ref('purchase_request.view_purchase_request_form').id, 'form')
+        #     ]
+        #     action['res_id'] = purchase_pattern_ids.id
+        return action
             
 
 class SaleOrderLine(models.Model):
