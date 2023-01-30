@@ -122,12 +122,12 @@ class SaleOrder(models.Model):
     # @api.depends('purchase_id')
     def _compute_internal_number(self):
         for requisition in self: 
-            requisition.internal_count = len(requisition.internal_ids)
+            requisition.internal_count = len(requisition.requisition_id)
 
     def action_sale_internal_new(self):
-        if not self.partner_id:
-            return self.env["ir.actions.actions"]._for_xml_id("solinda_sale_order.sale_internal_partner_action")
-        else:
+        # if not self.partner_id:
+        #     return self.env["ir.actions.actions"]._for_xml_id("solinda_sale_order.sale_internal_partner_action")
+        # else:
             return self.action_purchase_requisition()
 
     def action_purchase_requisition(self):
@@ -164,7 +164,7 @@ class SaleOrder(models.Model):
 
     def view_internal(self):
         action = self.env.ref('purchase_requisition.action_purchase_requisition').read()[0]
-        internal = self.mapped('internal_ids')
+        internal = self.mapped('requisition_id')
         if len(internal) == 1: 
         #     action['domain'] = [('id', 'in', purchase_ids.ids)]
         # # elif len(purchase_ids) >= 1:
