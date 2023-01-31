@@ -78,9 +78,9 @@
           <field name="print_button_visible" invisible="1" />
           <!-- <field name="partner_bank_id" /> -->
         </xpath>
-        <xpath expr="//notebook/page[@name='other_info']/group/group[@name='sale_info_group']/field[@name='ref']" position="attributes">
+        <!-- <xpath expr="//notebook/page[@name='other_info']/group/group[@name='sale_info_group']/field[@name='ref']" position="attributes">
           <attribute name="required">1</attribute>
-        </xpath>
+        </xpath> -->
       </field>
     </record>
 
