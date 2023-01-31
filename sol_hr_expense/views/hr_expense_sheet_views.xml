@@ -11,8 +11,8 @@
         <xpath expr="//group/group[2]" position="inside">
           <label for="start_date"/>
           <div class="o_row">
-            <field name="start_date" placeholder="Start Date" /> -
-            <field name="end_date" placeholder="End Date" />
+            <field name="start_date" placeholder="Start Date" required="1"/> -
+            <field name="end_date" placeholder="End Date" required="1"/>
           </div>
         </xpath>
 
