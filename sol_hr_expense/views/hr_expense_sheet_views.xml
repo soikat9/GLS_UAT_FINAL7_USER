@@ -15,6 +15,9 @@
             <field name="end_date" placeholder="End Date" required="1"/>
           </div>
         </xpath>
+        <xpath expr="//notebook/page[@name='expenses']/field[@name='expense_line_ids']/tree/button[@name='action_get_attachment_view']" position="attributes">
+          <attribute name="required">1</attribute>
+        </xpath>
 
       </field>
     </record>
