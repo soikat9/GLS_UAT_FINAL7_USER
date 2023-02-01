@@ -28,7 +28,6 @@
         'views/views.xml',
         'views/account_move_views.xml',
         'views/account_asset_views.xml',
-        'views/account_payment_views.xml',
         'views/psak73_views.xml',
         'views/account_bank_statement.xml',
         'report/report_invoice_trading.xml',

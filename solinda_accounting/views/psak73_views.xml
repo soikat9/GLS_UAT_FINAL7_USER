@@ -81,7 +81,6 @@
                                         <field name="start_addendum"/>
                                         <field name="finish_addendum"/>
                                         <field name="addendum" />
-                                        <field name="months" />
                                         <field name="periods_ids" />
                                     </tree>
                                 </field>
@@ -91,7 +90,7 @@
                                     <field name="lease_receivable_account" />
                                     <field name="revenue_account" />
                                     <field name="interest_income_account" />
-                                    <field name="analytic_account" />
+                                    <field name="analytic_account" widget="many2many_tags" />
                                 </group>
                             </page>
                         </notebook>

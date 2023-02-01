@@ -22,10 +22,7 @@ class Psak73(models.Model):
     addendum_ids = fields.One2many('addendum.addendum', 'psak_id', string='Addendum')
     min_year = fields.Float(string='Min Consumption (year)')
     min_month = fields.Float(string='Min Consumption (month)')
-    addition_construction = fields.Float(string='Addition Construction')
-    # start_adendum = fields.Date(string='Date from Adendum')
-    # finish_adendum = fields.Date(string='Date to Adendum')
-    # adendum = fields.Float(string='Adendum')
+    addition_construction = fields.Float(string='Lease Asset')
     eir_year = fields.Float(string='EIR (year)', help='Effective Interest Rate per year')
     eir_month = fields.Float(string='EIR (month)', help='Effective Interest Rate per month')
     pvmlp_lease_asset = fields.Float(string='PVMLP Lease Asset', help='Present Value Of Minimum Lease Payments')
@@ -144,18 +141,16 @@ class Addendum(models.Model):
     start_addendum = fields.Date(string='Start Date')
     finish_addendum = fields.Date(string='End Date')
     addendum = fields.Float(string='Addendum', default=0)
-    months = fields.Integer(string='Month(s)', compute="_compute_months_addendum")
     periods_ids = fields.Many2many('period.addendum', string='Periods')
-
     @api.constrains('start_addendum', 'finish_addendum')
     def date_constrains(self):
         for ad in self:
             if ad.finish_addendum < ad.start_addendum:
                 raise ValidationError(_('End Date Must be greater Than Start Date.'))
-            if ad.start_addendum < ad.psak_id.start_contract or ad.start_addendum > ad.psak_id.end_contract:
-                raise ValidationError(_('Start Addendum is out of range of Contract Date.'))
-            if ad.finish_addendum < ad.psak_id.start_contract or ad.finish_addendum > ad.psak_id.end_contract:
-                raise ValidationError(_('End Addendum is out of range of Contract Date.'))
+            # if ad.start_addendum < ad.psak_id.start_contract or ad.start_addendum > ad.psak_id.end_contract:
+            #     raise ValidationError(_('Start Addendum is out of range of Contract Date.'))
+            # if ad.finish_addendum < ad.psak_id.start_contract or ad.finish_addendum > ad.psak_id.end_contract:
+            #     raise ValidationError(_('End Addendum is out of range of Contract Date.'))
 
         '''
         Check interleaving between fiscal years.
@@ -180,32 +175,42 @@ class Addendum(models.Model):
 
             if self.search_count(domain) > 0:
                 raise ValidationError(_('You can not have an overlap between two addendum dates, please correct the start and/or end dates of your addendum dates.'))
-
-    @api.depends('start_addendum','finish_addendum')
-    def _compute_months_addendum(self):
-        year_addendum = self.finish_addendum.year - self.start_addendum.year
-        if self.start_addendum.month == self.finish_addendum.month:
-            self.months = year_addendum * 12
-        elif self.start_addendum.month < self.finish_addendum.month:
-            self.months = year_addendum * 12 + (self.finish_addendum.month - self.start_addendum.month)
-        elif self.start_addendum.month > self.finish_addendum.month:
-            self.months = year_addendum * 12 - (self.start_addendum.month - self.finish_addendum.month)
-        else:
-            self.months = False
     
-    @api.onchange('psak_id.start_contract', 'start_addendum', 'finish_addendum', 'months')
-    def _onchange_periods_addendum(self):
-        for line in self:
-            first_year = line.start_addendum.year - line.psak_id.start_contract.year
-            if line.start_addendum.month == line.psak_id.start_contract.month:
-                first_months = first_year * 12
-            elif line.start_addendum.month < line.psak_id.start_contract.month:
-                first_months = first_year * 12 + (line.psak_id.start_contract.month - line.start_addendum.month)
-            elif line.start_addendum.month > line.psak_id.start_contract.month:
-                first_months = first_year * 12 - (line.start_addendum.month - line.psak_id.start_contract.month)
+    @api.onchange('start_addendum', 'finish_addendum', 'psak_id.start_contract')
+    def onchange_period_addendum(self):
+        if self.psak_id.start_contract and self.start_addendum:
+            if self.periods_ids:
+                self.periods_ids = [(5, 0)]
 
-            for i in range(first_months,line.months):
-                line.periods_ids = [(0, 0, {'period': i})]
+            if self.start_addendum and self.finish_addendum:
+                year_addendum = self.finish_addendum.year - self.start_addendum.year
+                if self.start_addendum.month == self.finish_addendum.month:
+                    months = year_addendum * 12
+                elif self.start_addendum.month < self.finish_addendum.month:
+                    months = year_addendum * 12 + (self.finish_addendum.month - self.start_addendum.month)
+                elif self.start_addendum.month > self.finish_addendum.month:
+                    months = year_addendum * 12 - (self.start_addendum.month - self.finish_addendum.month)
+                else:
+                    months = 0
+
+                if self.psak_id.start_contract.year == self.start_addendum.year:
+                    period = self.start_addendum.month - self.psak_id.start_contract.month + 1
+                else:
+                    year_period = self.start_addendum.year - self.psak_id.start_contract.year
+                    if self.psak_id.start_contract.month == self.start_addendum.month:
+                        period = year_period * 12
+                    elif self.psak_id.start_contract.month < self.start_addendum.month:
+                        period = year_period * 12 + (self.start_addendum.month - self.psak_id.start_contract.month)
+                    elif self.psak_id.start_contract.month > self.start_addendum.month:
+                        period = year_period * 12 - (self.psak_id.start_contract.month - self.start_addendum.month)
+                    else:
+                        period = 0
+
+                for i in range(1,months+1):
+                    print(period)
+                    self.periods_ids = [(0, 0, {'period': period})]
+                    period += 1
+ 
 
 class PeriodAddendum(models.Model):
     _name = 'period.addendum'
@@ -222,13 +227,13 @@ class Amortisation(models.Model):
     period = fields.Date(string='Period')
     period_int = fields.Integer(string='Period Integer')
     interest_income = fields.Float(string='Interest Income')
-    deduction_inflow = fields.Float(string='Deduction Cash Inflow')
+    deduction_inflow = fields.Float(string='Water Production')
     balance = fields.Float(string='Balance')
     period_n = fields.Integer(string='Period (n)')
     pv_lease_asset = fields.Float(string='PV Lease Asset')
     mlp_asset_service = fields.Float(string='MLP Asset + Service')
     pvmlp_asset_service = fields.Float(string='PVMLP Asset + Service')
-    diff_receive_interest = fields.Float(string='Difference Cash Receive and Interest')
+    diff_receive_interest = fields.Float(string='Lease Receivable')
     journal_ref = fields.Char(strng='Journal Reference')
     current_time = fields.Date(string='Current time', default=datetime.today())
     current_date_int = fields.Integer(string="Date Integer", compute='_compute_current_date_to_int', store=True)
@@ -249,7 +254,7 @@ class Amortisation(models.Model):
     @api.depends('current_date_int', 'period_int')
     def _compute_comparing_date(self):
         for line in self:
-            if line.current_date_int > line.period_int:
+            if line.current_date_int > line.period_int+1:
                 line.show_button = False
             else:
                 line.show_button = True
