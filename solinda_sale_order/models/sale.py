@@ -6,6 +6,8 @@ class PurchaseRequisition(models.Model):
     _inherit = 'purchase.requisition'
 
     quotation_id = fields.Many2one('sale.order', string='Sale Order')
+    count = fields.Integer(string='count')
+    sale_id = fields.Many2one('sale.order', string='Sale')
 
 class InternalList(models.Model):
     _name = 'internal.list'
@@ -102,11 +104,15 @@ class SaleOrder(models.Model):
 
     def create_purchase_request(self):
         purchase = self.env['purchase.request'].create({  
-                'create_directly':True,      
+                'create_directly':True,
+                'origin': self.name,
+                'project_code': self.project_code,
+                'project_id': self.rab_id.id,      
                 'line_ids':[(0,0,{
                     'product_id': item.product_id.id,
                     'product_qty': item.product_uom_qty,
-                    'product_uom_id': item.product_uom.id,               
+                    'product_uom_id': item.product_uom.id,
+                    'analytic_account_id': self.analytic_account_id.id,               
                     }) for item in self.order_line],
             })
         self.update({'pr_id': purchase.id, 'pr_state': 'request'})
@@ -119,59 +125,56 @@ class SaleOrder(models.Model):
                 'res_id': purchase.id,
             } 
 
-    # @api.depends('purchase_id')
     def _compute_internal_number(self):
         for requisition in self: 
-            requisition.internal_count = len(requisition.requisition_id)
-
-    def action_sale_internal_new(self):
-        # if not self.partner_id:
-        #     return self.env["ir.actions.actions"]._for_xml_id("solinda_sale_order.sale_internal_partner_action")
-        # else:
-            return self.action_purchase_requisition()
+            requisition.internal_count = len(requisition.internal_ids.ids)
 
     def action_purchase_requisition(self):
         if not self.order_line:
             raise ValidationError(_("Please fill a Product for Order Lines"))
-        if not self.requisition_id:            
-            updt= []
-            for i in self.order_line:
-                updt.append([0,0,{
-                    'account_analytic_id': self.analytic_account_id.id,
-                    'product_id': i.product_id.id,
-                    'product_qty': i.product_uom_qty, 
-                    'product_uom_id': i.product_uom.id,
-                }])
-            ir = self.env['purchase.requisition'].create({
-                'user_id':self.env.user.id,
-                })
-            ir.update({
-                'name_project': self.origin,
-                'origin': self.name,
-                'line_ids': updt,
-            })
-            if ir:
-                self.requisition_id = ir.id
+        # if not self.requisition_id:            
+        updt= []
+        for i in self.order_line:
+            updt.append([0,0,{
+                'account_analytic_id': self.analytic_account_id.id,
+                'product_id': i.product_id.id,
+                'product_qty': i.product_uom_qty, 
+                'product_uom_id': i.product_uom.id,
+            }])
+        ir = self.env['purchase.requisition'].create({
+            'count': 1 + len(self.internal_ids.ids),
+            'sale_id': self.id,
+            'user_id':self.env.user.id,
+            'quotation_id': self.ids[0],
+        })
+        ir.update({
+            'name_project': self.origin,
+            'origin': self.name,
+            'line_ids': updt,
+        })
+        # if ir:
+        #         self.requisition_id = ir.id
         return {
             "type": "ir.actions.act_window",
-            "view_mode": "form",
+            # "view_mode": "form",
+            "views": [
+                (self.env.ref("purchase_requisition.view_purchase_requisition_form").id, "form"),
+            ],
             "res_model": "purchase.requisition",
-            # "domain": [("rab_id", "=", self.id)],
-            "context": {'default_quotation_id':self.id},
-            "res_id": self.requisition_id.id,
-            # "target": "new"
+            # "context": {'default_quotation_id':self.id},
+            "res_id": ir.id,
         }
 
     def view_internal(self):
         action = self.env.ref('purchase_requisition.action_purchase_requisition').read()[0]
-        internal = self.mapped('requisition_id')
-        if len(internal) == 1: 
-        #     action['domain'] = [('id', 'in', purchase_ids.ids)]
-        # # elif len(purchase_ids) >= 1:
-            action['views'] = [
-                (self.env.ref('purchase_requisition.view_purchase_requisition_form').id, 'from')
-            ]
-            action['res_id'] = internal.id
+        internal_ids = self.mapped('internal_ids')
+        if len(internal_ids) >= 1: 
+            action['domain'] = [('id', 'in', internal_ids.ids)]
+        # elif requisition_id:
+        #     action['views'] = [
+        #         (self.env.ref('purchase_requisition.view_purchase_requisition_form').id, 'from')
+        #     ]
+        #     action['res_id'] = requisition_id.id
         return action
             
 
