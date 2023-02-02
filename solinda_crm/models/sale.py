@@ -7,7 +7,7 @@ class SaleOrder(models.Model):
 
     # Report OMS
     subject = fields.Char(string="Subject")
-    attn_id = fields.Char('res.partner', string='Attn', related='partner_id')
+    attn_id = fields.Many2one('res.partner', string='Attn', related='partner_id')
     email = fields.Char(related='attn_id.email', store=True)
     supervisor = fields.Many2one('res.partner', string='Supervisor')
     office = fields.Char(related='supervisor.street', store=True)
