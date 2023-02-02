@@ -46,9 +46,9 @@
                         <field name="office_boo" />
                         <field name="operator" />
                     </group>
-                    <group string="Responsibility" invisible="1">
-                        <field name="president_director" invisible="1"/>
-                        <field name="director" invisible="1"/>
+                    <group string="Responsibility">
+                        <field name="president_director" />
+                        <field name="director"/>
                     </group>
                 </page>
             </xpath>
