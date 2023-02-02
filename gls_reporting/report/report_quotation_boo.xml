@@ -144,7 +144,7 @@
                                                 <td style="width: 19.5677%;">Price</td>
                                                 <td style="width: 1.94019%;">:</td>
                                                 <td style="width: 76.5521%;">
-                                                    <!-- <t t-esc="'{:,.0f}'.format(doc.order_line.price_unit).replace(',', '.')"/> /m<sup>3</sup> -->
+                                                    <t t-esc="'{:,.0f}'.format(doc.order_line.price_unit).replace(',', '.')"/> /m<sup>3</sup>
                                                     <!-- <t t-esc="doc.order_line.price_unit" t-options="{'widget': 'monetary','display_currency': res_company.currency_id,'precision': 2}"/> per-cubic -->
                                                     <!-- <t t-esc="doc.order_line.price_unit" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/> per-cubic -->
                                                 </td>
@@ -171,7 +171,7 @@
                                                     <t t-set="map_sales" t-value="sales.mapped('partner_id.name')"/>
                                                     <t t-set="sale" t-value="list(dict.fromkeys(map_sales))"/>
                                                     <t t-foreach="sale" t-as="res">
-                                                        <t t-out="'- %s \n'% res"/>
+                                                        <t t-out="' %s, \n'% res"/>
                                                     </t>
                                                 </td>
                                             </tr>
@@ -196,14 +196,14 @@
                                             </tr>
                                             <tr style="height: 18px; padding: 5px;">
                                                 <td style="width: 1.94013%; text-align: center;">-</td>
-                                                <td style="width: 19.5677%;">Responsibility Centre</td>
+                                                <!-- <td style="width: 19.5677%;">Responsibility Centre</td> -->
                                                 <td style="width: 1.94019%;">:</td>
                                                 <td style="width: 76.5521%;">
-                                                                            - Presiden Director : 
-                                                                            <!-- <t t-esc="doc.president_director"/> -->
+                                                                            <!-- - Presiden Director : 
+                                                                            <t t-esc="doc.president_director"/>
                                                 <br />
                                                                             - Director : 
-                                                                            <!-- <t t-esc="doc.director"/> -->
+                                                                            <t t-esc="doc.director"/> -->
                                                 </td>
                                             </tr>
                                             <tr style="height: 18px; padding: 5px;">
@@ -223,7 +223,7 @@
                                                     <br />
                                                     <br />
                                                     <span style="text-decoration: underline;">
-                                                        <!-- <span t-field="doc.director_id"/> -->
+                                                        <span t-field="doc.director_id"/>
                                                         <br />
                                                     </span>
                                                 </strong>
