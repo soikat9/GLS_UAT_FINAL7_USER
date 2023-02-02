@@ -46,7 +46,7 @@
                         <field name="office_boo" />
                         <field name="operator" />
                     </group>
-                    <group string="Responsibility">
+                    <group string="Responsibility" invisible="1">
                         <field name="president_director" invisible="1"/>
                         <field name="director" invisible="1"/>
                     </group>
