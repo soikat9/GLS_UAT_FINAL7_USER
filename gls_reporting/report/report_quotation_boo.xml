@@ -195,9 +195,9 @@
                                                 </td>
                                             </tr>
                                             <tr style="height: 18px; padding: 5px;">
-                                                <td style="width: 1.94013%; text-align: center;">-</td>
-                                                <!-- <td style="width: 19.5677%;">Responsibility Centre</td> -->
-                                                <td style="width: 1.94019%;">:</td>
+                                                <td style="width: 1.94013%; text-align: center;"></td>
+                                                <td style="width: 19.5677%;"></td>
+                                                <td style="width: 1.94019%;"></td>
                                                 <td style="width: 76.5521%;">
                                                                             <!-- - Presiden Director : 
                                                                             <t t-esc="doc.president_director"/>
