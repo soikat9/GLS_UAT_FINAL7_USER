@@ -324,7 +324,7 @@ p {
                                                 <td style="width: 26.5123%;">
                                                     <div class="iniinline">
                                                         <span >: </span>
-                                                        <t t-esc="doc.payment_terms"/>
+                                                        <p t-field="doc.payment_terms"/>
                                                     </div>
                                                 </td>
                                             </tr>

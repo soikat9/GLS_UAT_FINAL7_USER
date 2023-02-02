@@ -270,7 +270,7 @@
                                                 <td style="width: 26.5123%;">
                                                     <!-- <div> -->
                                                     <span >: </span>
-                                                    <t t-esc="doc.payment_terms"/>
+                                                    <p t-field="doc.payment_terms"/>
                                                     <!-- </div> -->
                                                 </td>
                                             </tr>
@@ -285,6 +285,7 @@
                             <!-- <tr>
                                 <td style="text-align: left; width: 99.9997%; padding-top:150px;" colspan="7"></td>
                             </tr> -->
+                            <br/>
                             <tr>
                                 <td style="text-align: center; width: 49.6196%;" colspan="3">Best Regards,<br />
                                     <br />
