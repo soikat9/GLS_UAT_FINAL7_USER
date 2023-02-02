@@ -95,7 +95,7 @@
                                 <td style="width: 9.51851%; height: 18px;">Attn</td>
                                 <td style="width: 1.97972%; height: 18px;">:</td>
                                 <td style="width: 38.1214%; height: 18px;">
-                                    <t t-esc="doc.attn_id.name"/>
+                                    <t t-esc="doc.attn_id"/>
                                 </td>
                                 <td style="width: 8.52077%; height: 18px;"></td>
                                 <td style="width: 7.85545%; height: 18px;">Ref</td>
@@ -108,7 +108,7 @@
                                 <td style="width: 9.51851%; height: 18px;">email</td>
                                 <td style="width: 1.97972%; height: 18px;">:</td>
                                 <td style="width: 38.1214%; height: 18px;">
-                                    <t t-esc="doc.attn_id.email"/>
+                                    <t t-esc="doc.email"/>
                                 </td>
                                 <td style="width: 8.52077%; height: 18px;"></td>
                                 <td style="width: 7.85545%; height: 18px;">Subject</td>
@@ -210,23 +210,12 @@
                                 </td>
                             </tr>                                
                             <tr>
-                                <td style="text-align: left; width: 99.9997%;" colspan="7">For further information, please do not hesitate to contact us.</td>
-                            </tr>
-                            <!-- <tr>
-                                <td style="text-align: center; width: 49.6196%;" colspan="3">Best Regards,<br />
-                                    <br />
-                                    <br />
-                                    <br />
-                                    <br />
-                                    <br />
-                                    <span style="text-decoration: underline;">
-                                    <strong>
-                                    <span t-field="doc.director_id"/>
-                                    </strong>
-                                    <br />
-                                    </span>President Director
+                                <td style="text-align: left; width: 99.9997%;" colspan="7">
+                                    <div>
+                                        For further information, please do not hesitate to contact us.
+                                    </div>
                                 </td>
-                            </tr> -->
+                            </tr>
                         </tbody>
                     </table>
                     <div class="container">
