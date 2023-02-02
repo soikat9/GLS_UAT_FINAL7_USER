@@ -144,7 +144,7 @@
                                                 <td style="width: 19.5677%;">Price</td>
                                                 <td style="width: 1.94019%;">:</td>
                                                 <td style="width: 76.5521%;">
-                                                    <t t-esc="'{:,.0f}'.format(doc.order_line.price_unit).replace(',', '.')"/> /m<sup>3</sup>
+                                                    <!-- <t t-esc="'{:,.0f}'.format(doc.order_line.price_unit).replace(',', '.')"/> /m<sup>3</sup> -->
                                                     <!-- <t t-esc="doc.order_line.price_unit" t-options="{'widget': 'monetary','display_currency': res_company.currency_id,'precision': 2}"/> per-cubic -->
                                                     <!-- <t t-esc="doc.order_line.price_unit" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/> per-cubic -->
                                                 </td>
@@ -180,13 +180,13 @@
                                                 <td style="width: 19.5677%;">Supports</td>
                                                 <td style="width: 1.94019%;">:</td>
                                                 <td style="width: 76.5521%;">
-                                                                <!-- - Supervisor : <t t-esc="doc.supervisor_boo"/> -->
+                                                - Supervisor : <t t-esc="doc.supervisor_boo"/>
                                                 <br />
-                                                                <!-- - Engineer: <t t-esc="doc.engineer"/> -->
+                                                - Engineer: <t t-esc="doc.engineer"/>
                                                 <br />
-                                                                <!-- - Office : <t t-esc="doc.office_boo"/> -->
+                                                - Office : <t t-esc="doc.office_boo"/>
                                                 <br />
-                                                                <!-- - Operator : <t t-esc="doc.operator"/> -->
+                                                - Operator : <t t-esc="doc.operator"/>
 
                                                                 <!-- - 24 hours operator<br />
                                                                 - Supervisor (Iran Purnama)<br />
