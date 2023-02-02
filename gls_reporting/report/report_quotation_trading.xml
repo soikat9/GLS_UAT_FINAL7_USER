@@ -270,7 +270,7 @@
                                                 <td style="width: 26.5123%;">
                                                     <div class="iniinline">
                                                         <span >: </span>
-                                                        <span t-esc="doc.payment_terms"/>
+                                                        <t t-esc="doc.payment_terms"/>
                                                     </div>
                                                 </td>
                                             </tr>

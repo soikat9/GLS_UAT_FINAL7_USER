@@ -201,7 +201,7 @@
                                                     </p>
                                                     <p>Price : <t t-raw="doc.price_tnc"/>
                                                     </p>
-                                                    <p>Payment Terms : <t t-raw="doc.payment_terms"/>
+                                                    <p>Payment Terms : <t t-esc="doc.payment_terms"/>
                                                     </p>
                                                 </td>
                                             </tr>
