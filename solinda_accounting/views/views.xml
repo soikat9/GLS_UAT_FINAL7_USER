@@ -82,7 +82,7 @@
           <!-- <field name="partner_bank_id" /> -->
         </xpath>
         <xpath expr="//notebook/page[@name='other_info']/group/group[@name='sale_info_group']/field[@name='ref']" position="attributes">
-          <attribute name="required">1</attribute>
+          <attribute name="attrs">{'required': [('move_type', '=', 'entry')]}</attribute>
         </xpath>
       </field>
     </record>
