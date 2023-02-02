@@ -18,6 +18,9 @@
         <xpath expr="//button[@name='action_cancel']" position="attributes">
           <attribute name="confirm">Are you sure want to cancel?</attribute>
         </xpath>
+        <xpath expr="//button[@name='action_quotation_send'][1]" position="attributes">
+          <attribute name="string">Send</attribute>
+        </xpath>
         <xpath expr="//header" position="inside">
           <button name="action_print_quotation_boo" type="object" string="Print Quotation BOO" class="oe_highlight" attrs="{'invisible':[('print_button_visible','!=','boo')]}" />
           <button name="action_print_quotation_oms" type="object" string="Print Quotation OMS" class="oe_highlight" attrs="{'invisible':[('print_button_visible','!=','oms')]}" />
