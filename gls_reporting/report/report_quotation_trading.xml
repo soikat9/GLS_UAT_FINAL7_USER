@@ -268,10 +268,10 @@
                                                 <td style="width: 28.9617%;"></td>
                                                 <td style="width: 30.8148%;" class="align-top">- Payment Terms</td>
                                                 <td style="width: 26.5123%;">
-                                                    <div>
-                                                        <span >: </span>
-                                                        <t t-esc="doc.payment_terms"/>
-                                                    </div>
+                                                    <!-- <div> -->
+                                                    <span >: </span>
+                                                    <t t-esc="doc.payment_terms"/>
+                                                    <!-- </div> -->
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -282,9 +282,9 @@
                             <tr>
                                 <td style="text-align: left; width: 99.9997%;" colspan="7">For further information, please do not hesitate to contact us.</td>
                             </tr>
-                            <tr>
+                            <!-- <tr>
                                 <td style="text-align: left; width: 99.9997%; padding-top:150px;" colspan="7"></td>
-                            </tr>
+                            </tr> -->
                             <tr>
                                 <td style="text-align: center; width: 49.6196%;" colspan="3">Best Regards,<br />
                                     <br />
