@@ -268,7 +268,7 @@
                                                 <td style="width: 28.9617%;"></td>
                                                 <td style="width: 30.8148%;" class="align-top">- Payment Terms</td>
                                                 <td style="width: 26.5123%;">
-                                                    <div class="iniinline">
+                                                    <div>
                                                         <span >: </span>
                                                         <t t-esc="doc.payment_terms"/>
                                                     </div>

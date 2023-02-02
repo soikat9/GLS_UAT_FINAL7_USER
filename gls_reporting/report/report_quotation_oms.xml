@@ -199,7 +199,7 @@
                                                     </p>
                                                     <p>Deliver Point : <t t-esc="doc.delivery_point"/>
                                                     </p>
-                                                    <p>Price : <t t-raw="doc.price_tnc"/>
+                                                    <p>Price : <t t-esc="doc.price_tnc"/>
                                                     </p>
                                                     <p>Payment Terms : <t t-esc="doc.payment_terms"/>
                                                     </p>
