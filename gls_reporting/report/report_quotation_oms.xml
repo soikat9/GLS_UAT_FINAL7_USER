@@ -95,7 +95,7 @@
                                 <td style="width: 9.51851%; height: 18px;">Attn</td>
                                 <td style="width: 1.97972%; height: 18px;">:</td>
                                 <td style="width: 38.1214%; height: 18px;">
-                                    <t t-esc="doc.attn_id"/>
+                                    <t t-esc="doc.attn"/>
                                 </td>
                                 <td style="width: 8.52077%; height: 18px;"></td>
                                 <td style="width: 7.85545%; height: 18px;">Ref</td>

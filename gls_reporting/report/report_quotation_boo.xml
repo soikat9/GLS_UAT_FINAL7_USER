@@ -57,39 +57,39 @@
                                 <td style="width: 9.51851%; height: 18px;">To</td>
                                 <td style="width: 1.97972%; height: 18px;">:</td>
                                 <td style="width: 38.1214%; height: 18px;">
-                                    <t t-esc="doc.partner_id.name" />
+                                    <!-- <t t-esc="doc.partner_id.name" /> -->
                                 </td>
                                 <td style="width: 8.52077%; height: 18px;"></td>
                                 <td style="width: 7.85545%; height: 18px;">Date</td>
                                 <td style="width: 1.97975%; height: 18px;">:</td>
                                 <td style="width: 32.0241%; height: 18px;">
-                                    <t t-esc="datetime.date.today().strftime('%b %d, %Y')" />
+                                    <!-- <t t-esc="datetime.date.today().strftime('%b %d, %Y')" /> -->
                                 </td>
                             </tr>
                             <tr style="height: 36px;">
                                 <td style="width: 9.51851%; height: 36px;">Address</td>
                                 <td style="width: 1.97972%; height: 36px;">:</td>
                                 <td style="width: 38.1214%; height: 36px;">
-                                    <t t-esc="doc.partner_id.street" />
+                                    <!-- <t t-esc="doc.partner_id.street" /> -->
                                 </td>
                                 <td style="width: 8.52077%; height: 36px;"></td>
                                 <td style="width: 7.85545%; height: 36px;">From</td>
                                 <td style="width: 1.97975%; height: 36px;">:</td>
                                 <td style="width: 32.0241%; height: 36px;">
-                                    <t t-esc="doc.company_id.name" />
+                                    <!-- <t t-esc="doc.company_id.name" /> -->
                                 </td>
                             </tr>
                             <tr style="height: 18px;">
                                 <td style="width: 9.51851%; height: 18px;">Attn</td>
                                 <td style="width: 1.97972%; height: 18px;">:</td>
                                 <td style="width: 38.1214%; height: 18px;">
-                                    <t t-esc="doc.attn_id"/>
+                                    <!-- <t t-esc="doc.attn"/> -->
                                 </td>
                                 <td style="width: 8.52077%; height: 18px;"></td>
                                 <td style="width: 7.85545%; height: 18px;">Ref</td>
                                 <td style="width: 1.97975%; height: 18px;">:</td>
                                 <td style="width: 32.0241%; height: 18px;">
-                                    <t t-esc="doc.client_order_ref" />
+                                    <!-- <t t-esc="doc.client_order_ref" /> -->
                                 </td>
                             </tr>
                             <tr style="height: 36px;">
@@ -97,13 +97,13 @@
                                 <td style="width: 1.97972%; height: 36px;">:</td>
                                 <td style="width: 38.1214%; height: 36px;">
                                     <!-- <a href="mailto:admin@porcurement.awg@adaro.com">admin@porcurement.awg@adaro.com</a> -->
-                                    <t t-esc="doc.email"/>
+                                    <!-- <t t-esc="doc.email"/> -->
                                 </td>
                                 <td style="width: 8.52077%; height: 36px;"></td>
                                 <td style="width: 7.85545%; height: 36px;">Subject</td>
                                 <td style="width: 1.97975%; height: 36px;">:</td>
                                 <td style="width: 32.0241%; height: 36px;">
-                                    <span t-field="doc.opportunity_id"/>
+                                    <!-- <span t-field="doc.opportunity_id"/> -->
                                 </td>
                             </tr>
                             <tr style="height: 18px;">

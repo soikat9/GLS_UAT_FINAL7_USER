@@ -19,7 +19,7 @@
                     <group string="Other Information">
                         <field name="subject" />
                         <field name="items_oms" />
-                        <field name="attn_id" />
+                        <field name="attn" />
                         <field name="email" />
                         <field name="supervisor" />
                         <field name="office" />
@@ -37,7 +37,7 @@
                 </page>
                 <page string="Quotation BOO">
                     <group>
-                        <field name="attn_id" />
+                        <field name="attn" />
                         <field name="periode" />
                     </group>
                     <group string="Supports">
