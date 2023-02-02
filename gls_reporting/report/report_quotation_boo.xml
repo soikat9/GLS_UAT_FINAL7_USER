@@ -109,8 +109,8 @@
                                 <td style="width: 9.51851%; height: 36px;">Email</td>
                                 <td style="width: 1.97972%; height: 36px;">:</td>
                                 <td style="width: 38.1214%; height: 36px;">
-                                    <a href="mailto:admin@porcurement.awg@adaro.com">admin@porcurement.awg@adaro.com</a>
-                                    <a href="mailto:procurement.awg@adaro.com">procurement.awg@adaro.com</a>
+                                    <!-- <a href="mailto:admin@porcurement.awg@adaro.com">admin@porcurement.awg@adaro.com</a> -->
+                                    <t t-esc="doc.attn_id.email"/>
                                 </td>
                                 <td style="width: 8.52077%; height: 36px;"></td>
                                 <td style="width: 7.85545%; height: 36px;">Subject</td>
