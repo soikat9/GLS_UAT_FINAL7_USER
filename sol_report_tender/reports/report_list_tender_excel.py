@@ -66,7 +66,7 @@ class ReportListTenderExcel(models.AbstractModel):
 
         # Judul
         sheet.merge_range('A2:' + col_name[(po_length * 2)] + '2', 'MATRIKS PERBANDINGAN HARGA ', format_header)
-        sheet.merge_range('A3:' + col_name[(po_length * 2)] + '3', 'Membrane : ', format_header_2)
+        sheet.merge_range('A3:' + col_name[(po_length * 2)] + '3', '', format_header_2)
 
         # Header table
         sheet.write('B4', 'Project :')
