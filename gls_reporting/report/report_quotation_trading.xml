@@ -103,7 +103,7 @@
                                 <td style="width: 9.51851%; height: 18px;">Attn</td>
                                 <td style="width: 1.97972%; height: 18px;">:</td>
                                 <td style="width: 38.1214%; height: 18px;">
-                                    <span t-field="doc.attn_id.name"/>
+                                    <span t-field="doc.partner_id.phone"/>
                                 </td>
                                 <td style="width: 8.52077%; height: 18px;"></td>
                                 <td style="width: 7.85545%; height: 18px;">Ref</td>
@@ -116,12 +116,13 @@
                                 <td style="width: 9.51851%; height: 36px;">Email</td>
                                 <td style="width: 1.97972%; height: 36px;">:</td>
                                 <td style="width: 38.1214%; height: 36px;">
-                                    <t t-if="doc.email">
-                                        <a t-att-href="'mailto:%s'% doc.email">
-                                            <t t-esc="doc.email"/>
-                                        </a>
+                                    <t t-esc="doc.partner_id.email"/>
+                                    <!-- <t t-if="doc.email">
+                                        <a t-att-href="'mailto:%s'% doc.email"> -->
+                                    
+                                        <!-- </a> -->
 
-                                    </t>
+                                    <!-- </t> -->
                                 </td>
                                 <td style="width: 8.52077%; height: 36px;"></td>
                                 <td style="width: 7.85545%; height: 36px;">Subject</td>

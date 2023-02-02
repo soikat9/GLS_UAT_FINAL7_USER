@@ -210,9 +210,11 @@
                         <td style="width: 19.5677%;">Responsibility Centre</td>
                         <td style="width: 1.94019%;">:</td>
                         <td style="width: 76.5521%;">
-                                                    - Presiden Director : <t t-esc="doc.president_director"/>
+                                                    - Presiden Director : 
+                                                    <!-- <t t-esc="doc.president_director"/> -->
                         <br />
-                                                    - Director : <t t-esc="doc.director"/>
+                                                    - Director : 
+                                                    <!-- <t t-esc="doc.director"/> -->
                     </td>
                 </tr>
                 <tr style="height: 18px; padding: 5px;">
@@ -232,10 +234,10 @@
                         <br />
                         <br />
                         <span style="text-decoration: underline;">
-                            <span t-field="doc.director_id"/>
+                            <!-- <span t-field="doc.director_id"/> -->
                             <br />
                         </span>
-                    </strong>Presiden Director
+                    </strong>
                 </td>
             </tr>
         </tbody>
