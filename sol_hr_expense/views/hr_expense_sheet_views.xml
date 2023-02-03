@@ -1,11 +1,11 @@
 <odoo>
   <data>
-    <record id="hr_expense_sheet_form_inherit_ref" model="ir.ui.view">
+    <!-- <record id="hr_expense_sheet_form_inherit_ref" model="ir.ui.view">
       <field name="name">hr.expense.sheet.form.inherit.ref</field>
       <field name="model">hr.expense.sheet</field>
       <field name="inherit_id" ref="hr_expense.view_hr_expense_sheet_form"/>
       <field name="arch" type="xml">
-        <!-- <field name="accounting_date" position="after">
+        <field name="accounting_date" position="after">
           <field name="ref" attrs="{['required': [('advance', '=', False)]}"/>
         </field>
         <xpath expr="//group/group[2]" position="inside">
@@ -17,7 +17,7 @@
         </xpath>
         <xpath expr="//notebook/page[@name='expenses']/field[@name='expense_line_ids']/tree/button[@name='action_get_attachment_view']" position="attributes">
           <attribute name="required">1</attribute>
-        </xpath> -->
+        </xpath>
 
       </field>
     </record>
@@ -27,10 +27,10 @@
       <field name="model">hr.expense.sheet</field>
       <field name="inherit_id" ref="hr_expense.view_hr_expense_sheet_tree"/>
       <field name="arch" type="xml">
-        <!-- <field name="name" position="after">
+        <field name="name" position="after">
           <field name="ref" />
-        </field> -->
+        </field>
       </field>
-    </record>
+    </record> -->
   </data>
 </odoo>
