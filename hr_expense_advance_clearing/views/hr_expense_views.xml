@@ -213,22 +213,22 @@
                     />
                 </group>
             </xpath>
-            
+
             <field name="accounting_date" position="after">
-                <field name="ref" attrs="{['required': [('advance', '=', False)]}"/>
+                <field name="ref" attrs="{'required': [('advance', '=', False)]}"/>
             </field>
             <xpath expr="//group/group[2]" position="inside">
-                <label for="start_date_advance" attrs="{['invisible': [('advance', '=', False)]]}"/> 
+                <label for="start_date_advance" attrs="{'invisible': [('advance', '=', False)]}"/> 
                 <div class="o_row">
-                    <field name="start_date_advance" placeholder="Start Date" attrs="{['required': [('advance', '=', False)]]}"/> -
-                    <field name="end_date" placeholder="End Date" attrs="{['required': [('advance', '=', False)]]}"/>
+                    <field name="start_date_advance" placeholder="Start Date" attrs="{'required': [('advance', '=', False)]}"/> -
+                    <field name="end_date" placeholder="End Date" attrs="{'required': [('advance', '=', False)]}"/>
                 </div>
             </xpath>
             <xpath expr="//group/group[2]" position="inside">
-                <label for="start_date_expense" attrs="{['invisible': [('advance', '=', True)]]}"/> 
+                <label for="start_date_expense" attrs="{'invisible': [('advance', '=', True)]}"/> 
                 <div class="o_row">
-                    <field name="start_date_expense" placeholder="Start Date" attrs="{['required': [('advance', '=', True)]]}"/> -
-                    <field name="end_date" placeholder="End Date" attrs="{['required': [('advance', '=', True)]]}"/>
+                    <field name="start_date_expense" placeholder="Start Date" attrs="{'required': [('advance', '=', True)]}"/> -
+                    <field name="end_date" placeholder="End Date" attrs="{'required': [('advance', '=', True)]}"/>
                 </div>
             </xpath>
 
