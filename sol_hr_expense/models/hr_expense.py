@@ -10,5 +10,5 @@ class HrExpenseSheet(models.Model):
     def _compute_attachment_number(self):
         for sheet in self:
             sheet.attachment_number = sum(sheet.expense_line_ids.mapped('attachment_number'))
-            if (len(sheet.attachment_number) == 0):
+            if sheet.attachment_number == 0:
                 raise ValidationError("Attachment Must be Fill")
