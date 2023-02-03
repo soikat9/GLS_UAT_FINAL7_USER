@@ -53,7 +53,10 @@ class HrExpenseSheet(models.Model):
         compute="_compute_amount_payable",
         help="Final regiter payment amount even after advance clearing",
     )
-
+    ref = fields.Char(string='Bill Reference', related='expense_line_ids.reference')
+    start_date_advance = fields.Date(string='Plan Date')
+    start_date_expense = fields.Date(string='Range Date')
+    end_date = fields.Date(string='End Date')
     
 
     @api.depends("expense_line_ids")
