@@ -27,9 +27,9 @@
       <field name="model">hr.expense.sheet</field>
       <field name="inherit_id" ref="hr_expense.view_hr_expense_sheet_tree"/>
       <field name="arch" type="xml">
-        <field name="name" position="after">
+        <!-- <field name="name" position="after">
           <field name="ref" />
-        </field>
+        </field> -->
       </field>
     </record>
   </data>
