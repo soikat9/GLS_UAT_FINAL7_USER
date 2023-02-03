@@ -309,6 +309,22 @@ class CrmLead(models.Model):
     additional_prob = fields.Float('Additional Probability',store=True)
     stage_id = fields.Many2one('crm.stage', compute='_compute_stage_id',string='Stage', index=True, tracking=True,readonly=False, store=True,copy=False, group_expand='_read_group_stage_ids', ondelete='restrict',domain="['|', ('team_id', '=', False), ('team_id', '=', team_id)]")
     activity_type_done_ids = fields.Many2many('mail.activity.type', string='Activity Done')
+    probability = fields.Float(
+        'Probability', group_operator="avg", copy=False,
+        compute=False, readonly=False, store=True)
+    automated_probability = fields.Float('Automated Probability', compute=False, readonly=True, store=True)
+    revoke_depends = fields.Boolean('Revoke Depends')
+
+    @api.depends('revoke_depends')
+    def _compute_probabilities(self):
+        if self.revoke_depends:
+            lead_probabilities = self._pls_get_naive_bayes_probabilities()
+            for lead in self:
+                if lead.id in lead_probabilities:
+                    was_automated = lead.active and lead.is_automated_probability
+                    lead.automated_probability = lead_probabilities[lead.id]
+                    if was_automated:
+                        lead.probability = lead.automated_probability
 
     def action_set_won_rainbowman(self):
         for i in self:

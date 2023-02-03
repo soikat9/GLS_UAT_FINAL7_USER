@@ -104,6 +104,7 @@
           <field name="is_po_receive" invisible="1"/>
           <field name="additional_prob" invisible="1" />
           <field name="activity_type_done_ids" widget="many2many_tags" invisible="1"/>
+          <field name="revoke_depends" invisible="1"/>
         </xpath>
 
         <xpath expr="//button[@name=%(crm.action_crm_lead2opportunity_partner)d]" position="attributes">
