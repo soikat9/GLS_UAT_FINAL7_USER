@@ -315,6 +315,22 @@ class CrmLead(models.Model):
     automated_probability = fields.Float('Automated Probability', compute=False, readonly=True, store=True)
     revoke_depends = fields.Boolean('Revoke Depends')
 
+    def all_crm_done(self):
+        self.ensure_one()
+        self.action_set_won()
+
+        message = self._get_rainbowman_message()
+        if message:
+            return {
+                'effect': {
+                    'fadeout': 'slow',
+                    'message': message,
+                    'img_url': '/web/image/%s/%s/image_1024' % (self.team_id.user_id._name, self.team_id.user_id.id) if self.team_id.user_id.image_1024 else '/web/static/img/smile.svg',
+                    'type': 'rainbow_man',
+                }
+            }
+        return True
+
     @api.depends('revoke_depends')
     def _compute_probabilities(self):
         if self.revoke_depends:
