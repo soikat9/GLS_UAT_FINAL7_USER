@@ -164,6 +164,9 @@
             <field name="total_amount" position="after">
                 <field name="clearing_residual" optional="show" />
             </field>
+            <field name="advance_sheet_id" position="after">
+                <field name="ref" />
+            </field>
         </field>
     </record>
     <record id="view_hr_expense_sheet_form" model="ir.ui.view">
@@ -200,7 +203,7 @@
                     <field name="id" invisible="1" />
                     <field
                         name="advance_sheet_id"
-                        attrs="{'invisible': [('advance', '=', True)]}"
+                        attrs="{'invisible': [('advance', '=', True)], 'required': [('advance', '=', 'False')]}"
                         force_save="1"
                     />
                     <field
@@ -213,6 +216,25 @@
                     />
                 </group>
             </xpath>
+
+            <field name="accounting_date" position="after">
+                <field name="ref" attrs="{'required': [('advance', '=', False)]}"/>
+            </field>
+            <xpath expr="//group/group[2]" position="inside">
+                <label for="start_date_advance" attrs="{'invisible': [('advance', '=', False)]}"/> 
+                <div class="o_row" attrs="{'invisible': [('advance', '=', False)]}">
+                    <field name="start_date_advance" placeholder="Start Date" attrs="{'required': [('advance', '=', True)], 'invisible': [('advance', '=', 'False')]}"/> -
+                    <field name="end_date" placeholder="End Date" attrs="{'required': [('advance', '=', True)], 'invisible': [('advance', '=', 'False')]}"/>
+                </div>
+            </xpath>
+            <xpath expr="//group/group[2]" position="inside">
+                <label for="start_date_expense" attrs="{'invisible': [('advance', '=', True)]}"/> 
+                <div class="o_row" attrs="{'invisible': [('advance', '=', True)]}">
+                    <field name="start_date_expense" placeholder="Start Date" attrs="{'required': [('advance', '=', False)], 'invisible': [('advance', '=', 'False')]}"/> -
+                    <field name="end_date" placeholder="End Date" attrs="{'required': [('advance', '=', False)], 'invisible': [('advance', '=', 'False')]}"/>
+                </div>
+            </xpath>
+
             <xpath
                 expr="//field[@name='expense_line_ids']/tree/field[@name='name']"
                 position="after"
