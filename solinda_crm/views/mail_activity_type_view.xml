@@ -10,7 +10,7 @@
             <group name="activity_details" position="inside">
                 <!-- kodingan untuk odoo enterprise -->
                 <field name="progress" widget="percentage" attrs="{'invisible':[('res_model','!=','crm.lead')]}" />
-
+                <field name="cspr" attrs="{'invisible':[('res_model','!=','crm.lead')]}"/>
                 <!-- kodingan untuk odoo community -->
                 <!-- <field name="progress" widget="percentage" /> -->
             </group>
