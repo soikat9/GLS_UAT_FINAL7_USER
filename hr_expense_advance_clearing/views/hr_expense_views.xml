@@ -203,7 +203,7 @@
                     <field name="id" invisible="1" />
                     <field
                         name="advance_sheet_id"
-                        attrs="{'invisible': [('advance', '=', True)], 'required': [('state', '=', 'draft')]}"
+                        attrs="{'invisible': [('advance', '=', True)], 'required': [('advance', '=', 'False')]}"
                         force_save="1"
                     />
                     <field
@@ -223,15 +223,15 @@
             <xpath expr="//group/group[2]" position="inside">
                 <label for="start_date_advance" attrs="{'invisible': [('advance', '=', False)]}"/> 
                 <div class="o_row" attrs="{'invisible': [('advance', '=', False)]}">
-                    <field name="start_date_advance" placeholder="Start Date" attrs="{'required': [('advance', '=', False)], 'invisible': [('advance', '=', 'False')]}"/> -
-                    <field name="end_date" placeholder="End Date" attrs="{'required': [('advance', '=', False)], 'invisible': [('advance', '=', 'False')]}"/>
+                    <field name="start_date_advance" placeholder="Start Date" attrs="{'required': [('advance', '=', True)], 'invisible': [('advance', '=', 'False')]}"/> -
+                    <field name="end_date" placeholder="End Date" attrs="{'required': [('advance', '=', True)], 'invisible': [('advance', '=', 'False')]}"/>
                 </div>
             </xpath>
             <xpath expr="//group/group[2]" position="inside">
                 <label for="start_date_expense" attrs="{'invisible': [('advance', '=', True)]}"/> 
                 <div class="o_row" attrs="{'invisible': [('advance', '=', True)]}">
-                    <field name="start_date_expense" placeholder="Start Date" attrs="{'required': [('advance', '=', True)], 'invisible': [('advance', '=', 'False')]}"/> -
-                    <field name="end_date" placeholder="End Date" attrs="{'required': [('advance', '=', True)], 'invisible': [('advance', '=', 'False')]}"/>
+                    <field name="start_date_expense" placeholder="Start Date" attrs="{'required': [('advance', '=', False)], 'invisible': [('advance', '=', 'False')]}"/> -
+                    <field name="end_date" placeholder="End Date" attrs="{'required': [('advance', '=', False)], 'invisible': [('advance', '=', 'False')]}"/>
                 </div>
             </xpath>
 
