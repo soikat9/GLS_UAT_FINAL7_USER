@@ -32,7 +32,7 @@
       <field name="view_mode">tree,form</field>
     </record>
 
-    <menuitem id="delivery_location_menu" name="Data Delivery Location" action="solinda_purchase.delivery_location_action" parent="menu_purchase_config" sequence="18"/>
+    <menuitem id="delivery_location_menu" name="Data Delivery Location" action="solinda_purchase.delivery_location_action" parent="purchase.menu_purchase_config" sequence="18"/>
 
 
 
