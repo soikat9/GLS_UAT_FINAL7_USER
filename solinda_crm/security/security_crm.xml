@@ -16,7 +16,7 @@
         <record id="crm_lead_teams_rule" model="ir.rule">
             <field name="name">CRM Teams Only</field>
             <field name="model_id" ref="crm.model_crm_lead"/>
-            <field name="domain_force">[('team_id.member_ids.ids', 'in', [user.id])]</field>
+            <field name="domain_force">[('team_id.member_ids', 'in', [user.id])]</field>
             <field name="groups" eval="[(6,0,[ref('solinda_crm.own_sales_team_groups')])]"/>
         </record>
 
