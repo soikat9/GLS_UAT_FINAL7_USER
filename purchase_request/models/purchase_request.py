@@ -133,7 +133,7 @@ class PurchaseRequest(models.Model):
         required=True,
         default=_default_picking_type,
     )
-    location_id = fields.Many2one('stock.location', string='Location')
+    location_id = fields.Many2one('stock.location',store=True, string='Location')
     
     group_id = fields.Many2one(
         comodel_name="procurement.group",
