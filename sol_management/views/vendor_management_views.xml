@@ -182,7 +182,7 @@
       <field name="inherit_id" ref="purchase.purchase_order_form"/>
       <field name="arch" type="xml">
         <xpath expr="//field[@name='partner_ref']" position="after">
-            <field name="visible_management" widget="priority"/>
+            <field name="visible_vendor" widget="priority"/>
         </xpath>
       </field>
     </record>
