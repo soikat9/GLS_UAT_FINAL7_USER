@@ -135,30 +135,7 @@ class PurchaseRequest(models.Model):
     )
     location_id = fields.Many2one('stock.location', string='Location',related="picking_type_id.default_location_dest_id")
     
-    # group_id = fields.Many2one(
-    #     comodel_name="procurement.group",
-    #     string="RFQ",
-    #     copy=False,
-    #     index=True,
-    # )
-
-    # @api.onchange('group_id')
-    # def _onchange_group_id(self):
-    #     for i in self:
-    #         i.line_ids = [(5,0,0)]
-    #         data = []
-    #         if i.group_id:
-    #             rfq = i.env["purchase.order"].search([("name", "=", i.group_id.name)])
-    #             if rfq:
-    #                 for r in rfq.order_line:
-    #                     data.append((0,0,{
-    #                         'product_id': r.product_id.id,
-    #                         'name': r.name,
-    #                         'product_qty': r.product_qty,
-    #                         'product_uom_id': r.product_qty,
-    #                         'analytic_account_id': r.account_analytic_id.id,
-    #                     }))
-    #             i.line_ids = data
+   
 
     line_count = fields.Integer(
         string="Purchase Request Line count",
