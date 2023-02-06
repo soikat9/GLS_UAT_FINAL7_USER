@@ -102,7 +102,7 @@ class PurchaseOrder(models.Model):
     notes = fields.Html(string='Notes')
     courier = fields.Char('Courier')
     # location_id = fields.Many2one('stock.location', string='Location')
-    location_id = fields.Many2one('stock.location', string='Location',related="picking_type_id.default_location_dest_id",store=True)
+    location_id = fields.Many2one('stock.location', string='Location',store=True)
 
     state = fields.Selection([
         ('draft', 'RFQ'),
@@ -123,6 +123,14 @@ class PurchaseOrder(models.Model):
     best_regard = fields.Many2one('res.users', string='Best Regards By')
     so_trading_id = fields.Many2one('sale.order', string="SO Trading")
     btn_hide = fields.Boolean(string='Hide', default=False)
+
+    def _get_destination_location(self):
+        self.ensure_one()
+        if self.location_id:
+            return self.location_id.id
+        if self.dest_address_id:
+            return self.dest_address_id.property_stock_customer.id
+        return self.picking_type_id.default_location_dest_id.id
 
 
     @api.onchange('requisition_id')
