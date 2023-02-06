@@ -228,9 +228,6 @@ class PaymentSchedule(models.Model):
     ], string='Percentage Based On',default="bill")
     deduct_dp = fields.Boolean('Deduct DP')
 
-    
-    
-    
     @api.depends('order_id.amount_untaxed','order_id.amount_total','bill','percentage_based_on','order_id.payment_scheme')
     def _compute_total_amount(self):
         for this in self:
@@ -414,8 +411,10 @@ class PaymentSchedule(models.Model):
                     
                 if self.include_project_cost:
                     cost = self.total_amount * (100 - self.order_id.rab_id.final_profit_percent * 100)/100
+                    if self.include_dp:
+                        cost = (data_dp[0].total_amount + self.total_amount) * (1 - self.order_id.rab_id.final_profit_percent)
                     invoice_vals['invoice_line_ids'] += self._include_project_cost(project,cost)
-                
+                        
                 moves = self.env['account.move'].sudo().with_context(default_move_type='out_invoice').create(invoice_vals)    
 
             self.write({'move_id': moves.id})
