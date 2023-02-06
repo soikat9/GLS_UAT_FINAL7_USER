@@ -170,7 +170,7 @@
           <header>
             <button name="rfq_selected" type="object" class="oe_highlight" states="sent" string="Select" groups="solinda_purchase.group_purchasing_selected_requisition" attrs="{'invisible': ['|', ('btn_hide', '=', False)]}"/>
             <button name="submit_purchase" type="object" class="oe_highlight" states="draft" string="Submit" groups="solinda_purchase.group_purchasing_staff_approval1" attrs="{'invisible': ['|', ('btn_hide', '=', True)]}"/>
-            <button name="confirm_purchase" type="object" class="oe_highlight" states="submit" string="Confirm Order" groups="solinda_purchase.group_procurement_manager_approval2" attrs="{'invisible': ['|', ('btn_hide', '=', True)]}"/>
+            <button name="confirm_purchase" type="object" class="oe_highlight" states="submit" string="Confirm Order" groups="purchase_request.group_purchase_request_procurement" attrs="{'invisible': ['|', ('btn_hide', '=', True)]}"/>
 
             <button name="button_confirm" type="object" class="oe_highlight" states="confirm" string="Approved Order" id="draft_confirm" groups="solinda_purchase.group_direksi_approval3" attrs="{'invisible': ['|', ('btn_hide', '=', True)]}"/>
 
@@ -216,7 +216,8 @@
         </xpath>
          -->
         <xpath expr="//field[@name='picking_type_id']" position="after">
-          <field name="location_id" attrs="{'readonly': [('state', 'not in', ('draft'))]}" required="1"/>
+          <!-- <field name="location_id" attrs="{'readonly': [('state', 'not in', ('draft'))]}" required="1"/> -->
+          <field name="location_id" readonly="1"/>
         </xpath>
       </field>
     </record>
@@ -226,6 +227,9 @@
       <field name="model">purchase.request</field>
       <field name="inherit_id" ref="purchase_request.view_purchase_request_form"/>
       <field name="arch" type="xml">
+        <xpath expr="//notebook/page/field[@name='line_ids']/tree/field[@name='analytic_tag_ids']" position="attributes">
+          <attribute name="optional">hide</attribute>
+        </xpath>
         <xpath expr="//field[@name='assigned_to']" position="attributes">
           <attribute name="invisible">1</attribute>
         </xpath>
