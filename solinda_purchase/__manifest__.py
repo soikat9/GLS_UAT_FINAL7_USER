@@ -27,6 +27,7 @@
         'security/security.xml',
         'security/ir.model.access.csv',
         'views/sequence_data.xml',
+        'views/menu_delivery_location.xml',
         'report/report_action.xml',
         'report/report_rfq.xml',
         'report/report_rfq_internal.xml',
