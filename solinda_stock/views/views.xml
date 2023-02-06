@@ -45,5 +45,17 @@
     <record model="ir.ui.menu" id="stock.menu_action_inventory_tree">
       <field name="groups_id" eval="[(4,ref('solinda_stock.inventory_adjustment_access_group'))]" />
     </record>
+
+    <record id="view_backorder_confirmation_inherit_stock" model="ir.ui.view">
+      <field name="name">stock.backorder.confirmation.view.form.inherit</field>
+      <field name="model">stock.backorder.confirmation</field>
+      <field name="inherit_id" ref="stock.view_backorder_confirmation"/>
+      <field name="arch" type="xml">
+        <xpath expr="//footer/button[@name='process']" position="attributes">
+          <attribute name="string">Create Partial</attribute>
+        </xpath>
+      </field>
+    </record>
+
   </data>
 </odoo>
