@@ -101,7 +101,6 @@ class PurchaseOrder(models.Model):
     name = fields.Char(string='Order Reference')
     notes = fields.Html(string='Notes')
     courier = fields.Char('Courier')
-    # location_id = fields.Many2one('stock.location', string='Location')
     location_id = fields.Many2one('stock.location', string='Location',store=True)
     field_loc = fields.Boolean(string='Field Location', default=False)
 
