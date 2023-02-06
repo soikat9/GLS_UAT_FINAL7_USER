@@ -10,8 +10,7 @@
           <attribute name="attrs">{'required':[('state','=','sale')], 'readonly':[('state','=','draft')]}</attribute>
         </xpath>
         <xpath expr="//notebook/page[@name='other_information']/group/group[@name='sale_info']/field[@name='analytic_account_id']" position="attributes">
-          <attribute name="attrs">{}</attribute>
-          <attribute name="attrs"><{'required':[('state','=','sale')], 'readonly':[('state','=','draft')]}/attribute>
+          <attribute name="attrs"><{'required':[('state','=','sale')], 'readonly':['|', ('state','not in',['sent','sale'])]}/attribute>
         </xpath>
         <xpath expr="//form" position="attributes">
           <attribute name="create">0</attribute>
