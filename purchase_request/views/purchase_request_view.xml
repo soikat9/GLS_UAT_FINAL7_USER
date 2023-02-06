@@ -64,6 +64,7 @@
                         <group>
                             <field name="origin" class="oe_inline" attrs="{'readonly': [('is_editable','=', False)]}" />
                             <field name="description" attrs="{'readonly': [('is_editable','=', False)]}" />
+                            <field name="group_id" attrs="{'readonly': [('is_editable','=', False)]}" />
                             <!-- <field name="project_name"/> -->
                             <field name="project_id"/>
                             <field name="create_directly" readonly="0" force_save="1"/>
