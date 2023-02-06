@@ -200,6 +200,7 @@
             <field name="received" />
             <field name="best_regard" />
             <field name="btn_hide" invisible="1"/>
+            <field name="field_loc" invisible="1" />
           </group>
         </xpath>
       </field>
@@ -216,8 +217,7 @@
         </xpath>
          -->
         <xpath expr="//field[@name='picking_type_id']" position="after">
-          <field name="location_id" attrs="{'readonly': [('state', 'not in', ('draft'))]}" required="1"/>
-          <!-- <field name="location_id" readonly="1"/> -->
+          <field name="location_id" attrs="{'readonly': [('state', 'not in', ('draft'))], {'invisible': [('field_loc', '=', False)]}"/>
         </xpath>
       </field>
     </record>

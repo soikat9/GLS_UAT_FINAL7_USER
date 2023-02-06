@@ -132,6 +132,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
             "company_id": company.id,
             "group_id": group_id.id,
             "project_code": project_code,
+            "field_loc": True
         }
         return data
 
