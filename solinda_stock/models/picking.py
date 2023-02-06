@@ -36,4 +36,15 @@ class StockPicking(models.Model):
                         raise ValidationError("You are not allowed to validate this document!")
         return super(StockPicking,self).button_validate()  
 
-    
+    def _action_generate_backorder_wizard(self, show_transfers=False):
+        view = self.env.ref('stock.view_backorder_confirmation')
+        return {
+            'name': _('Create Partial?'),
+            'type': 'ir.actions.act_window',
+            'view_mode': 'form',
+            'res_model': 'stock.backorder.confirmation',
+            'views': [(view.id, 'form')],
+            'view_id': view.id,
+            'target': 'new',
+            'context': dict(self.env.context, default_show_transfers=show_transfers, default_pick_ids=[(4, p.id) for p in self]),
+        }

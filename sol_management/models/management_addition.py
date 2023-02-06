@@ -39,17 +39,10 @@ class VendorAdd(models.Model):
 class PurchaseAddition(models.Model):
     _inherit = 'purchase.order'
 
-    visible_eval = fields.Selection(cm.VendorManagement.point, string="Last Management Vendor", compute='_calculate_eval', readonly=True)
+    visible_vendor = fields.Selection(vm.VendorManagement.point, string='Last Management Vendor', readonly=True, related='partner_id.visible_management')
+    
+class SalesAddition(models.Model):
+    _inherit = 'sale.order'
 
-    @api.depends()
-    def _calculate_eval(self):
-        for rec in self:
-            record = self.env['vendor.management'].search([
-                ('vendor', '=', rec.id),
-                ('state', '=', 'approved')
-            ])
-            if record:
-                rec.visible_management = record.sorted('period_end', reverse=True)[0].final_rate 
-                # rec.test = True
-            else:
-                rec.visible_management = False
+    visible_vendor_so = fields.Selection(cm.CustomerManagement.point, string='Last Management Customer', readonly=True, related='partner_id.visible_management_cust')
+    
