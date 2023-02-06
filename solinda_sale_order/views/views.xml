@@ -7,10 +7,10 @@
       <field name="inherit_id" ref="sale.view_order_form"/>
       <field name="arch" type="xml">
         <xpath expr="//notebook/page[@name='other_information']/group/group[@name='sales_person']/field[@name='client_order_ref']" position="attributes">
-          <attribute name="attrs">{'required':[('state','=','sale')]}</attribute>
+          <attribute name="attrs">{'required':[('state','=','sale')], 'readonly':[('state','=','draft')]}</attribute>
         </xpath>
         <xpath expr="//notebook/page[@name='other_information']/group/group[@name='sale_info']/field[@name='analytic_account_id']" position="attributes">
-          <attribute name="attrs">{'required':[('state','=','sale')]}</attribute>
+          <attribute name="attrs">{'required':[('state','=','sale')], 'readonly':[('state','=','draft')]}</attribute>
         </xpath>
         <xpath expr="//form" position="attributes">
           <attribute name="create">0</attribute>
