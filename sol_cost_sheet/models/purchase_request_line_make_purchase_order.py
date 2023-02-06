@@ -27,7 +27,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
                     line.company_id,
                     line.origin,
                     line.project_code,
-                    line.location_id,
+                    line.request_id.location_id,
                 )
                 purchase = purchase_obj.create(po_data)
             # Look for any other PO line in the selected PO with same
