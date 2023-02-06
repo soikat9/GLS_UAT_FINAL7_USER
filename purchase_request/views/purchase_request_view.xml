@@ -74,7 +74,7 @@
                         <group>
                             <field name="date_start" attrs="{'readonly': [('is_editable','=', False)]}" />
                             <field name="picking_type_id" attrs="{'readonly': [('is_editable','=', False)]}" />
-                            <field name="location_id" attrs="{'readonly': [('is_editable','=', False)]}" />
+                            <field name="location_id" attrs="{'readonly': [('is_editable','=', False)]}" required="1"/>
                             <field name="company_id" groups="base.group_multi_company" widget="selection" attrs="{'readonly': [('is_editable','=', False)]}" />
                             <field name="is_atasan" invisible="1"/>
                             <field name="qty_is_bigger" invisible="1"/>
