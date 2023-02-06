@@ -39,10 +39,11 @@ class VendorAdd(models.Model):
 class PurchaseAddition(models.Model):
     _inherit = 'purchase.order'
 
-    visible_eval = fields.Selection(vm.VendorManagement.point, string="Last Management Vendor", compute='_calculate_eval_po', readonly=True)
-
+    visible_management = fields.Selection(vm.VendorManagement.point, string='Last Management Vendor', compute='_calculate_eval', readonly=True)
+    # test = fields.Boolean(string="Test", default=False)
+    
     @api.depends()
-    def _calculate_eval_po(self):
+    def _calculate_eval(self):
         for rec in self:
             record = self.env['vendor.management'].search([
                 ('vendor', '=', rec.id),
