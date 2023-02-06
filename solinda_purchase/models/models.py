@@ -102,7 +102,7 @@ class PurchaseOrder(models.Model):
     notes = fields.Html(string='Notes')
     courier = fields.Char('Courier')
     # location_id = fields.Many2one('stock.location', string='Location')
-    location_id = fields.Many2one('stock.location', string='Location',store=True)
+    location_id = fields.Many2one('stock.location', string='Location',store=True, related="picking_type_id.default_location_dest_id")
     field_loc = fields.Boolean(string='Field Location', default=False)
 
     state = fields.Selection([
