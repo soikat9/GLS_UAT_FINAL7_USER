@@ -7,6 +7,12 @@
             <field name="model">crm.stage</field>
             <field name="inherit_id" ref="crm.crm_stage_tree"/>
             <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='is_won']" position="after">
+                    <field name="is_backlog"/>
+                </xpath>
+
+
                 <xpath expr="//field[@name='team_id']" position="after">
                     <field name="percentage_range"/>
                 </xpath>
@@ -19,6 +25,10 @@
             <field name="model">crm.stage</field>
             <field name="inherit_id" ref="crm.crm_stage_form"/>
             <field name="arch" type="xml">
+                <xpath expr="//field[@name='is_won']" position="after">
+                    <field name="is_backlog"/>
+                </xpath>
+
                 <xpath expr="//sheet/group" position="after">
                     <separator string="Probability Range"/>
                     <group>

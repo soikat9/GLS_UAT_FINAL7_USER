@@ -309,20 +309,56 @@ class CrmLead(models.Model):
     additional_prob = fields.Float('Additional Probability',store=True)
     stage_id = fields.Many2one('crm.stage', compute='_compute_stage_id',string='Stage', index=True, tracking=True,readonly=False, store=True,copy=False, group_expand='_read_group_stage_ids', ondelete='restrict',domain="['|', ('team_id', '=', False), ('team_id', '=', team_id)]")
     activity_type_done_ids = fields.Many2many('mail.activity.type', string='Activity Done')
+    probability = fields.Float(
+        'Probability', group_operator="avg", copy=False,
+        compute=False, readonly=False, store=True)
+    automated_probability = fields.Float('Automated Probability', compute=False, readonly=True, store=True)
+    revoke_depends = fields.Boolean('Revoke Depends')
+
+    def all_crm_done(self):
+        self.ensure_one()
+        self.action_set_won()
+
+        message = self._get_rainbowman_message()
+        if message:
+            return {
+                'effect': {
+                    'fadeout': 'slow',
+                    'message': message,
+                    'img_url': '/web/image/%s/%s/image_1024' % (self.team_id.user_id._name, self.team_id.user_id.id) if self.team_id.user_id.image_1024 else '/web/static/img/smile.svg',
+                    'type': 'rainbow_man',
+                }
+            }
+        return True
+
+    @api.depends('revoke_depends')
+    def _compute_probabilities(self):
+        if self.revoke_depends:
+            lead_probabilities = self._pls_get_naive_bayes_probabilities()
+            for lead in self:
+                if lead.id in lead_probabilities:
+                    was_automated = lead.active and lead.is_automated_probability
+                    lead.automated_probability = lead_probabilities[lead.id]
+                    if was_automated:
+                        lead.probability = lead.automated_probability
 
     def action_set_won_rainbowman(self):
+        # self.action_set_won()
         for i in self:
             if i.is_po_receive:
-                return super(CrmLead, self).action_set_won_rainbowman()
+                backlog = self._stage_find(domain=[('is_backlog', '=', True)], limit=1)
+                i.write({'stage_id': backlog.id, 'probability': 100})
+                # return super(CrmLead, self).action_set_won_rainbowman()
             else:
-                return {
-                    "view_mode": "form",
-                    "res_model": "mail.activity",
-                    "view_id": self.env.ref("mail.mail_activity_view_form_popup").id,
-                    "context": {'default_res_model':'crm.lead'},
-                    "type": "ir.actions.act_window",
-                    "target": "new",
-                }
+                raise UserError("PO is not receive")
+                # return {
+                #     "view_mode": "form",
+                #     "res_model": "mail.activity",
+                #     "view_id": self.env.ref("mail.mail_activity_view_form_popup").id,
+                #     "context": {'default_res_model':'crm.lead'},
+                #     "type": "ir.actions.act_window",
+                #     "target": "new",
+                # }
 
     @api.model
     def default_get(self, fields):
@@ -333,22 +369,23 @@ class CrmLead(models.Model):
     @api.depends('team_id', 'type','probability')
     def _compute_stage_id(self):
         for i in self:
-            if not i.stage_id:
-                i.stage_id = i._stage_find(domain=[('fold', '=', False)]).id
-            else:
-                if i.type == 'opportunity':
-                    stage = i.env['crm.stage'].search(['|', ('team_id', '=', False), ('team_id', '=', i.team_id.id),('percent_from','<=',i.probability),('percent_to','>=',i.probability)])
-                    if stage:
-                        len_stage = len(stage)
-                        if len_stage == 1:
-                            i.stage_id = stage.id
-                            i._onchange_stagescrm_id()
-                        elif len_stage > 1:
-                            raise UserError("Found more than 1 stage!\nPlease update the probability range rules on the stage!")
+            if i.probability < 100:
+                if not i.stage_id:
+                    i.stage_id = i._stage_find(domain=[('fold', '=', False)]).id
+                else:
+                    if i.type == 'opportunity':
+                        stage = i.env['crm.stage'].search(['|', ('team_id', '=', False), ('team_id', '=', i.team_id.id),('percent_from','<=',i.probability),('percent_to','>=',i.probability)])
+                        if stage:
+                            len_stage = len(stage)
+                            if len_stage == 1:
+                                i.stage_id = stage.id
+                                i._onchange_stagescrm_id()
+                            elif len_stage > 1:
+                                raise UserError("Found more than 1 stage!\nPlease update the probability range rules on the stage!")
+                            else:
+                                raise UserError("Stage is not defined with the probability!")
                         else:
                             raise UserError("Stage is not defined with the probability!")
-                    else:
-                        raise UserError("Stage is not defined with the probability!")
 
 
     # @api.onchange('probability')

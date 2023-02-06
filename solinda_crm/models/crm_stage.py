@@ -7,7 +7,8 @@ class CrmStage(models.Model):
     percent_to = fields.Float(string='To')
 
     percentage_range = fields.Char(compute='_compute_percentage_range', string='Probability Range')
-    
+    is_backlog = fields.Boolean('Is Backlog?')
+
     @api.depends('percent_from','percent_to')
     def _compute_percentage_range(self):
         for i in self:

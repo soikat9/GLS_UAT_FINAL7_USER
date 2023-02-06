@@ -5,3 +5,4 @@ class MailActivityType(models.Model):
 
     
     progress = fields.Float('Progress')
+    cspr = fields.Boolean('Contract Signed / PO Receive')
