@@ -255,7 +255,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
                     line.company_id,
                     line.origin,
                     line.project_code,
-                    line.location_id,
+                    line.request_id.location_id,
                 )
                 purchase = purchase_obj.create(po_data)
                 po_so_trading = self.env['sale.order'].search('id', '=', self.so_trading_id.id)
