@@ -39,7 +39,7 @@ class VendorAdd(models.Model):
 class PurchaseAddition(models.Model):
     _inherit = 'purchase.order'
 
-    visible_eval = fields.Selection(cm.VendorManagement.point, string="Last Management Vendor", compute='_calculate_eval_po', readonly=True)
+    visible_eval = fields.Selection(vm.VendorManagement.point, string="Last Management Vendor", compute='_calculate_eval_po', readonly=True)
 
     @api.depends()
     def _calculate_eval_po(self):
