@@ -25,6 +25,7 @@ class StockPicking(models.Model):
     received = fields.Many2one('res.users', string='Received By')
     serial = fields.Char(string='PO Number')
     return_reasons = fields.Text('Return Reason')
+    project_code = fields.Char(string='Project Code', store=True)
     
     def button_validate(self):
         for i in self:
