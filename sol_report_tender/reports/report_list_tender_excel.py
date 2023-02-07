@@ -70,7 +70,8 @@ class ReportListTenderExcel(models.AbstractModel):
 
         # Header table
         for poi in obj.purchase_order_ids:
-            np = poi.requisition_id.name_project
+            if poi.requisition_id.name_project:
+                np = poi.requisition_id.name_project
         proj = 'Project : ' + np
         sheet.write('B4', proj)
 
