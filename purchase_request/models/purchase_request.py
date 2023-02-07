@@ -179,6 +179,7 @@ class PurchaseRequest(models.Model):
     )
     project_name = fields.Char(string='Project Name')
     project_id = fields.Many2one('project.project', string='Project Name')
+    hide_project_name = fields.Boolean(string='Hide', default=False)
 
     # Additional Fields For Approval 
     qty_is_bigger = fields.Boolean(string='Qty Is Bigger')
