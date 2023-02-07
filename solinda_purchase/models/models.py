@@ -15,8 +15,8 @@ class PurchaseRequisition(models.Model):
         ('trading', 'Trading'),
         ('bidding', 'Bidding')
     ], string='Need Category')
-    ordering_date = fields.Date(string="Ordering Date", tracking=True,default=fields.Date.today, compute='check_date_deadline')
-    date_total = fields.Integer(string='Total Date', compute='check_date_deadline')
+    ordering_date = fields.Date(string="Ordering Date", tracking=True,default=fields.Date.today)
+    # date_total = fields.Integer(string='Total Date', compute='check_date_deadline')
     btn_hide_req = fields.Boolean(string='Hide', default=True)
     
     @api.model
@@ -30,7 +30,7 @@ class PurchaseRequisition(models.Model):
                 date_end = fields.Date.from_string(rec.date_end)
                 ordering_date = fields.Date.from_string(rec.ordering_date)
                 date_total = date_end - ordering_date
-                if date_total < 3:
+                if date_total.days < 3:
                     raise ValidationError("Date Deadline must be at least 3 days after the Create Date")
 
 class DeliveryLocation(models.Model):

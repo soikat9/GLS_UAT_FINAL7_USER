@@ -85,7 +85,7 @@
         <field name="currency_id" position="after">
           <field name="name_project" />
           <field name="btn_hide_req" invisible="1"/>
-          <field name="date_total" invisible="1"/>
+          <!-- <field name="date_total" invisible="1"/> -->
         </field>
         <field name="name_project" position="after">
           <field name="need_category" />
