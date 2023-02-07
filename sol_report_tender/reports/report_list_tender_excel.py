@@ -69,7 +69,11 @@ class ReportListTenderExcel(models.AbstractModel):
         sheet.merge_range('A3:' + col_name[(po_length * 2)] + '3', '', format_header_2)
 
         # Header table
-        sheet.write('B4', 'Project :')
+        for poi in obj.purchase_order_ids:
+            np = poi.requisition_id.name_project
+        proj = 'Project :' + np
+        sheet.write('B4', proj)
+
         sheet.write('B5', str(parse(str(obj.create_date)).strftime("%d %B %Y")))
 
         sheet.merge_range('B6:B8', 'No.', format_header_table)
