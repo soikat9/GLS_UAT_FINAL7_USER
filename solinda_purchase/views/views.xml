@@ -64,7 +64,7 @@
         </xpath>
 
         <xpath expr="//button[@name='action_done']" position="before">
-          <button name="direksi_approved" type="object" class="oe_highlight" string="Approved Request" groups="solinda_purchase.group_direksi_approval3" attrs="{'invisible': ['|',('order_count', '&gt;', 2),('direksi_approved','=',True),('state','=','draft')]}"/>
+          <button name="direksi_approved" type="object" class="oe_highlight" string="Approved Request" groups="solinda_purchase.group_direksi_approval3" attrs="{'invisible': ['|',('order_count', '&gt;', 2),('is_direksi_approved','=',True),('state','=','draft')]}"/>
         </xpath>
 
 

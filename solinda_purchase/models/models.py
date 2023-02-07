@@ -22,7 +22,7 @@ class PurchaseRequisition(models.Model):
     is_direksi_approved = fields.Boolean(string='Direksi Approved')
     
     def direksi_approved(self):
-        self.direksi_approved = True
+        self.is_direksi_approved = True
     
     @api.model
     def create(self, vals):
@@ -259,7 +259,7 @@ class PurchaseOrder(models.Model):
     def rfq_selected(self):
         # special from requisition
         if self.requisition_id:
-            if self.requisition_id.order_count < 3 and not self.requisition_id.direksi_approved:
+            if self.requisition_id.order_count < 3 and not self.requisition_id.is_direksi_approved:
                 raise ValidationError("Selected failed!\nRFQ is less than 3 and has not been approved by directors yet.")
 
             request = self.env["purchase.order"].search([("requisition_id", "=", self.requisition_id.id)])
