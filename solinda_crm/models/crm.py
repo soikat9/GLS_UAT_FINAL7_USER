@@ -314,6 +314,15 @@ class CrmLead(models.Model):
         compute=False, readonly=False, store=True)
     automated_probability = fields.Float('Automated Probability', compute=False, readonly=True, store=True)
     revoke_depends = fields.Boolean('Revoke Depends')
+    # lead_team_id = fields.Many2one('res.users', string='Lead Team')
+
+    # @api.onchange('team_id')
+    # def _onchange_team_id(self):
+    #     if self.team_id.user_id:
+    #         self.lead_team_id = self.team_id.user_id.id
+    #     else:
+    #         self.lead_team_id = False
+
 
     def all_crm_done(self):
         self.ensure_one()

@@ -15,3 +15,4 @@ solinda_crm.access_operation_conditions,access_operation_conditions,solinda_crm.
 solinda_crm.access_water_characterizations,access_water_characterizations,solinda_crm.model_water_characterizations,base.group_user,1,1,1,1
 solinda_crm.access_treated_quality,access_treated_quality,solinda_crm.model_treated_quality,base.group_user,1,1,1,1
 solinda_crm.access_existing_chemical,access_existing_chemical,solinda_crm.model_existing_chemical,base.group_user,1,1,1,1
+solinda_crm.access_own_team,access_own_team_crm,solinda_crm.model_crm_lead,solinda_crm.own_sales_team_groups,1,1,1,1
