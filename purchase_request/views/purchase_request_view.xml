@@ -65,8 +65,10 @@
                             <field name="origin" class="oe_inline" attrs="{'readonly': [('is_editable','=', False)]}" />
                             <field name="description" attrs="{'readonly': [('is_editable','=', False)]}" />
                             <field name="group_id" attrs="{'readonly': [('is_editable','=', False)]}" invisible="1" />
-                            <!-- <field name="project_name"/> -->
-                            <field name="project_id"/>
+                            <field name="hide_project_name" invisible="1"/>
+                            <field name="project_name" attrs="{'invisible': [('hide_project_name','=', False)]}"/>
+                            <field name="project_id" attrs="{'invisible': [('hide_project_name','=', True)]}"/>
+                            <field name="pro" />
                             <field name="create_directly" readonly="0" force_save="1"/>
                             <field name="pre_order" readonly="0" force_save="1" attrs="{'readonly': [('is_editable','=', False)]}"/>
 

@@ -107,7 +107,8 @@ class SaleOrder(models.Model):
                 'create_directly':True,
                 'origin': self.name,
                 'project_code': self.project_code,
-                'project_id': self.origin,      
+                'project_name': self.origin,      
+                'hide_project_name': True,
                 'line_ids':[(0,0,{
                     'product_id': item.product_id.id,
                     'product_qty': item.product_uom_qty,
