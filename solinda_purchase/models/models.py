@@ -17,7 +17,7 @@ class PurchaseRequisition(models.Model):
     ], string='Need Category')
     ordering_date = fields.Date(string="Ordering Date", tracking=True,default=fields.Date.today)
     date_end = fields.Date(string='Deadline', tracking=True)
-    date_total = fields.Integer(string='Total Date')
+    date_total = fields.Integer(string='Total Date', compute='_compute_days', store=True)
     btn_hide_req = fields.Boolean(string='Hide', default=True)
     
     @api.model
@@ -25,7 +25,8 @@ class PurchaseRequisition(models.Model):
         vals['name'] = self.env['ir.sequence'].next_by_code('purchase.requisition.req')
         return super(PurchaseRequisition, self).create(vals)
     
-    def check_date_deadline(self):
+    @api.depends('date_end', 'ordering_date')
+    def _compute_days(self):
         for rec in self:
             if rec.date_end and rec.ordering_date:
                 rec.date_total = (rec.date_end - rec.ordering_date).days
