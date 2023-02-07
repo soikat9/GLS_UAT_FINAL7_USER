@@ -19,7 +19,7 @@ class PurchaseRequisition(models.Model):
     date_end = fields.Date(string='Deadline', tracking=True)
     date_total = fields.Integer(string='Total Date', compute='_compute_days', store=True)
     btn_hide_req = fields.Boolean(string='Hide', default=True)
-    direksi_approved = fields.Boolean(string='Direksi Approved')
+    is_direksi_approved = fields.Boolean(string='Direksi Approved')
     
     def direksi_approved(self):
         self.direksi_approved = True

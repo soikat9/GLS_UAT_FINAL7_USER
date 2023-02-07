@@ -37,7 +37,7 @@
       <field name="arch" type="xml">
 
         <xpath expr="//field[@name='origin']" position="after">
-          <field name="direksi_approved" attrs="{'invisible': [('order_count', '&gt;', 2)]}" />
+          <field name="is_direksi_approved" attrs="{'invisible': [('order_count', '&gt;', 2)]}" />
         </xpath>
 
         <xpath expr="//field[@name='ordering_date']" position="attributes">
