@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields, api
+from odoo.exceptions import ValidationError
 
 
 class PurchaseRequisition(models.Model):
@@ -14,13 +15,22 @@ class PurchaseRequisition(models.Model):
         ('trading', 'Trading'),
         ('bidding', 'Bidding')
     ], string='Need Category')
-    ordering_date = fields.Date(string="Ordering Date", tracking=True,default=fields.Date.today)
+    ordering_date = fields.Date(string="Ordering Date", tracking=True,default=fields.Date.today, compute='check_date_deadline')
     btn_hide_req = fields.Boolean(string='Hide', default=True)
     
     @api.model
     def create(self, vals):
         vals['name'] = self.env['ir.sequence'].next_by_code('purchase.requisition.req')
         return super(PurchaseRequisition, self).create(vals)
+    
+    def check_date_deadline(self):
+        for rec in self:
+            if rec.date_end:
+                date_end = fields.Date.from_string(rec.date_end)
+                ordering_date = fields.Date.from_string(rec.ordering_date)
+                delta = date_end - ordering_date
+                if delta.days < 3:
+                    raise ValidationError("Date Deadline must be at least 3 days after the Create Date")
 
 class DeliveryLocation(models.Model):
     _name = 'delivery.location'
