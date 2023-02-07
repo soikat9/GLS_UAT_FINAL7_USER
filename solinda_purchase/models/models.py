@@ -26,7 +26,7 @@ class PurchaseRequisition(models.Model):
     
     def check_date_deadline(self):
         for rec in self:
-            if rec.date_end:
+            if rec.date_end and rec.ordering_date:
                 date_end = fields.Date.from_string(rec.date_end)
                 ordering_date = fields.Date.from_string(rec.ordering_date)
                 date_total = date_end - ordering_date
