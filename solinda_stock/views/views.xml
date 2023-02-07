@@ -23,8 +23,10 @@
         <field name="move_type" position="before">
           <field name="ship_via" />
           <field name="serial" />
-          <field name="project_code" attrs="{'invisible': [('picking_type_code', 'not in', 'internal')]}"/>
         </field>
+        <xpath expr="//group/group/field[@name='origin']" position="after">
+          <field name="project_code" attrs="{'invisible': [('picking_type_code', 'not in', 'internal')]}"/>
+        </xpath>
         <xpath expr="//notebook/page[@name='extra']/group" position="inside">
           <group string="Signature Naming">
             <field name="prepared" />
