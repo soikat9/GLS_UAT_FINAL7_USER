@@ -16,6 +16,7 @@ class PurchaseRequisition(models.Model):
         ('bidding', 'Bidding')
     ], string='Need Category')
     ordering_date = fields.Date(string="Ordering Date", tracking=True,default=fields.Date.today)
+    date_end = fields.Date(string='Deadline', tracking=True)
     date_total = fields.Integer(string='Total Date', compute='check_date_deadline')
     btn_hide_req = fields.Boolean(string='Hide', default=True)
     
