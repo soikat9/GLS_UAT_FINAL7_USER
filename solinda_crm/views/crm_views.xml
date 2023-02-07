@@ -130,7 +130,7 @@
         </xpath> -->
 
         <xpath expr="//button[@name='%(crm.action_crm_lead2opportunity_partner)d']" position="before">
-          <button name="all_crm_done" groups="solinda_crm.group_crm_manager" string="CRM Done" type="object" class="oe_highlight" attrs="{'invisible': ['|','|','|',('is_backlog', '=', False), ('active','=',False), ('probability', '=', 100), ('type', '=', 'lead')]}"/>
+          <button name="all_crm_done" groups="solinda_crm.group_crm_manager" string="CRM Done" type="object" class="oe_highlight" attrs="{'invisible': ['|',('is_backlog', '=', False), ('type', '=', 'lead')]}"/>
 
           <button name="%(crm.crm_lead_lost_action)d" string="Discontinue" groups="solinda_crm.group_crm_manager" data-hotkey="l" title="Mark as lost" type="action" context="{'default_lead_id': active_id}" attrs="{'invisible': ['|', ('type', '=', 'opportunity'), '&amp;',('active', '=', False),('probability', '&lt;', 100)]}"/>
 
