@@ -61,7 +61,7 @@
 
         <!-- grant procurement manager in Confiem button -->
         <xpath expr="//button[@name='action_in_progress']" position="attributes">
-          <attribute name="groups">solinda_purchase.group_procurement_manager_approval2</attribute>
+          <attribute name="groups">purchase_request.group_purchase_request_procurement</attribute>
         </xpath>
 
         <!-- grant procurement manager in Validate button -->
@@ -171,7 +171,7 @@
           <header>
             <button name="rfq_selected" type="object" class="oe_highlight" states="sent" string="Select" groups="solinda_purchase.group_purchasing_selected_requisition" attrs="{'invisible': ['|', ('btn_hide', '=', False)]}"/>
             <button name="submit_purchase" type="object" class="oe_highlight" states="draft" string="Submit" groups="solinda_purchase.group_purchasing_staff_approval1" attrs="{'invisible': ['|', ('btn_hide', '=', True)]}"/>
-            <button name="confirm_purchase" type="object" class="oe_highlight" states="submit" string="Confirm Order" groups="purchase_request.group_purchase_request_procurement" attrs="{'invisible': ['|', ('btn_hide', '=', True)]}"/>
+            <button name="confirm_purchase" type="object" class="oe_highlight" states="submit" string="Confirm Order" groups="solinda_purchase.group_procurement_manager_approval2" attrs="{'invisible': ['|', ('btn_hide', '=', True)]}"/>
 
             <button name="button_confirm" type="object" class="oe_highlight" states="confirm" string="Approved Order" id="draft_confirm" groups="solinda_purchase.group_direksi_approval3" attrs="{'invisible': ['|', ('btn_hide', '=', True)]}"/>
 
