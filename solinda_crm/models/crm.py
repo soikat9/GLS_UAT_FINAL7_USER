@@ -314,6 +314,7 @@ class CrmLead(models.Model):
         compute=False, readonly=False, store=True)
     automated_probability = fields.Float('Automated Probability', compute=False, readonly=True, store=True)
     revoke_depends = fields.Boolean('Revoke Depends')
+    is_backlog = fields.Boolean('Is Backlog',related="stage_id.is_backlog")
     # lead_team_id = fields.Many2one('res.users', string='Lead Team')
 
     # @api.onchange('team_id')

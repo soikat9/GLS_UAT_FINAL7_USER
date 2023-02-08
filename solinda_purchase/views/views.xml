@@ -36,6 +36,10 @@
       <field name="inherit_id" ref="purchase_requisition.view_purchase_requisition_form"/>
       <field name="arch" type="xml">
 
+        <xpath expr="//field[@name='origin']" position="after">
+          <field name="is_direksi_approved" attrs="{'invisible': [('order_count', '&gt;', 2)]}" />
+        </xpath>
+
         <xpath expr="//field[@name='ordering_date']" position="attributes">
           <attribute name="readonly">1</attribute>
           <attribute name="string">Create Date</attribute>
@@ -59,7 +63,12 @@
           <attribute name="attrs">{'readonly': [('state', '!=', 'draft')]}</attribute>
         </xpath>
 
-        <!-- grant procurement manager in Confiem button -->
+        <xpath expr="//button[@name='action_done']" position="before">
+          <button name="direksi_approved" type="object" class="oe_highlight" string="Approved Request" groups="solinda_purchase.group_direksi_approval3" attrs="{'invisible': ['|',('order_count', '&gt;', 2),('is_direksi_approved','=',True),('state','=','draft')]}"/>
+        </xpath>
+
+
+        <!-- grant procurement manager in Confirm button -->
         <xpath expr="//button[@name='action_in_progress']" position="attributes">
           <attribute name="groups">purchase_request.group_purchase_request_procurement</attribute>
         </xpath>
