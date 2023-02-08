@@ -99,6 +99,12 @@
           <!-- <field name="line_id" domain="[('request_id', '=', pr_id)]" /> -->
           <field name="purchase_state" optional="show" />
         </xpath>
+        <xpath expr="//notebook/page/field/tree/field[@name='price_unit']" position="attributes">
+          <attribute name="attrs">{'readonly': [('|', 'state', 'in', 'sale')]}</attribute>
+        </xpath>
+        <xpath expr="//notebook/page/field/tree/field[@name='product_uom_qty']" position="attributes">
+          <attribute name="attrs">{'readonly': [('state', 'in', 'sale')]}</attribute>
+        </xpath>
       </field>
     </record>
 
