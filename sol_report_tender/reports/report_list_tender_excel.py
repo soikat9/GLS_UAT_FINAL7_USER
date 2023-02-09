@@ -69,6 +69,7 @@ class ReportListTenderExcel(models.AbstractModel):
         sheet.merge_range('A3:' + col_name[(po_length * 2)] + '3', '', format_header_2)
 
         # Header table
+        np =''
         for poi in obj.purchase_order_ids:
             if poi.requisition_id.name_project:
                 np = poi.requisition_id.name_project
@@ -185,6 +186,7 @@ class ReportListTenderExcel(models.AbstractModel):
         sheet.merge_range('D' + str(row_num) + ':' + 'E' + str(row_num), '', format_number_table)
         col_num = 0
         for rec in subtotal1:
+            # subtotal 2
             sheet.merge_range(col_name[col_num] + str(row_num) + ':' + col_name[col_num + 1] + str(row_num), (rec['total_price_subtotal']) + ((rec['total_price_subtotal'] * obj.tax_id.amount) / 100), format_number_table_thausand)
             col_num += 2
         row_num += 1
@@ -212,8 +214,8 @@ class ReportListTenderExcel(models.AbstractModel):
         col_num = 0
         for rec in subtotal1:
             # format_item_table
-            sheet.merge_range(col_name[col_num] + str(row_num) + ':' + col_name[col_num + 1] + str(row_num), (rec['total_price_subtotal']) + ((rec['total_price_subtotal'] * obj.tax_id.amount) / 100) + (
-                (rec['total_price_subtotal'] * obj.customs) / 100) + ((rec['total_price_subtotal']) + ((rec['total_price_subtotal'] * obj.tax_id.amount) / 100)) + (rec['sewa_cdd_ket']), format_number_table_thausand)
+            sheet.merge_range(col_name[col_num] + str(row_num) + ':' + col_name[col_num + 1] + str(row_num),  (rec['total_price_subtotal']) + ((rec['total_price_subtotal'] * obj.tax_id.amount) / 100) + (rec['sewa_cdd_ket']), format_number_table_thausand)
+            #  (rec['total_price_subtotal']) + ((rec['total_price_subtotal'] * obj.tax_id.amount) / 100) + ((rec['total_price_subtotal'] * obj.customs) / 100) + ((rec['total_price_subtotal']) + ((rec['total_price_subtotal'] * obj.tax_id.amount) / 100)) + (rec['sewa_cdd_ket']), format_number_table_thausand)
             col_num += 2
 
         row_num += 1

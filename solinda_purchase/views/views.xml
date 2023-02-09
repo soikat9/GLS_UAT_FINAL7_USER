@@ -51,9 +51,9 @@
           <attribute name="invisible">1</attribute>
         </xpath>
 
-        <xpath expr="//field[@name='picking_type_id']" position="attributes">
+        <!-- <xpath expr="//field[@name='picking_type_id']" position="attributes">
           <attribute name="invisible">1</attribute>
-        </xpath>
+        </xpath> -->
 
         <xpath expr="//field[@name='type_id']" position="attributes">
           <attribute name="invisible">1</attribute>
@@ -224,11 +224,12 @@
 
         <!-- <xpath expr="//field[@name='picking_type_id']" position="attributes">
           <attribute name="invisible">1</attribute>
-        </xpath>
-         -->
+        </xpath> -->
+
         <xpath expr="//field[@name='picking_type_id']" position="after">
           <field name="location_id" attrs="{'invisible': [('field_loc', '=', False)]}" readonly="1"/>
         </xpath>
+
       </field>
     </record>
 
