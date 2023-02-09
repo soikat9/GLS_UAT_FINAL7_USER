@@ -6,12 +6,12 @@ class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
     # Report OMS
-    subject = fields.Char(string="Subject")
+    subject = fields.Char(string="Subject", related='origin')
     attn_id = fields.Many2one('res.partner', string='Attn', related='partner_id')
     attn = fields.Char(related='attn_id.name', string='Attn')
     email = fields.Char(related='attn_id.email', store=True)
-    supervisor = fields.Many2one('res.partner', string='Supervisor')
-    office = fields.Char(related='supervisor.street', store=True)
+    supervisor = fields.Char(string='Supervisor')
+    office = fields.Char(store=True)
     items_oms = fields.Many2one('product.product', string="Item", help='Untuk report Quotation OMS')
 
     # Terms and Conditions
@@ -48,5 +48,5 @@ class SaleOrder(models.Model):
                     raise ValidationError("In CRM there is no activity Contract Signed / PO Received yet.\nPlease make the activity first!")
         return super(SaleOrder, self).action_confirm()
 
-
+    
 
