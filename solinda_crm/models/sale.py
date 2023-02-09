@@ -12,7 +12,7 @@ class SaleOrder(models.Model):
     email = fields.Char(related='attn_id.email', store=True)
     supervisor = fields.Char(string='Supervisor')
     office = fields.Char(store=True)
-    items_oms = fields.Many2one('product.product', string="Item", help='Untuk report Quotation OMS')
+    items_oms = fields.Many2one('product.product', string="Item", help='Untuk report Quotation OMS', related='order_line.product_id')
 
     # Terms and Conditions
     quotation_validity = fields.Char(string='Quotation Validity')
