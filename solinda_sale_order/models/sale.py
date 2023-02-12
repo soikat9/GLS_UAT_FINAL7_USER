@@ -41,10 +41,12 @@ class SaleOrder(models.Model):
     approved_by_id = fields.Many2one('res.users', string='Received')
     received_id = fields.Many2one('res.users', string='Received')
     tag_string = fields.Char('Tags')
+    
 
     # Tracking Product SO Trading
     pr_id = fields.Many2one('purchase.request', string='PR', readonly=True)
     pr_state = fields.Selection([('unorder', 'Unorder'), ('request', 'Requested')], string='Purchase Status', default='unorder')
+
 
     @api.onchange('tag_ids')
     def _onchange_tag_ids(self):
