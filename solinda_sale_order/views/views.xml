@@ -68,7 +68,8 @@
           </page>
         </notebook>
         <field name="source_id" position="after">
-          <field name="attn_id" />
+          <field name="attn" />
+          <field name="to" invisible="1" />
           <!-- <field name="director_info" /> -->
           <field name="director_id" />
           <field name="approved_by_id" />
