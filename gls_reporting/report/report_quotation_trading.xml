@@ -299,17 +299,16 @@
                                     <br />
                                     <br />
                                     <br />
-                                
-                                    <span style="text-decoration: underline;">
-                                        <strong>
-                                            <span t-field="doc.director_id.name"/><br />
-                                        </strong>
-                                    </span>
-                                    <!-- <span t-esc="user.name"/> -->
-                                    <t t-foreach="request.env['hr.employee'].search([('user_id', '=', director_id.id)])" t-as="obj">
-                                        <t t-esc="obj.job_id.name"/>
+                                    <t t-if="doc.director_id">
+                                        <span style="text-decoration: underline;">
+                                            <strong>
+                                                <span t-field="doc.director_id.name"/><br />
+                                            </strong>
+                                        </span>
+                                        <t t-foreach="request.env['hr.employee'].search([('user_id', '=', user.id)])" t-as="obj">
+                                            <t t-esc="obj.job_id.name"/>
+                                        </t>
                                     </t>
-                                
                                     </td>
                                     <td style="text-align: center; width: 8.52077%;"></td>
                                     <td style="text-align: center; width: 41.8592%;" colspan="3">Received by,<br />
@@ -324,9 +323,9 @@
                                                 <span t-field="doc.approved_by_id"/><br />
                                             </strong>
                                         </span>
-                                        <t t-foreach="request.env['hr.employee'].search([('user_id', '=', approved_by_id.id)])" t-as="obj">
+                                        <!-- <t t-foreach="request.env['hr.employee'].search([('user_id', '=', approved_by_id.id)])" t-as="obj">
                                         <t t-esc="obj.job_id.name"/>
-                                        </t>
+                                        </t> -->
                                     </t>
                                     <t t-else="">
                                         <span>
