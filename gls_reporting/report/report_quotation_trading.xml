@@ -275,8 +275,9 @@
                                                 <td style="width: 26.5123%;">
                                                     <div class="d-inline">
                                                         <span >: </span>
-                                                        <t t-esc="doc.note"/>
+                                                        
                                                     </div>
+                                                    <t t-esc="doc.note"/>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -298,16 +299,17 @@
                                     <br />
                                     <br />
                                     <br />
-                                    <t t-if="doc.director_id">
-                                        <span style="text-decoration: underline;">
-                                            <strong>
-                                                <span t-field="doc.director_id"/><br />
-                                            </strong>
-                                        </span>
-                                        <t t-foreach="request.env['hr.employee'].search([('user_id', '=', director_id.id)])" t-as="obj">
+                                
+                                    <span style="text-decoration: underline;">
+                                        <strong>
+                                            <span t-field="doc.director_id.name"/><br />
+                                        </strong>
+                                    </span>
+                                    <!-- <span t-esc="user.name"/> -->
+                                    <t t-foreach="request.env['hr.employee'].search([('user_id', '=', director_id.id)])" t-as="obj">
                                         <t t-esc="obj.job_id.name"/>
-                                        </t>
                                     </t>
+                                
                                     </td>
                                     <td style="text-align: center; width: 8.52077%;"></td>
                                     <td style="text-align: center; width: 41.8592%;" colspan="3">Received by,<br />
