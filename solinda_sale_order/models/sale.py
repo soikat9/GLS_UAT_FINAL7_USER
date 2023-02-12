@@ -33,7 +33,7 @@ class SaleOrder(models.Model):
 
     ## Other Info
     attn_id = fields.Many2one('res.partner', string='Attn', related='partner_id')
-    to = fields.Many2one(related='attn_id.parent_id', string='To')
+    to = fields.Char(related='attn_id.parent_id.name', string='To')
     attn = fields.Char(related='attn_id.name', string='Attn')
     director_info = fields.Char(string='Director')
     director_id = fields.Many2one('res.users', string='Best Regards')
