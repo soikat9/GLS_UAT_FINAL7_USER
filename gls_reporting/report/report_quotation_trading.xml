@@ -273,11 +273,11 @@
                                                 <td style="width: 28.9617%;"></td>
                                                 <td style="width: 30.8148%;">- Payment Terms</td>
                                                 <td style="width: 26.5123%;">
-                                                    <!-- <div class="d-inline"> -->
+                                                    <div class="d-inline">
                                                     <span >: </span>
-                                                        
-                                                    <!-- </div> -->
-                                                    <t t-esc="doc.note"/>
+                                                        <t t-esc="doc.payment_terms"/>
+                                                    </div>
+                                                    
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -299,17 +299,17 @@
                                     <br />
                                     <br />
                                     <br />
-                                    <!-- <t t-if="doc.director_id">
+                                    <t t-if="doc.director_id">
                                         <span style="text-decoration: underline;">
                                             <strong>
                                                 <span t-field="doc.director_id.name"/><br />
                                             </strong>
-                                        </span> -->
-                                    <span t-esc="user.name"/>
-                                    <t t-foreach="request.env['hr.employee'].search([('user_id', '=', user.id)])" t-as="obj">
-                                        <t t-esc="obj.job_id.name"/>
+                                        </span>
+                                        <!-- <span t-esc="user.name"/> -->
+                                        <t t-foreach="request.env['hr.employee'].search([('director_id', '=', user.id)])" t-as="obj">
+                                            <t t-esc="obj.job_id.name"/>
+                                        </t>
                                     </t>
-                                    <!-- </t> -->
                                     </td>
                                     <td style="text-align: center; width: 8.52077%;"></td>
                                     <td style="text-align: center; width: 41.8592%;" colspan="3">Received by,<br />
