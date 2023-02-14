@@ -33,13 +33,13 @@ class SaleOrder(models.Model):
                 'tags_ids': self.tag_ids.ids,
                 'name' : self.env["ir.sequence"].next_by_code("account.move.sequence.oms")
                 })
-            elif any('Trading' in w for w in name_tag):
-                res.update({
-                'tags_ids': self.tag_ids.ids,
-                'name' : self.env["ir.sequence"].next_by_code("account.move.sequence.trading")
-                })
+            # elif any('Trading' in w for w in name_tag):
+            #     res.update({
+            #     'tags_ids': self.tag_ids.ids,
+            #     })
             else:
                 res.update({
                 'tags_ids': self.tag_ids.ids,
+                'name' : self.env["ir.sequence"].next_by_code("account.move.sequence.trading")
                 })
         return res
