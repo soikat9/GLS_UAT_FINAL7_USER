@@ -59,6 +59,7 @@ class ReportingTroubleSystem(models.TransientModel):
 class GlsReport(models.AbstractModel):
     _name = 'report.sol_boo.gls_report_xls.xlsx'
     _inherit = 'report.report_xlsx.abstract'
+    _description = 'GLS Report BOO Xls'
 
     def generate_xlsx_report(self, workbook, data, obj):
         
@@ -241,6 +242,7 @@ class GlsReport(models.AbstractModel):
 class ChemicalGlsReport(models.AbstractModel):
     _name = 'report.sol_boo.chemical_gls_report_xls.xlsx'
     _inherit = 'report.report_xlsx.abstract'
+    _description = 'Chemical GLS Report Xls'
 
     def write_data(self, sheet, row, data, text_format):
         number_of_date = 1
@@ -505,6 +507,7 @@ ROW_YEARLY_2 = [
 class BackwashReport(models.AbstractModel):
     _name = 'report.sol_boo.backwash_report_xls.xlsx'
     _inherit = 'report.report_xlsx.abstract'
+    _description = 'Backwash Report GLS Xls'
 
     def generate_xlsx_report(self, workbook, data, obj):
         formatHeaderCompany = workbook.add_format({'font_size': 14, 'valign':'vcenter', 'align': 'center', 'bold': True})
@@ -592,6 +595,7 @@ class BackwashReport(models.AbstractModel):
 class GreaseReport(models.AbstractModel):
     _name = 'report.sol_boo.grease_report_xls.xlsx'
     _inherit = 'report.report_xlsx.abstract'
+    _description = 'Grease Report GLS Xls'
 
     def generate_xlsx_report(self, workbook, data, obj):
         formatHeaderCompany = workbook.add_format({'font_size': 14, 'valign':'vcenter', 'align': 'center', 'bold': True})
@@ -680,6 +684,7 @@ class GreaseReport(models.AbstractModel):
 class CleaningReport(models.AbstractModel):
     _name = 'report.sol_boo.cleaning_report_xls.xlsx'
     _inherit = 'report.report_xlsx.abstract'
+    _description = 'Cleaning Report GLS Xls'
 
     def generate_xlsx_report(self, workbook, data, obj):
         formatHeaderCompany = workbook.add_format({'font_size': 14, 'valign':'vcenter', 'align': 'center', 'bold': True})

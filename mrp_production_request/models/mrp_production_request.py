@@ -29,14 +29,14 @@ class MrpProductionRequest(models.Model):
         string="Requested by",
         default=lambda self: self._get_default_requested_by(),
         required=True,
-        track_visibility="onchange",
+        tracking=True,
         readonly=True,
         states={"draft": [("readonly", False)]},
     )
     assigned_to = fields.Many2one(
         comodel_name="res.users",
         string="Approver",
-        track_visibility="onchange",
+        tracking=True,
         readonly=True,
         states={"draft": [("readonly", False)]},
         domain=lambda self: [
@@ -89,7 +89,7 @@ class MrpProductionRequest(models.Model):
             ("cancel", "Cancelled"),
         ],
         index=True,
-        track_visibility="onchange",
+        tracking=True,
         required=True,
         copy=False,
         default="draft",
@@ -108,7 +108,7 @@ class MrpProductionRequest(models.Model):
         string="Product",
         required=True,
         domain=[("type", "in", ["product", "consu"])],
-        track_visibility="onchange",
+        tracking=True,
         readonly=True,
         states={"draft": [("readonly", False)]},
     )
@@ -120,7 +120,7 @@ class MrpProductionRequest(models.Model):
     product_qty = fields.Float(
         string="Required Quantity",
         required=True,
-        track_visibility="onchange",
+        tracking=True,
         digits="Product Unit of Measure",
         default=1.0,
         readonly=True,

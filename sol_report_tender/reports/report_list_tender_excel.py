@@ -26,6 +26,7 @@ import logging
 class ReportListTenderExcel(models.AbstractModel):
     _name = 'report.sol_report_tender.report_list_tender_excel'
     _inherit = 'report.report_xlsx.abstract'
+    _description = 'Report List Tender'
     
     def excel_column_name(self,n):
         """Number to Excel-style column name, e.g., 1 = A, 26 = Z, 27 = AA, 703 = AAA."""
