@@ -5,22 +5,22 @@ from odoo.exceptions import ValidationError, UserError
 class AccountMove(models.Model):
     _inherit = 'account.move'
 
-    @api.model
-    def create(self, vals):
-        res = super(AccountMove, self).create(vals)
-        if self.tags_ids:
-            name_tag = self.tags_ids.mapped('name')
-            if any('Turn Key' in w for w in name_tag):
-                res.name = self.env["ir.sequence"].next_by_code("account.move.sequence.turnkey")
-            elif any('BOO' in w for w in name_tag):
-                res.name = self.env["ir.sequence"].next_by_code("account.move.sequence.boo")
-            elif any('OMS' in w for w in name_tag):
-                res.name = self.env["ir.sequence"].next_by_code("account.move.sequence.oms")
-            elif any('Trading' in w for w in name_tag):
-                res.name = self.env["ir.sequence"].next_by_code("account.move.sequence.trading")
-            else:
-                pass
-        return res  
+    # @api.model
+    # def create(self, vals):
+    #     res = super(AccountMove, self).create(vals)
+    #     if self.tags_ids:
+    #         name_tag = self.tags_ids.mapped('name')
+    #         if any('Turn Key' in w for w in name_tag):
+    #             res.name = self.env["ir.sequence"].next_by_code("account.move.sequence.turnkey")
+    #         elif any('BOO' in w for w in name_tag):
+    #             res.name = self.env["ir.sequence"].next_by_code("account.move.sequence.boo")
+    #         elif any('OMS' in w for w in name_tag):
+    #             res.name = self.env["ir.sequence"].next_by_code("account.move.sequence.oms")
+    #         elif any('Trading' in w for w in name_tag):
+    #             res.name = self.env["ir.sequence"].next_by_code("account.move.sequence.trading")
+    #         else:
+    #             pass
+    #     return res  
 
     def view_po_action(self):
         for i in self:
