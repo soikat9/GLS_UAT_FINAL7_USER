@@ -85,7 +85,9 @@ class CostSheet(models.Model):
     
     # Other Information
     subject = fields.Char(copy=True)
-    attn_id = fields.Many2one('res.partner', string='Attn',copy=True)
+    attn_id = fields.Many2one('res.partner', string='Attn', related='partner_id')
+    to = fields.Char(related='attn_id.parent_id.name', string='To')
+    attn = fields.Char(related='attn_id.name', string='Attn')
     phone = fields.Char(related='attn_id.phone', store=True,copy=False)
     email = fields.Char(related='attn_id.email', store=True,copy=False)
     ref_turnkey = fields.Char(string='Ref',copy=True)

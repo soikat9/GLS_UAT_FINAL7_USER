@@ -229,7 +229,8 @@
               <page string="Additional Information">
                 <group string="Information">
                   <field name="subject" attrs="{'readonly': [('state','!=','draft')]}"/>
-                  <field name="attn_id" attrs="{'readonly': [('state','!=','draft')]}"/>
+                  <field name="attn" attrs="{'readonly': [('state','!=','draft')]}"/>
+                  <field name="to" invisible="1"/>
                   <field name="phone" />
                   <field name="email" />
                   <field name="ref_turnkey" />

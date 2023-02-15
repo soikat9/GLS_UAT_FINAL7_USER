@@ -36,10 +36,10 @@ class SaleOrder(models.Model):
     to = fields.Char(related='attn_id.parent_id.name', string='To')
     attn = fields.Char(related='attn_id.name', string='Attn')
     director_info = fields.Char(string='Director')
-    director_id = fields.Many2one('res.users', string='Best Regards')
+    director_id = fields.Many2one('hr.employee', string='Best Regards')
     print_button_visible = fields.Char(compute='_compute_print_button_visible', string='Print Button Visible')
-    approved_by_id = fields.Many2one('res.users', string='Received')
-    received_id = fields.Many2one('res.users', string='Received')
+    approved_by_id = fields.Many2one('hr.employee', string='Received')
+    received_id = fields.Many2one('hr.employee', string='Received')
     tag_string = fields.Char('Tags')
     
 
