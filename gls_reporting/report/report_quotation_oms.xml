@@ -177,8 +177,8 @@
                                                 </tr>
                                             </t>
                                             <tr style="height: 30px;">
-                                                <td style="width: 70%; text-align: right; border: 1px solid black;" style="height: 30px;" colspan="3">Total </td>
-                                                <td style="width: 25%; text-align: center; border: 1px solid black" style="height: 30px;">
+                                                <td style="width: 70%; text-align: right; border: 1px solid black; height: 30px;" colspan="3">Total </td>
+                                                <td style="width: 25%; text-align: center; border: 1px solid black; height: 30px;">
                                                     <!-- <t t-esc="doc.amount_total" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/> -->
                                                     <t t-esc="'{:,.0f}'.format(doc.amount_total).replace(',', '.')" /> per-month
                                                 </td>
