@@ -277,9 +277,7 @@
                                                     <div class="d-inline">:</div>
                                                 </td>
                                                 <td style="width: 279.115px;">
-                                                    <div class="d-inline">
-                                                        <t t-esc="doc.payment_terms"/>
-                                                    </div>
+                                                    <t t-esc="doc.payment_terms"/>
                                                 </td>
                                             </tr>
                                         </tbody>
