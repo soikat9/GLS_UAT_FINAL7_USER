@@ -377,7 +377,7 @@ p {
                                     <t t-if="doc.best_regard_id">
                                         <span style="text-decoration: underline;">
                                             <strong>
-                                                <span t-field="doc.best_regard_id.name"/><br />
+                                                <span t-field="doc.best_regard_id"/><br />
                                             </strong>
                                         </span>
                                         <t t-esc="doc.best_regard_id.job_id.name"/>                                        

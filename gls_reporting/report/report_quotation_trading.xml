@@ -220,11 +220,6 @@
                             </tr>
                             <tr>
                                 <td style="text-align: left; width: 99.9997%; padding-top: 20px; padding-left: 15px;" colspan="7">
-                                    <!-- <style>
-                                        p {
-                                        display: inline;
-                                        }
-                                    </style> -->
                                     <table>
                                         <tbody>
                                             <tr style="height: 18px;">
@@ -287,10 +282,8 @@
                                                     </div>
                                                 </td>
                                             </tr>
-
                                         </tbody>
                                     </table>
-                           
                                 </td>
                             </tr>
                             <tr>
@@ -310,7 +303,7 @@
                                     <t t-if="doc.director">
                                         <span style="text-decoration: underline;">
                                             <strong>
-                                                <span t-field="doc.director.name"/><br />
+                                                <span t-field="doc.director"/><br />
                                             </strong>
                                         </span>
                                         <t t-esc="doc.director.job_id.name"/>                                        

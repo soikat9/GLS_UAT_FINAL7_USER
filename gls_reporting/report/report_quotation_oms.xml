@@ -302,7 +302,7 @@
                                         <t t-if="doc.director">
                                             <span style="text-decoration: underline;">
                                                 <strong>
-                                                    <span t-field="doc.director.name"/><br />
+                                                    <span t-field="doc.director"/><br />
                                                 </strong>
                                             </span>
                                             <!-- <t t-esc="doc.director.job_id.name"/>                                         -->
