@@ -311,11 +311,14 @@
                                     <br/>
                                     <br/>
                                     <br/>
-                                    <span style="text-decoration: underline;">
-                                        <strong>
-                                        <span t-field="doc.director_id"/><br />
-                                        </strong>
-                                    </span>
+                                    <t t-if="doc.director">
+                                        <span style="text-decoration: underline;">
+                                            <strong>
+                                                <span t-field="doc.director.name"/><br />
+                                            </strong>
+                                        </span>
+                                        <t t-esc="doc.director.job_id.name"/>                                        
+                                    </t>
                                 </td>
                                 <td style="width: 20%;"></td>
                                 <td style="width: 20%;">
@@ -323,10 +326,10 @@
                                     <br/>
                                     <br/>
                                     <br/>
-                                    <t t-if="doc.approved_by_id">
+                                    <t t-if="doc.approved">
                                         <span style="text-decoration: underline;">
                                             <strong>
-                                                <span t-field="doc.approved_by_id"/><br />
+                                                <span t-field="doc.approved"/><br />
                                             </strong>
                                         </span>
                                     </t>

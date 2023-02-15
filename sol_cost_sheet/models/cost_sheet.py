@@ -99,12 +99,12 @@ class CostSheet(models.Model):
     toc_price = fields.Html('Price',copy=True)
     payment_terms = fields.Html('Payment Terms',copy=True)
     project_code = fields.Char('Project Code', related="crm_id.project_code")
-    best_regardx = fields.Many2one('res.users', string='Best Regards',copy=True)
-    approved_byx = fields.Many2one('res.users', string='Approved By',copy=True)
-    received_byx = fields.Many2one('res.users', string='Received By',copy=True)
     best_regard = fields.Many2one('res.users', string='Best Regards',copy=True)
     approved_by = fields.Many2one('res.users', string='Approved By',copy=True)
     received_by = fields.Many2one('res.users', string='Received By',copy=True)
+
+    best_regard_id = fields.Many2one('hr.employee', string='Best Regards',copy=True)
+    received_by_id = fields.Many2one('hr.employee', string='Received By',copy=True)
     requisition_id = fields.Many2one('purchase.requisition', string='Requisition',copy=True)
 
     def action_print_quotation(self):

@@ -307,13 +307,13 @@
                                     <br />
                                     <br />
                                     <br />
-                                    <t t-if="doc.director_id">
+                                    <t t-if="doc.director">
                                         <span style="text-decoration: underline;">
                                             <strong>
-                                                <span t-field="doc.director_id.name"/><br />
+                                                <span t-field="doc.director.name"/><br />
                                             </strong>
                                         </span>
-                                        <t t-esc="doc.director_id.job_id.name"/>                                        
+                                        <t t-esc="doc.director.job_id.name"/>                                        
                                     </t>
                                     </td>
                                     <td style="text-align: center; width: 8.52077%;"></td>
@@ -323,13 +323,13 @@
                                     <br />
                                     <br />
                                     <br />
-                                    <t t-if="doc.approved_by_id">
+                                    <t t-if="doc.approved">
                                         <span style="text-decoration: underline;">
                                             <strong>
-                                                <span t-field="doc.approved_by_id"/><br />
+                                                <span t-field="doc.approved"/><br />
                                             </strong>
                                         </span>
-                                        <t t-esc="doc.approved_by_id.job_id.name"/>  
+                                        <t t-esc="doc.approved.job_id.name"/>  
                                     </t>
                                     <t t-else="">
                                         <span>

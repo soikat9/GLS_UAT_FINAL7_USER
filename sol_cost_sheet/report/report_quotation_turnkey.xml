@@ -374,19 +374,21 @@ p {
                                 <br />
                                 <br />
                                 <br />
-                                <span style="text-decoration: underline;">
-                                    <strong>
-                                        <span t-field="doc.best_regard"/>
-                                        <br />
-                                    </strong>
-                                </span>President Director</td>
+                                <t t-if="doc.best_regard_id">
+                                    <span style="text-decoration: underline;">
+                                        <strong>
+                                            <span t-field="doc.best_regard_id.name"/><br />
+                                        </strong>
+                                    </span>
+                                    <t t-esc="doc.best_regard_id.job_id.name"/>                                        
+                                </t>
                             <td style="text-align: center; width: 8.52077%;"></td>
                             <td style="text-align: center; width: 41.8592%;" colspan="3">Received by,<br />
                             <br />
                             <br />
                             <br />
                             <br />
-                            <t t-if="doc.approved_by_id">
+                            <t t-if="doc.received_by_id">
                                 <span style="text-decoration: underline;">
                                     <strong>
                                         <span t-field="doc.approved_by_id"/><br />
