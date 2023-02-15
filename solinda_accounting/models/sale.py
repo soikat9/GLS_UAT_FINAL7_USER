@@ -18,5 +18,6 @@ class SaleOrder(models.Model):
         res = super(SaleOrder, self)._prepare_invoice()
         res.update({
         'tags_ids': self.tag_ids.ids,
+        'journal_id': None
         })
         return res
