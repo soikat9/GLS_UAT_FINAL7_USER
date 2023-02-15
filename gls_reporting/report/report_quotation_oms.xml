@@ -211,8 +211,8 @@
                                             </tr> -->
 
 
-                                            <!-- <tr style="height: 18px;">
-                                                <td style="width: 160.625px; height: 18px; border: 1px solid black; border-bottom: 1px solid transparent" colspan="2">Operations and Maintenance Supports</td>
+                                            <tr style="height: 18px;">
+                                                <td style="width: 160.625px; height: 18px; border: 1px solid black; border-bottom: 1px solid transparent;" colspan="2">Operations and Maintenance Supports</td>
                                                 <td style="width: 140.552px; height: 18px; border: 1px solid black;">- Supervisor :</td>
                                                 <td style="width: 9.04167px; height: 18px; border: 1px solid black;"> 
                                                     <div class="d-inline">
@@ -223,10 +223,10 @@
                                                     
                                                 </td>
                                             </tr>
-                                            <tr style="height: 18px;" >
+                                            <tr style="height: 18px;">
                                                 <td style="width: 160.625px; height: 18px; border-left: 1px solid black;" colspan="2"></td>
-                                                <td style="width: 140.552px; height: 18px; border: 1px solid black">- Office :</td>
-                                                <td style="width: 9.04167px; height: 18px; border: 1px solid black">                                                 
+                                                <td style="width: 140.552px; height: 18px; border: 1px solid black;">- Office :</td>
+                                                <td style="width: 9.04167px; height: 18px; border: 1px solid black;">                                                 
                                                     <div class="d-inline">
                                                         <t t-esc="doc.office"/>
                                                     </div>
@@ -236,7 +236,7 @@
                                                 </td>
                                             </tr>
                                             <tr style="height: 18px;">
-                                                <td style="width: 160.625px; height: 18px; border: 1px solid black; border-bottom: 1px solid transparent" colspan="2">Terms and Conditions</td>
+                                                <td style="width: 160.625px; height: 18px; border: 1px solid black; border-bottom: 1px solid transparent;" colspan="2">Terms and Conditions</td>
                                                 <td style="width: 140.552px; height: 18px; border: 1px solid black;">- Quotation Validity :</td>
                                                 <td style="width: 9.04167px; height: 18px; border: 1px solid black;">                                                  
                                                     <div class="d-inline">
@@ -246,7 +246,7 @@
                                                 <td style="width: 279.115px;">
                                                     
                                                 </td>
-                                            </tr> -->
+                                            </tr>
                                             <tr style="height: 18px;">
                                                 <td style="width: 160.625px; height: 18px; border-left: 1px solid black;" colspan="2"></td>
                                                 <td style="width: 140.552px; height: 18px; border: 1px solid black;">- Deliver Point :</td>
