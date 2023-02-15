@@ -19,7 +19,7 @@ class SaleOrder(models.Model):
     delivery_time = fields.Char(string='Delivery Time')
     delivery_point = fields.Char(string='Delivery Point')
     price_tnc = fields.Html(string='Price')
-    payment_terms = fields.Text(string='Payment Terms and Requirements')
+    payment_terms = fields.Html(string='Payment Terms and Requirements')
     revitalization_period = fields.Char(string='Revitalization Period')
 
     # Additional Shipment

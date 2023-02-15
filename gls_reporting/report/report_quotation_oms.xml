@@ -209,15 +209,17 @@
                                                     </p>
                                                 </td>
                                             </tr> -->
-                                            <!-- <tr style="height: 18px;">
+                                            <tr style="height: 18px;">
                                                 <td style="width: 160.625px; height: 18px; border: 1px solid black; border-bottom: 1px solid transparent" colspan="2">Operations and Maintenance Supports</td>
-                                                <td style="width: 140.552px; height: 18px; border: 1px solid black">- Supervisor :</td>
-                                                <td style="width: 9.04167px; height: 18px; border: 1px solid black"> 
+                                                <td style="width: 140.552px; height: 18px; border: 1px solid black; border-bottom: 1px solid transparent">- Supervisor :</td>
+                                                <td style="width: 9.04167px; height: 18px; border: 1px solid black; border-bottom: 1px solid transparent"> 
                                                     <div class="d-inline">
                                                         <t t-esc="doc.supervisor.name"/>
                                                     </div>
                                                 </td>
-                                                <td style="width: 279.115px;"></td>
+                                                <td style="width: 279.115px;">
+                                                    
+                                                </td>
                                             </tr>
                                             <tr style="height: 18px;" >
                                                 <td style="width: 160.625px; height: 18px; border-left: 1px solid black;" colspan="2"></td>
@@ -227,37 +229,45 @@
                                                         <t t-esc="doc.office"/>
                                                     </div>
                                                 </td>
-                                                <td style="width: 279.115px;"></td>
+                                                <td style="width: 279.115px;">
+                                                    
+                                                </td>
                                             </tr>
                                             <tr style="height: 18px;">
                                                 <td style="width: 160.625px; height: 18px; border: 1px solid black; border-bottom: 1px solid transparent" colspan="2">Terms and Conditions</td>
-                                                <td style="width: 140.552px; height: 18px; border: 1px solid black">- Quotation Validity :</td>
-                                                <td style="width: 9.04167px; height: 18px; border: 1px solid black">                                                  
+                                                <td style="width: 140.552px; height: 18px; border: 1px solid black; border-bottom: 1px solid transparent">- Quotation Validity :</td>
+                                                <td style="width: 9.04167px; height: 18px; border: 1px solid black; border-bottom: 1px solid transparent">                                                  
                                                     <div class="d-inline">
                                                         <t t-esc="doc.quotation_validity"/>
                                                     </div>
                                                 </td>
-                                                <td style="width: 279.115px;"></td>
+                                                <td style="width: 279.115px;">
+                                                    
+                                                </td>
                                             </tr>
                                             <tr style="height: 18px;">
                                                 <td style="width: 160.625px; height: 18px; border-left: 1px solid black;" colspan="2"></td>
-                                                <td style="width: 140.552px; height: 18px; border: 1px solid black">- Deliver Point :</td>
-                                                <td style="width: 9.04167px; height: 18px; border: 1px solid black">                                                  
+                                                <td style="width: 140.552px; height: 18px; border: 1px solid black; border-bottom: 1px solid transparent">- Deliver Point :</td>
+                                                <td style="width: 9.04167px; height: 18px; border: 1px solid black; border-bottom: 1px solid transparent">                                                  
                                                     <div class="d-inline">
                                                         <t t-esc="doc.delivery_point"/>
                                                     </div>
                                                 </td>
-                                                <td style="width: 279.115px;"></td>
+                                                <td style="width: 279.115px;">
+                                                    
+                                                </td>
                                             </tr>
                                             <tr style="height: 18px;">
                                                 <td style="width: 160.625px; height: 18px; border-left: 1px solid black;" colspan="2"></td>
-                                                <td style="width: 140.552px; height: 18px; border: 1px solid black">- Price :</td>
-                                                <td style="width: 9.04167px; height: 18px; border: 1px solid black">                                                  
+                                                <td style="width: 140.552px; height: 18px; border: 1px solid black; border-bottom: 1px solid transparent">- Price :</td>
+                                                <td style="width: 9.04167px; height: 18px; border: 1px solid black; border-bottom: 1px solid transparent">                                                  
                                                     <div class="">
                                                         <span t-raw="doc.price_tnc"/>
                                                     </div>
                                                 </td>
-                                                <td style="width: 279.115px;"></td>
+                                                <td style="width: 279.115px;">
+                                                    
+                                                </td>
                                             </tr>
                                             <tr style="height: 18px;">
                                                 <td style="width: 160.625px; height: 18px; border-left: 1px solid black; border-bottom: 1px solid black;" colspan="2"></td>
@@ -267,8 +277,10 @@
                                                         <t t-esc="doc.payment_terms"/>
                                                     </div>
                                                 </td>
-                                                <td style="width: 279.115px;"></td>
-                                            </tr> -->
+                                                <td style="width: 279.115px;">
+                                                    
+                                                </td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </td>
