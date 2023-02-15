@@ -32,8 +32,8 @@
     <template id="report_quotation_oms">
         <t t-call="web.basic_layout">
             <div class="page">
-                <!-- <t t-foreach="docs" t-as="doc">
-                    <header>
+                <t t-foreach="docs" t-as="doc">
+                    <!-- <header>
                         <t t-set="company" t-value="res_company"></t>
                         <div class="row">
                             <div class="col-xs-2">
