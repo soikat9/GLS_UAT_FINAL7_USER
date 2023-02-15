@@ -127,7 +127,7 @@
                             <tr>
                                 <td style="text-align: left; width: 99.9997%;" colspan="7">
                                     <div>
-                                        Dear Sir,<br />
+                                        Dear Sir,
                                         <br />
                                         We have the pleasure to offer you the below mentioned operation and maintenance services for <t t-esc="doc.items_oms.name"/> with the best price on terms and conditions hereinafter set forth, as follow:
                                     </div>
@@ -261,7 +261,7 @@
                                                 <td style="width: 160.625px; height: 18px; border-left: 1px solid black;" colspan="2"></td>
                                                 <td style="width: 140.552px; height: 18px; border: 1px solid black; border-bottom: 1px solid transparent">- Price :</td>
                                                 <td style="width: 9.04167px; height: 18px; border: 1px solid black; border-bottom: 1px solid transparent">                                                  
-                                                    <div class="">
+                                                    <div class="d-inline">
                                                         <span t-raw="doc.price_tnc"/>
                                                     </div>
                                                 </td>
@@ -273,7 +273,7 @@
                                                 <td style="width: 160.625px; height: 18px; border-left: 1px solid black; border-bottom: 1px solid black;" colspan="2"></td>
                                                 <td style="width: 140.552px; height: 18px; border: 1px solid black">- Payment Terms :</td>
                                                 <td style="width: 9.04167px; height: 18px; border: 1px solid black">                                                
-                                                    <div class="">
+                                                    <div class="d-inline">
                                                         <t t-esc="doc.payment_terms"/>
                                                     </div>
                                                 </td>
