@@ -217,9 +217,7 @@
                                                         <t t-esc="doc.supervisor.name"/>
                                                     </div>
                                                 </td>
-                                                <td style="width: 279.115px;">
-                                                    
-                                                </td>
+                                                <td style="width: 279.115px;"></td>
                                             </tr>
                                             <tr style="height: 18px;" >
                                                 <td style="width: 160.625px; height: 18px; border-left: 1px solid black;" colspan="2"></td>
@@ -229,9 +227,7 @@
                                                         <t t-esc="doc.office"/>
                                                     </div>
                                                 </td>
-                                                <td style="width: 279.115px;">
-                                                    
-                                                </td>
+                                                <td style="width: 279.115px;"></td>
                                             </tr>
                                             <tr style="height: 18px;">
                                                 <td style="width: 160.625px; height: 18px; border: 1px solid black; border-bottom: 1px solid transparent" colspan="2">Terms and Conditions</td>
@@ -241,9 +237,7 @@
                                                         <t t-esc="doc.quotation_validity"/>
                                                     </div>
                                                 </td>
-                                                <td style="width: 279.115px;">
-                                                    
-                                                </td>
+                                                <td style="width: 279.115px;"></td>
                                             </tr>
                                             <tr style="height: 18px;">
                                                 <td style="width: 160.625px; height: 18px; border-left: 1px solid black;" colspan="2"></td>
@@ -253,9 +247,7 @@
                                                         <t t-esc="doc.delivery_point"/>
                                                     </div>
                                                 </td>
-                                                <td style="width: 279.115px;">
-                                                    
-                                                </td>
+                                                <td style="width: 279.115px;"></td>
                                             </tr>
                                             <tr style="height: 18px;">
                                                 <td style="width: 160.625px; height: 18px; border-left: 1px solid black;" colspan="2"></td>
@@ -265,9 +257,7 @@
                                                         <span t-raw="doc.price_tnc"/>
                                                     </div>
                                                 </td>
-                                                <td style="width: 279.115px;">
-                                                    
-                                                </td>
+                                                <td style="width: 279.115px;"></td>
                                             </tr>
                                             <tr style="height: 18px;">
                                                 <td style="width: 160.625px; height: 18px; border-left: 1px solid black; border-bottom: 1px solid black;" colspan="2"></td>
@@ -277,9 +267,7 @@
                                                         <t t-esc="doc.payment_terms"/>
                                                     </div>
                                                 </td>
-                                                <td style="width: 279.115px;">
-                                                    
-                                                </td>
+                                                <td style="width: 279.115px;"></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -317,7 +305,7 @@
                                                     <span t-field="doc.director.name"/><br />
                                                 </strong>
                                             </span>
-                                            <t t-esc="doc.director.job_id.name"/>                                        
+                                            <!-- <t t-esc="doc.director.job_id.name"/>                                         -->
                                         </t>
                                     </td>
                                     <td style="width: 20%;"></td>
@@ -350,9 +338,9 @@
                                 </tr>
                                 <tr>
                                     <td style="width: 20%;"></td>
-                                    <td style="width: 20%;"><t t-esc="doc.director_id.job_id.name"/></td>
+                                    <td style="width: 20%;"><t t-esc="doc.director.job_id.name"/></td>
                                     <td style="width: 20%;"></td>
-                                    <td style="width: 20%;"><t t-esc="doc.approved_by_id.job_id.name"/></td>
+                                    <td style="width: 20%;"><t t-esc="doc.approved.job_id.name"/></td>
                                     <td style="width: 20%;"></td>
                                 </tr>
                             </tbody>
