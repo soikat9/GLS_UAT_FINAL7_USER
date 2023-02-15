@@ -16,30 +16,7 @@ class SaleOrder(models.Model):
 
     def _prepare_invoice(self):
         res = super(SaleOrder, self)._prepare_invoice()
-        if self.tag_ids:
-            name_tag = self.tag_ids.mapped('name')
-            if any('Turn Key' in w for w in name_tag):
-                res.update({
-                'tags_ids': self.tag_ids.ids,
-                'name' : self.env["ir.sequence"].next_by_code("account.move.sequence.turnkey")
-                })
-            elif any('BOO' in w for w in name_tag):
-                res.update({
-                'tags_ids': self.tag_ids.ids,
-                'name' : self.env["ir.sequence"].next_by_code("account.move.sequence.boo")
-                })
-            elif any('OMS' in w for w in name_tag):
-                res.update({
-                'tags_ids': self.tag_ids.ids,
-                'name' : self.env["ir.sequence"].next_by_code("account.move.sequence.oms")
-                })
-            # elif any('Trading' in w for w in name_tag):
-            #     res.update({
-            #     'tags_ids': self.tag_ids.ids,
-            #     })
-            else:
-                res.update({
-                'tags_ids': self.tag_ids.ids,
-                'name' : self.env["ir.sequence"].next_by_code("account.move.sequence.trading")
-                })
+        res.update({
+        'tags_ids': self.tag_ids.ids,
+        })
         return res
