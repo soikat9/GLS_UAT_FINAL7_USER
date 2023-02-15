@@ -123,7 +123,9 @@ class AccountMove(models.Model):
 
     # def _default_transfer(self):
     #     return self.env['account.journal'].search([('name', '=', 'CIMB')], limit=1).id
-    
+    journal_id = fields.Many2one('account.journal', string='Journal', required=True, readonly=True,
+        states={'draft': [('readonly', False)]},
+        check_company=True, domain="[('id', 'in', suitable_journal_ids)]")
     total_qty_received = fields.Integer(compute='_compute_total_qty_received', string='Qty Received', store=True)
     total_delivered_qty = fields.Integer(compute='_compute_total_delivered_qty', string='Qty Delivered', store=True)
     total_qty_ordered = fields.Integer(compute='_compute_total_qty_ordered', string='Qty Ordered', store=True)
