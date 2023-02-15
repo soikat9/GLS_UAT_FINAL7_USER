@@ -109,6 +109,7 @@ class PsakReport(models.Model):
 class PsakReportExcel(models.AbstractModel):
     _name = 'report.sol_boo.psak_report_excel.xlsx'
     _inherit = 'report.report_xlsx.abstract'
+    _description = 'PSAK Report Xls'
 
     def generate_xlsx_report(self, workbook, data, lines):
 

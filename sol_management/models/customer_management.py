@@ -24,7 +24,7 @@ class CustomerManagement(models.Model):
         ('approved', 'Approved'),
         ('rejected', 'Rejected'), 
         ('cancelled', 'Cancelled')], 
-        string='State', default="draft", track_visibility='onchange')
+        string='State', default="draft", tracking=True)
 
     def draft_request(self):
         for rec in self:

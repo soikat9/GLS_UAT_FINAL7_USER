@@ -39,10 +39,10 @@ class VendorAdd(models.Model):
 class PurchaseAddition(models.Model):
     _inherit = 'purchase.order'
 
-    visible_vendor = fields.Selection(vm.VendorManagement.point, string='Last Management Vendor', readonly=True, related='partner_id.visible_management')
+    visible_vendor = fields.Selection(vm.VendorManagement.point, string='Last Management Vendor', related='partner_id.visible_management')
     
 class SalesAddition(models.Model):
     _inherit = 'sale.order'
 
-    visible_vendor_so = fields.Selection(cm.CustomerManagement.point, string='Last Management Customer', readonly=True, related='partner_id.visible_management_cust')
+    visible_vendor_so = fields.Selection(cm.CustomerManagement.point, string='Last Management Customer', related='partner_id.visible_management_cust')
     

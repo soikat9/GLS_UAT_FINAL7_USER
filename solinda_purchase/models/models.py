@@ -119,17 +119,11 @@ class PurchaseOrder(models.Model):
     location_id = fields.Many2one('stock.location', string='Location',store=True)
     field_loc = fields.Boolean(string='Field Location', default=False)
 
-    state = fields.Selection([
-        ('draft', 'RFQ'),
-        ('sent', 'RFQ Sent'),
+    state = fields.Selection(selection_add=[
         ('submit', 'Submitted'),
         ('select', 'Selected'),
         ('confirm', 'Confirmed'),
-        ('to approve', 'To Approve'),
-        ('purchase', 'Purchase Order'),
-        ('done', 'Locked'),
-        ('cancel', 'Cancelled')
-    ], string='Status', readonly=True, index=True, copy=False, default='draft', tracking=True)
+        ('to approve', 'To Approve')])
     # currency_id = fields.Many2one('res.currency', 'Currency', required=True, states=READONLY_STATES, related="partner_id.property_purchase_currency_id")
     prepared = fields.Many2one('res.users', string='Prepared By')
     verified = fields.Many2one('res.users', string='Verified By')

@@ -26,6 +26,7 @@
     'data': [
         'report/action_report.xml',
         'views/views.xml',
+        'views/sequence_data.xml',
         'views/account_move_views.xml',
         'views/account_asset_views.xml',
         'views/psak73_views.xml',

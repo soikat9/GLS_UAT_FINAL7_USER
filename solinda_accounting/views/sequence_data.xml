@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="sequence_inv_turnkey" model="ir.sequence">
+            <field name="name">Customer Invoice Turnkey</field>
+            <field name="code">account.move.sequence.turnkey</field>
+            <field name="padding">4</field>
+            <field name="prefix">INV/TKY/%(rom_month)s/%(y)s-</field>
+        </record>
+        <record id="sequence_inv_boo" model="ir.sequence">
+            <field name="name">Customer Invoice BOO</field>
+            <field name="code">account.move.sequence.boo</field>
+            <field name="padding">4</field>
+            <field name="prefix">INV/BOO/%(rom_month)s/%(y)s-</field>
+        </record>
+        <record id="sequence_inv_oms" model="ir.sequence">
+            <field name="name">Customer Invoice OMS</field>
+            <field name="code">account.move.sequence.oms</field>
+            <field name="padding">4</field>
+            <field name="prefix">INV/OMS/%(rom_month)s/%(y)s-</field>
+        </record>
+        <record id="sequence_inv_trading" model="ir.sequence">
+            <field name="name">Customer Invoice Trading</field>
+            <field name="code">account.move.sequence.trading</field>
+            <field name="padding">4</field>
+            <field name="prefix">INV/TRD/%(rom_month)s/%(y)s-</field>
+        </record>
+        <record id="sequence_vendor_bill" model="ir.sequence">
+            <field name="name">Vendor Bill</field>
+            <field name="code">account.move.sequence.bill</field>
+            <field name="padding">4</field>
+            <field name="prefix">BILL/%(rom_month)s/%(y)s-</field>
+        </record>
+    </data>
+</odoo>

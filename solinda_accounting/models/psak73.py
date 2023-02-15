@@ -234,7 +234,7 @@ class Amortisation(models.Model):
     mlp_asset_service = fields.Float(string='MLP Asset + Service')
     pvmlp_asset_service = fields.Float(string='PVMLP Asset + Service')
     diff_receive_interest = fields.Float(string='Lease Receivable')
-    journal_ref = fields.Char(strng='Journal Reference')
+    journal_ref = fields.Char(string='Journal Reference')
     current_time = fields.Date(string='Current time', default=datetime.today())
     current_date_int = fields.Integer(string="Date Integer", compute='_compute_current_date_to_int', store=True)
     show_button = fields.Boolean(string='Show Button', default=True, compute='_compute_comparing_date')

@@ -7,6 +7,7 @@ from xlsxwriter.utility import xl_cell_to_rowcol
 class CostSheetXlsx(models.AbstractModel):
     _name = 'report.sol_cost_sheet.report_cost_sheet_xlsx'
     _inherit = 'report.report_xlsx.abstract'
+    _description = 'Report Cost Sheet Xls'
 
     def generate_xlsx_report(self, workbook, data, obj):
         money_format = workbook.add_format({'font_size': 10, 'left': 1, 'bottom': 1, 'right': 1, 'top': 1, 'align': 'right', 'valign': 'vcenter', 'text_wrap': True, 'num_format': '#,##0.00' })
