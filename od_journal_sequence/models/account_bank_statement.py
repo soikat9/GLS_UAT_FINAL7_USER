@@ -15,7 +15,7 @@ class AccountBankStatement(models.Model):
       for line in self:
           name = line.name or "/"
           if (
-                  line.state == "posted"
+                  line.state == "open"
                   and (not line.name or line.name == "/")
                   and line.journal_id
                   and line.journal_id.sequence_id
