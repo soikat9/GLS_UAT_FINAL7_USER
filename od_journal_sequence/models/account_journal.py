@@ -116,6 +116,8 @@ class AccountJournal(models.Model):
     def create(self, vals):
         if not vals.get("sequence_id"):
             vals["sequence_id"] = self._create_sequence(vals).id
+        if not vals.get("out_sequence_id"):
+            vals["out_sequence_id"] = self._create_sequence(vals).id
         if (
                 vals.get("type") in ("sale", "purchase")
                 and vals.get("refund_sequence")
