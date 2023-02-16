@@ -10,14 +10,17 @@
                     <group>
                         <group string="Sequence">
                             <field name="sequence_number_next"/>
-                            <field name="sequence_id" required="0"
-                                   context="{'default_name': name, 'default_company_id': company_id, 'default_implementation': 'no_gap',
+                            <field name="sequence_id" required="0" context="{'default_name': name, 'default_company_id': company_id, 'default_implementation': 'no_gap',
+                                   'default_padding': 4, 'default_use_date_range': True, 'default_prefix': code + '/%%(range_year)s/'}"/>
+                        </group>
+                        <group string="Out Sequence">
+                            <field name="out_sequence_number_next"/>
+                            <field name="out_sequence_id" required="0" context="{'default_name': name, 'default_company_id': company_id, 'default_implementation': 'no_gap',
                                    'default_padding': 4, 'default_use_date_range': True, 'default_prefix': code + '/%%(range_year)s/'}"/>
                         </group>
                         <group string="Refund Sequence">
                             <field name="refund_sequence_number_next"/>
-                            <field name="refund_sequence_id" required="0"
-                                   context="{'default_name': name, 'default_company_id': company_id, 'default_implementation': 'no_gap',
+                            <field name="refund_sequence_id" required="0" context="{'default_name': name, 'default_company_id': company_id, 'default_implementation': 'no_gap',
                                     'default_padding': 4, 'default_use_date_range': True, 'default_prefix': 'R' + code + '/%%(range_year)s/'}"/>
                         </group>
                     </group>
