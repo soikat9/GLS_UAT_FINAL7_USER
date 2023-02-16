@@ -8,13 +8,13 @@ class AccountBankStatement(models.Model):
                        states={'open': [('readonly', False)]},
                        copy=False,
                        readonly=True,
+                       compute="_compute_name",
                        store=True)
     
-    @api.onchange('move_id')
-    def _onchange_move_id_name(self):
-        for statement in self:
-            if statement.move_id:
-                statement.name = statement.move_id.name
-            else:
-                statement.name = "/"
+    @api.depends('line_ids.move_id')
+    def _compute_name(self):
+        for line in self.line_ids:
+            if line.move_id:
+                name = line.move_id.mapped("name")
+                self.name = name
 
