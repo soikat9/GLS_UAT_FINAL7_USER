@@ -54,7 +54,7 @@
             <field name="binding_type">report</field>
         </record>
 
-        <record id="action_report_sale_order" model="ir.actions.report">
+        <!-- <record id="action_report_sale_order" model="ir.actions.report">
             <field name="name">Report - Sales Order</field>
             <field name="model">sale.order</field>
             <field name="report_type">qweb-pdf</field>
@@ -63,7 +63,7 @@
             <field name="print_report_name">'SO - %s' % object.name</field>
             <field name="binding_model_id" ref="sale.model_sale_order"/>
             <field name="binding_type">report</field>
-        </record>
+        </record> -->
 
         <record id="report_quotation_trading_crm_action" model="ir.actions.report">
             <field name="name">Quotation - Trading</field>
@@ -77,17 +77,17 @@
             <field name="binding_type">report</field>
         </record>
 
-        <!-- <record id="report_quotation_turnkey_crm_action" model="ir.actions.report">
-            <field name="name">Quotation - Example</field>
+        <record id="report_quotation_turnkey_crm_action" model="ir.actions.report">
+            <field name="name">Report - Sale Order</field>
             <field name="model">sale.order</field>
             <field name="report_type">qweb-pdf</field>
             <field name="report_name">gls_reporting.report_quotation_turnkey</field>
             <field name="report_file">gls_reporting.report_quotation_turnkey</field>
-            <field name="paperformat_id" ref="gls_reporting.report_paperformat_a4_portrait_quotation_gls" />
-            <field name="print_report_name">'EXAMPLE - %s' % object.name</field>
+            <!-- <field name="paperformat_id" ref="gls_reporting.report_paperformat_a4_portrait_quotation_gls" /> -->
+            <field name="print_report_name">'SO - %s' % object.name</field>
             <field name="binding_model_id" ref="sale.model_sale_order"/>
             <field name="binding_type">report</field>
-        </record> -->
+        </record>
 
         <record id="sale.action_report_saleorder" model="ir.actions.report">
             <field name="binding_model_id" eval="False"/>
