@@ -21,7 +21,7 @@ class AccountBankStatement(models.Model):
                   and line.journal_id.sequence_id
           ):
             seq = line.journal_id.sequence_id
-          name = seq.next_by_id(sequence_date=line.date)
+            name = seq.next_by_id(sequence_date=line.date)
           line.name = name
 
   def _constrains_date_sequence(self):
