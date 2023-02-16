@@ -19,13 +19,11 @@ class AccountBankStatement(models.Model):
                     and (not line.name or line.name == "/")
                     and line.journal_id
                     and line.journal_id.sequence_id
+                    and line.journal_id.out_sequence_id
             ):
                 if line.cash_type == "receipt":
                     seq = line.journal_id.sequence_id
-                elif (
-                    line.cash_type == "disbursment"
-                    and line.journal_id.out_sequence_id
-                    ):
+                elif line.cash_type == "disbursment":
                     seq = line.journal_id.out_sequence_id
                 name = seq.next_by_id(sequence_date=line.date)
           line.name = name
