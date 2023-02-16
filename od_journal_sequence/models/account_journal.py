@@ -15,11 +15,11 @@ class AccountJournal(models.Model):
                                           help='The next sequence number will be used for the next invoice.',
                                           compute='_compute_seq_number_next',
                                           inverse='_inverse_seq_number_next')
-    refund_sequence_id = fields.Many2one('ir.sequence', string='Credit Note Entry Sequence',
+    refund_sequence_id = fields.Many2one('ir.sequence', string='Cash & Bank Out Sequence',
                                          help="This field contains the information related to the "
                                               "numbering of the credit note entries of this journal.",
                                          copy=False)
-    refund_sequence_number_next = fields.Integer(string='Credit Notes Next Number',
+    refund_sequence_number_next = fields.Integer(string='Cash & Bank Out Next Number',
                                                  help='The next sequence number will be used for the next'
                                                       'credit note.',
                                                  compute='_compute_refund_seq_number_next',

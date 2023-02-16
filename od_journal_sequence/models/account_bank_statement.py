@@ -15,12 +15,21 @@ class AccountBankStatement(models.Model):
       for line in self:
           name = line.name or "/"
           if (
-                  line.state == "open"
+                  line.state == "posted"
+                  and line.cash_type == "receipt"
                   and (not line.name or line.name == "/")
                   and line.journal_id
-                  and line.journal_id.sequence_id
-          ):
+                  and line.journal_id.sequence_id):
             seq = line.journal_id.sequence_id
+            name = seq.next_by_id(sequence_date=line.date)
+
+          if (
+                  line.state == "posted"
+                  and line.cash_type == "disbursment"
+                  and (not line.name or line.name == "/")
+                  and line.journal_id.refund_sequence
+                  and line.journal_id.refund_sequence_id):
+            seq = line.journal_id.refund_sequence_id
             name = seq.next_by_id(sequence_date=line.date)
           line.name = name
 
