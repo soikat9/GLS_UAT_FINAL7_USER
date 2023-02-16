@@ -85,7 +85,9 @@ class CostSheet(models.Model):
     
     # Other Information
     subject = fields.Char(copy=True)
-    attn_id = fields.Many2one('res.partner', string='Attn',copy=True)
+    attn_id = fields.Many2one('res.partner', string='Attn', related='partner_id')
+    to = fields.Char(related='attn_id.parent_id.name', string='To')
+    attn = fields.Char(related='attn_id.name', string='Attn')    
     phone = fields.Char(related='attn_id.phone', store=True,copy=False)
     email = fields.Char(related='attn_id.email', store=True,copy=False)
     ref_turnkey = fields.Char(string='Ref',copy=True)
@@ -100,6 +102,9 @@ class CostSheet(models.Model):
     best_regard = fields.Many2one('res.users', string='Best Regards',copy=True)
     approved_by = fields.Many2one('res.users', string='Approved By',copy=True)
     received_by = fields.Many2one('res.users', string='Received By',copy=True)
+
+    best_regard_id = fields.Many2one('hr.employee', string='Best Regards',copy=True)
+    received_by_id = fields.Many2one('hr.employee', string='Received By',copy=True)
     requisition_id = fields.Many2one('purchase.requisition', string='Requisition',copy=True)
 
     def action_print_quotation(self):

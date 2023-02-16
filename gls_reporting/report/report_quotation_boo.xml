@@ -33,14 +33,22 @@
         <t t-call="web.basic_layout">
             <div class="page">
                 <t t-foreach="docs" t-as="doc">
-                    <header>
+                    <!-- <header>
                         <t t-set="company" t-value="res_company"></t>
                         <div class="row">
                             <div class="col-3 mb4">
                                 <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-height: 60px;" alt="Logo"/>
                             </div>
                         </div>
-                    </header>
+                    </header> -->
+                    <div t-attf-class="header" t-att-style="report_header_style">
+                        <t t-set="company" t-value="res_company"></t>
+                        <div class="row">
+                            <div class="col-3 mb4">
+                                <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-height: 60px;" alt="Logo"/>
+                            </div>
+                        </div>
+                    </div>
 
                     <br/>
                     <br/>
@@ -57,7 +65,12 @@
                                 <td style="width: 9.51851%; height: 18px;">To</td>
                                 <td style="width: 1.97972%; height: 18px;">:</td>
                                 <td style="width: 38.1214%; height: 18px;">
-                                    <span t-field="doc.partner_id.parent_id" />
+                                    <t t-if="doc.to">
+                                        <span t-field="doc.to"/>  
+                                    </t>
+                                    <t t-else="">
+                                        <t t-esc="doc.attn"/>
+                                    </t>
                                 </td>
                                 <td style="width: 8.52077%; height: 18px;"></td>
                                 <td style="width: 7.85545%; height: 18px;">Date</td>
@@ -83,7 +96,7 @@
                                 <td style="width: 9.51851%; height: 18px;">Attn</td>
                                 <td style="width: 1.97972%; height: 18px;">:</td>
                                 <td style="width: 38.1214%; height: 18px;">
-                                    <t t-esc="doc.partner_id.name"/>
+                                    <t t-esc="doc.attn"/>
                                 </td>
                                 <td style="width: 8.52077%; height: 18px;"></td>
                                 <td style="width: 7.85545%; height: 18px;">Ref</td>
@@ -222,10 +235,14 @@
                                                     <br />
                                                     <br />
                                                     <br />
-                                                    <span style="text-decoration: underline;">
-                                                        <span t-field="doc.director_id"/>
-                                                        <br />
-                                                    </span>
+                                                    <t t-if="doc.director">
+                                                        <span style="text-decoration: underline;">
+                                                            <strong>
+                                                                <span t-field="doc.director.name"/><br />
+                                                            </strong>
+                                                        </span>
+                                                        <t t-esc="doc.director.job_id.name"/>                                        
+                                                    </t>
                                                 </strong>
                                                 </td>
                                             </tr>

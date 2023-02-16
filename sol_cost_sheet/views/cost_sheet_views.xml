@@ -229,7 +229,8 @@
               <page string="Additional Information">
                 <group string="Information">
                   <field name="subject" attrs="{'readonly': [('state','!=','draft')]}"/>
-                  <field name="attn_id" attrs="{'readonly': [('state','!=','draft')]}"/>
+                  <field name="attn" attrs="{'readonly': [('state','!=','draft')]}"/>
+                  <field name="to" invisible="1"/>
                   <field name="phone" />
                   <field name="email" />
                   <field name="ref_turnkey" />
@@ -243,9 +244,11 @@
                   <field name="payment_terms" attrs="{'readonly': [('state','!=','draft')]}"/>
                 </group>
                 <group string="Signature Naming">
-                  <field name="best_regard" />
+                  <field name="best_regard" invisible="1"/>
                   <!-- <field name="approved_by" /> -->
-                  <field name="received_by" />
+                  <field name="received_by" invisible="1"/>
+                  <field name="best_regard_id"/>
+                  <field name="received_by_id"/>
                 </group>
               </page>
             </notebook>

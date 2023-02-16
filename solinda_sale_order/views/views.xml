@@ -71,8 +71,10 @@
           <field name="attn" />
           <field name="to" invisible="1" />
           <!-- <field name="director_info" /> -->
-          <field name="director_id" />
-          <field name="approved_by_id" />
+          <field name="director_id" invisible="1"/>
+          <field name="approved_by_id" invisible="1"/>
+          <field name="director"/>
+          <field name="approved"/>
           <!-- <field name="received_id" /> -->
           <field name="print_button_visible" invisible="1"/>
           <field name="tag_string" invisible="1"/>
