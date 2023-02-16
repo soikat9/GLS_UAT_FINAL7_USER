@@ -5,7 +5,7 @@ class AccountBankStatement(models.Model):
   _inherit = 'account.bank.statement'
 
   balance_end_real = fields.Monetary('Ending Balance', states={'confirm': [('readonly', True)]}, compute='_compute_ending_balance', recursive=True, readonly=False, store=True, tracking=True)
-  cash_type = fields.Selection([('disbursment', 'Disbursment'), ('receipt', 'Receipt')], string='Cash Type')
+  cash_type = fields.Selection([('disbursment', 'Disbursment'), ('receipt', 'Receipt')], string='Cash Type', required=True)
 
   @api.constrains('balance_end_real')
   def ending_balance_no_minus(self):
