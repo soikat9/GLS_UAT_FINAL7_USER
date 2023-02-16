@@ -11,10 +11,13 @@ class AccountBankStatement(models.Model):
                        compute="_compute_name",
                        store=True)
     
-    @api.depends('line_ids.move_id')
+    @api.depends('move_line_ids.move_id.name')
     def _compute_name(self):
-        for line in self.line_ids:
+        for line in self.move_line_ids:
+            ref = ''
             if line.move_id:
                 name = line.move_id.mapped("name")
-                self.name = name
+                for move in name:
+                    ref += move
+                self.name = ref
 
