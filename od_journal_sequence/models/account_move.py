@@ -43,7 +43,7 @@ class AccountMove(models.Model):
                     name = seq.next_by_id(sequence_date=move.date)
                 else:
                     seq = move.journal_id.sequence_id
-                    name = seq.next_by_id(sequence_date=move.date)
+                name = seq.next_by_id(sequence_date=move.date)
             move.name = name
 
     def _constrains_date_sequence(self):
