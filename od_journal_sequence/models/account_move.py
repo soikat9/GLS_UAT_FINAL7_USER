@@ -33,6 +33,10 @@ class AccountMove(models.Model):
                         seq = move.journal_id.sequence_id
                     else:
                         seq = move.journal_id.out_sequence_id
+                    if move.move_type == "out_invoice":
+                        seq = move.journal_id.sequence_id
+                    elif move.move_type == "in_invoice":
+                        seq = move.journal_id.out_sequence_id
                 else:
                     seq = move.journal_id.sequence_id
                 name = seq.next_by_id(sequence_date=move.date)
