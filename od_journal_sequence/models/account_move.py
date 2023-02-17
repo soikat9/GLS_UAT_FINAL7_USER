@@ -34,13 +34,12 @@ class AccountMove(models.Model):
                         seq = move.journal_id.sequence_id
                     elif move.statement_id.cash_type == 'disbursment':
                         seq = move.journal_id.out_sequence_id
-                    else:
-                        raise ValidationError(str(move.move_type))
-                        # if move.move_type == "out_invoice":
-                        #     raise ValidationError("Customer Invoice")
-                        #     seq = move.journal_id.sequence_id
-                        # elif move.move_type == "in_invoice":
-                        #     seq = move.journal_id.out_sequence_id
+                    
+                    if move.payment_id.payment_type == "inbound":
+                        # raise ValidationError("Customer Invoice")
+                        seq = move.journal_id.sequence_id
+                    elif move.payment_id.payment_type == "outbound":
+                        seq = move.journal_id.out_sequence_id
                 else:
                     seq = move.journal_id.sequence_id
                 name = seq.next_by_id(sequence_date=move.date)
