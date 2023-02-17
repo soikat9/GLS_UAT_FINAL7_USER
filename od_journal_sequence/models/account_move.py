@@ -25,6 +25,14 @@ class AccountMove(models.Model):
                         and move.journal_id.refund_sequence_id
                 ):
                     seq = move.journal_id.refund_sequence_id
+                elif (
+                        move.journal_id.type in ("bank", "cash")
+                        and move.journal_id.out_sequence_id
+                ):
+                    if move.statement_id.cash_type == 'receipt':
+                        seq = move.journal_id.sequence_id
+                    else:
+                        seq = move.journal_id.out_sequence_id
                 else:
                     seq = move.journal_id.sequence_id
                 name = seq.next_by_id(sequence_date=move.date)

@@ -29,10 +29,10 @@ class AccountJournal(models.Model):
                                   help="This field contains the information related to the numbering of the"
                                        " journal entries of this journal.",
                                   required=True, copy=False)
-    out_sequence_number_next = fields.Integer(string='Next Number(out)',
-                                          help='The next sequence number will be used for the next invoice.',
-                                          compute='_compute_out_seq_number_next',
-                                          inverse='_inverse_out_seq_number_next')
+    # out_sequence_number_next = fields.Integer(string='Next Number(out)',
+    #                                       help='The next sequence number will be used for the next invoice.',
+    #                                       compute='_compute_out_seq_number_next',
+    #                                       inverse='_inverse_out_seq_number_next')
 
     @api.depends('sequence_id.use_date_range', 'sequence_id.number_next_actual')
     def _compute_seq_number_next(self):
@@ -43,20 +43,20 @@ class AccountJournal(models.Model):
             else:
                 journal.sequence_number_next = 1
 
-    @api.depends('out_sequence_id.use_date_range', 'out_sequence_id.number_next_actual')
-    def _compute_out_seq_number_next(self):
-        for journal in self:
-            if journal.out_sequence_id:
-                sequence = journal.out_sequence_id._get_current_sequence()
-                journal.out_sequence_number_next = sequence.number_next_actual
-            else:
-                journal.out_sequence_number_next = 1
+    # @api.depends('out_sequence_id.use_date_range', 'out_sequence_id.number_next_actual')
+    # def _compute_out_seq_number_next(self):
+    #     for journal in self:
+    #         if journal.out_sequence_id:
+    #             sequence = journal.out_sequence_id._get_current_sequence()
+    #             journal.out_sequence_number_next = sequence.number_next_actual
+    #         else:
+    #             journal.out_sequence_number_next = 1
 
-    def _inverse_out_seq_number_next(self):
-        for journal in self:
-            if journal.out_sequence_id and journal.out_sequence_number_next:
-                sequence = journal.out_sequence_id._get_current_sequence()
-                sequence.sudo().number_next = journal.out_sequence_number_next
+    # def _inverse_out_seq_number_next(self):
+    #     for journal in self:
+    #         if journal.out_sequence_id and journal.out_sequence_number_next:
+    #             sequence = journal.out_sequence_id._get_current_sequence()
+    #             sequence.sudo().number_next = journal.out_sequence_number_next
     
     def _inverse_seq_number_next(self):
         for journal in self:
@@ -86,7 +86,8 @@ class AccountJournal(models.Model):
                     journal.refund_sequence_id
                     and journal.sequence_id
                     and journal.out_sequence_id
-                    and journal.refund_sequence_id == journal.sequence_id == journal.out_sequence_id
+                    and journal.refund_sequence_id == journal.sequence_id
+                    or journal.out_sequence_id == journal.sequence_id
             ):
                 raise ValidationError(
                     _(
@@ -116,6 +117,8 @@ class AccountJournal(models.Model):
     def create(self, vals):
         if not vals.get("sequence_id"):
             vals["sequence_id"] = self._create_sequence(vals).id
+        if not vals.get("out_sequence_id"):
+            vals["out_sequence_id"] = self._create_sequence(vals).id
         if (
                 vals.get("type") in ("sale", "purchase")
                 and vals.get("refund_sequence")
