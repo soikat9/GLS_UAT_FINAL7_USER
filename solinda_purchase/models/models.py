@@ -125,9 +125,9 @@ class PurchaseOrder(models.Model):
         ('confirm', 'Confirmed'),
         ('to approve', 'To Approve')])
     # currency_id = fields.Many2one('res.currency', 'Currency', required=True, states=READONLY_STATES, related="partner_id.property_purchase_currency_id")
-    prepared = fields.Many2one('res.users', string='Prepared By', ondelete='cascade')
-    verified = fields.Many2one('res.users', string='Verified By', ondelete='cascade')
-    approved = fields.Many2one('res.users', string='Approved By', ondelete='cascade')
+    prepared = fields.Many2one('hr.employee', string='Prepared By', ondelete='cascade')
+    verified = fields.Many2one('hr.employee', string='Verified By', ondelete='cascade')
+    approved = fields.Many2one('hr.employee', string='Approved By', ondelete='cascade')
     received = fields.Char(string='Received By')
     best_regard = fields.Many2one('res.users', string='Best Regards By')
     so_trading_id = fields.Many2one('sale.order', string="SO Trading")
