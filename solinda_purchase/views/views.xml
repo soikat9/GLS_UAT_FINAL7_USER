@@ -204,10 +204,10 @@
         </xpath>
         <xpath expr="//notebook/page[@name='purchase_delivery_invoice']/group" position="inside">
           <group string="Signature Naming">
-            <field name="prepared" />
+            <!-- <field name="prepared" />
             <field name="verified" />
             <field name="approved" />
-            <field name="received" />
+            <field name="received" /> -->
             <field name="best_regard" />
             <field name="btn_hide" invisible="1"/>
             <field name="field_loc" invisible="1" />
