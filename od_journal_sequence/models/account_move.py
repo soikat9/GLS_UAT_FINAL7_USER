@@ -36,12 +36,14 @@ class AccountMove(models.Model):
                         seq = move.journal_id.out_sequence_id
                     
                     if move.move_type == "out_invoice":
+                        raise ValidationError("Customer Invoice")
                         seq = move.journal_id.sequence_id
                     elif move.move_type == "in_invoice":
                         seq = move.journal_id.out_sequence_id
+                    name = seq.next_by_id(sequence_date=move.date)
                 else:
                     seq = move.journal_id.sequence_id
-                name = seq.next_by_id(sequence_date=move.date)
+                    name = seq.next_by_id(sequence_date=move.date)
             move.name = name
 
     def _constrains_date_sequence(self):
