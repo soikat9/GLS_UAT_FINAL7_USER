@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from odoo import api, fields, models, _
+from odoo.exceptions import ValidationError
 
 
 class AccountMove(models.Model):
@@ -34,8 +35,10 @@ class AccountMove(models.Model):
                     else:
                         seq = move.journal_id.out_sequence_id
                     if move.move_type == "out_invoice":
+                        raise ValidationError('Customer Invoice')
                         seq = move.journal_id.sequence_id
                     elif move.move_type == "in_invoice":
+                        raise ValidationError('Vendor Bill')
                         seq = move.journal_id.out_sequence_id
                 else:
                     seq = move.journal_id.sequence_id
