@@ -119,7 +119,7 @@
         <xpath expr="//tree" position="attributes">
           <attribute name="create">0</attribute>
         </xpath>
-      </field>
+      </field> 
     </record> -->
 
     <record id="view_order_tree_inherit_sale_order" model="ir.ui.view">
