@@ -37,6 +37,12 @@ class SaleOrder(models.Model):
     custom_sequence = fields.Boolean('Custom Sequence')
     system_sequence = fields.Boolean('System Sequence')
 
+    def _prepare_confirmation_values(self):
+        return {
+            'state': 'sale',
+            # 'date_order': fields.Datetime.now()
+        }
+
 
 class ImportSaleOrder(models.TransientModel):
     _name = "import.sale.order"
