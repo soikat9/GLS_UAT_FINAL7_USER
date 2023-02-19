@@ -68,10 +68,10 @@ class ImportPurchaseOrder(models.TransientModel):
             currency_id = self.search_currency(values.get('currency'))
             order_date = self.make_order_date(values.get('date'))
             # deliver_id = self.search_deliver(values.get('deliver'))
-            location_id = self.search_location(values.get('location'))
+            # location_id = self.search_location(values.get('location'))
             payment_id = self.search_payment_terms(values.get('payment'))
             code = values.get('code')
-            approve_date = self.make_deliv_date(values.get('approve_date'))
+            # approve_date = self.make_deliv_date(values.get('approve_date'))
 
             purchase_id = purchase_obj.create({
                 'partner_id': partner_id.id,
@@ -79,11 +79,11 @@ class ImportPurchaseOrder(models.TransientModel):
                 'user_id': user_id.id,
                 'currency_id': currency_id.id,
                 # 'picking_type_id': deliver_id.id,
-                'location_id': location_id.id,
+                # 'location_id': location_id.id,
                 'payment_term_id': payment_id.id,
                 'project_code': code,
                 'date_order': order_date,
-                'date_approve': approve_date,
+                # 'date_approve': approve_date,
                 'field_loc': True,
                 'custom_sequence': True if values.get('seq_opt') == 'custom' else False,
                 'system_sequence': True if values.get('seq_opt') == 'system' else False,
@@ -280,7 +280,7 @@ class ImportPurchaseOrder(models.TransientModel):
                     #     raise UserError(_('Please add email for %s' % get_line[1]))
                     # a1 = get_line[10]
                     # date_string = datetime.strptime(a1, '%Y-%m-%d').date()
-                    a1 = int(float(get_line[3]))
+                    a1 = int(float(get_line[4]))
                     a1_as_datetime = datetime(*xlrd.xldate_as_tuple(a1, workbook.datemode))
                     date_string = a1_as_datetime.date().strftime('%Y-%m-%d')
 
@@ -292,7 +292,7 @@ class ImportPurchaseOrder(models.TransientModel):
                                    'vendor': get_line[1],
                                    'currency': get_line[2],
                                 #    'deliver': get_line[5],
-                                   'location': get_line[6],
+                                #    'location': get_line[6],
                                    'product': get_line[7],
                                    'uom': get_line[9],
                                    'tax': get_line[10],
@@ -303,7 +303,7 @@ class ImportPurchaseOrder(models.TransientModel):
                                    'quantity': get_line[17],
                                 #    'discount': get_line[13],
                                    'user': get_line[18],
-                                   'approve_date': date_string_a2,
+                                #    'approve_date': date_string_a2,
                                    'date': date_string,
                                 #    'email': get_line[11],
                                    'seq_opt': self.purchase_sequence_opt
