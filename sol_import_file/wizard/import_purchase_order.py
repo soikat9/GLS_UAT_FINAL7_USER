@@ -68,7 +68,7 @@ class ImportPurchaseOrder(models.TransientModel):
             currency_id = self.search_currency(values.get('currency'))
             order_date = self.make_order_date(values.get('date'))
             # deliver_id = self.search_deliver(values.get('deliver'))
-            # location_id = self.search_location(values.get('location'))
+            location_id = self.search_location(values.get('location'))
             payment_id = self.search_payment_terms(values.get('payment'))
             code = values.get('code')
             # approve_date = self.make_deliv_date(values.get('approve_date'))
@@ -205,13 +205,13 @@ class ImportPurchaseOrder(models.TransientModel):
                 'name': name})
             return payment_id
     
-    # def search_location(self, name):
-    #     location_obj = self.env['stock.location']
-    #     location_search = location_obj.search([('complete_name', '=', name)])
-    #     if location_search:
-    #         return location_search
-    #     else:
-    #         raise Warning(_(' "%s" Location Teams not present.') % name)
+    def search_location(self, name):
+        location_obj = self.env['stock.location']
+        location_search = location_obj.search([('complete_name', '=', name)])
+        if location_search:
+            return location_search
+        else:
+            raise Warning(_(' "%s" Location Teams not present.') % name)
     
     def search_currency(self, name):
         currency_obj = self.env['res.currency']
@@ -292,7 +292,7 @@ class ImportPurchaseOrder(models.TransientModel):
                                    'vendor': get_line[1],
                                    'currency': get_line[2],
                                 #    'deliver': get_line[5],
-                                #    'location': get_line[6],
+                                   'location': get_line[6],
                                    'product': get_line[7],
                                    'uom': get_line[9],
                                    'tax': get_line[10],
