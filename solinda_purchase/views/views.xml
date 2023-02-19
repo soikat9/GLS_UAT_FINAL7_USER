@@ -167,7 +167,7 @@
       <field name="inherit_id" ref="purchase.purchase_order_form" />
       <field name="arch" type="xml">
         <field name="picking_type_id" position="attributes">
-          <attribute name="readonly">{'readonly': [('state', 'in', 'cancel')]}</attribute>
+          <attribute name="readonly">{'readonly': [('state', 'in', ['cancel'])]}</attribute>
         </field>
         <xpath expr="//div[@name='reminder']" position="after">
           <field name="courier" attrs="{'readonly': [('state', 'not in', ('draft'))]}"/>
