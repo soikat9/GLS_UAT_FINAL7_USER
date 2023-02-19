@@ -138,6 +138,7 @@
                 <field
                     name="clearing_product_id"
                     attrs="{'invisible': [('advance', '=', False)]}"
+                    readonly="1"
                     placeholder="Optional clearing product is used during clear advance"
                 />
             </field>
