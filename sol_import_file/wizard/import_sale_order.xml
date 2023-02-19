@@ -11,7 +11,7 @@
                     <attribute name="optional">hide</attribute>
                 </xpath>
                 <xpath expr="//field[@name='name']" position="after">
-                    <field name="date_order" />
+                    <field name="date_order" widget="date" optional="show" string="Creation Date"/>
                 </xpath>
             </field>
         </record>
