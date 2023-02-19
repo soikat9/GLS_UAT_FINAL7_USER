@@ -50,7 +50,7 @@
             <field name="target">new</field>
         </record>
 
-        <menuitem action="import_purchase_order_wizard_action" id="import_purchase_order_import" parent="purchase.menu_procurement_management"/>
+        <menuitem action="import_purchase_order_wizard_action" id="import_purchase_order_import" parent="purchase.menu_purchase_config"/>
 
     </data>
 </odoo>

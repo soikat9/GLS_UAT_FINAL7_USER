@@ -27,8 +27,8 @@
         'security/ir.model.access.csv',
         'views/views.xml',
         'views/templates.xml',
-        'wizard/import_sale_order.xml'
-        'wizard/import_purchase_order.xml'
+        'wizard/import_sale_order.xml',
+        'wizard/import_purchase_order.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
