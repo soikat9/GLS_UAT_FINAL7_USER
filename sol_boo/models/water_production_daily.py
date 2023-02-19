@@ -202,7 +202,7 @@ class WaterProdDaily(models.Model):
     hasil_prod = fields.Float('Produced',tracking=True)
     remarks = fields.Text('Remarks',compute="_get_remark_components",tracking=True)
     water_prod_id = fields.Many2one('water.prod.daily', string='water_prod',tracking=True)
-    saidi = fields.Float('Saidi (minute)',compute="_compute_saidi_saifi",digit=(0,0))
+    saidi = fields.Float('Saidi (minute)',compute="_compute_saidi_saifi",digits=(0,0))
     saifi = fields.Integer('Saifi',compute="_compute_saidi_saifi")
     # LINE
     shutdown_system_line = fields.One2many('shutdown.system', 'water_prod_id', string='Shutdown System')
