@@ -169,7 +169,7 @@ class MrpProductionRequest(models.Model):
     routing_id = fields.Many2one(
         comodel_name="mrp.routing",
         string="Routing",
-        on_delete="setnull",
+        ondelete="setnull",
         readonly=True,
         states={"draft": [("readonly", False)]},
         help="The list of operations (list of work centers) to produce "
