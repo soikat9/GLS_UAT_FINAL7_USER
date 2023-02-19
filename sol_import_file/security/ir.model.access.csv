@@ -1,2 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 sol_import_file.access_import_sale_order,access_import_sale_order,sol_import_file.model_import_sale_order,base.group_user,1,1,1,1
+sol_import_file.access_import_purchase_order,access_import_purchase_order,sol_import_file.model_import_purchase_order,base.group_user,1,1,1,1

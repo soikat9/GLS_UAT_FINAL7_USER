@@ -267,8 +267,8 @@ class PurchaseOrder(models.Model):
     def create(self, vals):
         if vals.get('requisition_id'):
             vals['name'] = self.env['ir.sequence'].next_by_code('pur.order.from.requisition')
-        else:
-            vals['name'] = self.env['ir.sequence'].next_by_code('purchase.order.req')
+        # else:
+        #     vals['name'] = self.env['ir.sequence'].next_by_code('purchase.order.req')
         return super(PurchaseOrder, self).create(vals)
 
     @api.model
