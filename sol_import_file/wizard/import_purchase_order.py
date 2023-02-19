@@ -67,8 +67,8 @@ class ImportPurchaseOrder(models.TransientModel):
             user_id = self.search_user(values.get('user'))
             currency_id = self.search_currency(values.get('currency'))
             order_date = self.make_order_date(values.get('date'))
-            deliver_id = self.search_deliver(values.get('deliver'))
-            location_id = self.search_location(values.get('location'))
+            # deliver_id = self.search_deliver(values.get('deliver'))
+            # location_id = self.search_location(values.get('location'))
             payment_id = self.search_payment_terms(values.get('payment'))
             code = values.get('code')
             # approve_date = self.make_deliv_date(values.get('approve_date'))
@@ -78,8 +78,8 @@ class ImportPurchaseOrder(models.TransientModel):
                 'name': name,
                 'user_id': user_id.id,
                 'currency_id': currency_id.id,
-                'picking_type_id': deliver_id.id,
-                'location_id': location_id.id,
+                # 'picking_type_id': deliver_id.id,
+                # 'location_id': location_id.id,
                 'payment_term_id': payment_id.id,
                 'project_code': code,
                 'date_order': order_date,
@@ -163,11 +163,11 @@ class ImportPurchaseOrder(models.TransientModel):
         else:
             raise Warning(_(' "%s" User not present.') % name)
 
-    def search_deliver(self, name):
-        deliver_obj = self.env['stock.picking.type']
-        deliver_search = deliver_obj.search([('name','=', name)])
-        if deliver_search:
-            return deliver_search
+    # def search_deliver(self, name):
+    #     deliver_obj = self.env['stock.picking.type']
+    #     deliver_search = deliver_obj.search([('name','=', name)])
+    #     if deliver_search:
+    #         return deliver_search
         # else:
         #     raise Warning(_(' "%s" Delivery not present.') % name)
         # pick_in = self.env.ref('stock.picking_type_in', raise_if_not_found=False)
@@ -205,13 +205,13 @@ class ImportPurchaseOrder(models.TransientModel):
                 'name': name})
             return payment_id
     
-    def search_location(self, name):
-        location_obj = self.env['stock.location']
-        location_search = location_obj.search([('complete_name', '=', name)])
-        if len(location_search) > 1:
-            location_search = location_obj.search([('name', '=', name)], limit=1)
-        if location_search:
-            return location_search
+    # def search_location(self, name):
+    #     location_obj = self.env['stock.location']
+    #     location_search = location_obj.search([('complete_name', '=', name)])
+    #     if len(location_search) > 1:
+    #         location_search = location_obj.search([('name', '=', name)], limit=1)
+    #     if location_search:
+    #         return location_search
         # else:
             # raise Warning(_(' "%s" Location Teams not present.') % name)
     
@@ -293,8 +293,8 @@ class ImportPurchaseOrder(models.TransientModel):
                     values.update({'ref': get_line[0],
                                    'vendor': get_line[1],
                                    'currency': get_line[2],
-                                   'deliver': get_line[5],
-                                   'location': get_line[6],
+                                #    'deliver': get_line[5],
+                                #    'location': get_line[6],
                                    'product': get_line[7],
                                    'uom': get_line[9],
                                    'tax': get_line[10],
