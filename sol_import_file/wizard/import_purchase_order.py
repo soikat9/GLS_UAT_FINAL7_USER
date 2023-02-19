@@ -67,7 +67,7 @@ class ImportPurchaseOrder(models.TransientModel):
             user_id = self.search_user(values.get('user'))
             currency_id = self.search_currency(values.get('currency'))
             order_date = self.make_order_date(values.get('date'))
-            # deliver_id = self.search_deliver(values.get('deliver'))
+            deliver_id = self.search_deliver(values.get('deliver'))
             location_id = self.search_location(values.get('location'))
             payment_id = self.search_payment_terms(values.get('payment'))
             code = values.get('code')
@@ -78,8 +78,8 @@ class ImportPurchaseOrder(models.TransientModel):
                 'name': name,
                 'user_id': user_id.id,
                 'currency_id': currency_id.id,
-                # 'picking_type_id': deliver_id.id,
-                # 'location_id': location_id.id,
+                'picking_type_id': deliver_id.id,
+                'location_id': location_id.id,
                 'payment_term_id': payment_id.id,
                 'project_code': code,
                 'date_order': order_date,
@@ -163,13 +163,13 @@ class ImportPurchaseOrder(models.TransientModel):
         else:
             raise Warning(_(' "%s" User not present.') % name)
 
-    # def search_deliver(self, name):
-    #     deliver_obj = self.env['stock.picking.type']
-    #     deliver_search = deliver_obj.search([('name','=', name)])
-    #     if deliver_search:
-    #         return deliver_search
-    #     else:
-    #         raise Warning(_(' "%s" Delivery not present.') % name)
+    def search_deliver(self, name):
+        deliver_obj = self.env['stock.picking.type']
+        deliver_search = deliver_obj.search([('name','=', name)])
+        if deliver_search:
+            return deliver_search
+        # else:
+        #     raise Warning(_(' "%s" Delivery not present.') % name)
         # pick_in = self.env.ref('stock.picking_type_in', raise_if_not_found=False)
         # company = self.env.company
         # if not pick_in or not pick_in.sudo().active or pick_in.sudo().warehouse_id.company_id.id != company.id:
@@ -212,8 +212,8 @@ class ImportPurchaseOrder(models.TransientModel):
             location_search = location_obj.search([('name', '=', name)], limit=1)
         if location_search:
             return location_search
-        else:
-            raise Warning(_(' "%s" Location Teams not present.') % name)
+        # else:
+            # raise Warning(_(' "%s" Location Teams not present.') % name)
     
     def search_currency(self, name):
         currency_obj = self.env['res.currency']
