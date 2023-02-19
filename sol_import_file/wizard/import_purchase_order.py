@@ -294,7 +294,7 @@ class ImportPurchaseOrder(models.TransientModel):
                                    'vendor': get_line[1],
                                    'currency': get_line[2],
                                 #    'deliver': get_line[5],
-                                   'locationS': get_line[6],
+                                   'location': get_line[6],
                                    'product': get_line[7],
                                    'uom': get_line[9],
                                    'tax': get_line[10],
