@@ -166,6 +166,9 @@
       <field name="model">purchase.order</field>
       <field name="inherit_id" ref="purchase.purchase_order_form" />
       <field name="arch" type="xml">
+        <xpath expr="//field[@name='picking_type_id']" position="attributes">
+          <attribute name="attrs">{'readonly': [('state', 'not in', ['cancel','purchase','done'])]}</attribute>
+        </xpath>
         <xpath expr="//div[@name='reminder']" position="after">
           <field name="courier" attrs="{'readonly': [('state', 'not in', ('draft'))]}"/>
         </xpath>
@@ -225,9 +228,7 @@
         <!-- <xpath expr="//field[@name='picking_type_id']" position="attributes">
           <attribute name="attrs">1</attribute>
         </xpath> -->
-        <xpath expr="//field[@name='picking_type_id']" position="attributes">
-          <attribute name="attrs">{}</attribute>
-        </xpath>
+        
         <xpath expr="//field[@name='picking_type_id']" position="after">
           <field name="location_id" attrs="{'invisible': [('field_loc', '=', False)]}" readonly="1"/>
         </xpath>
