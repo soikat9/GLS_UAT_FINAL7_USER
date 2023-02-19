@@ -84,7 +84,7 @@ class ImportPurchaseOrder(models.TransientModel):
                 'project_code': code,
                 'date_order': order_date,
                 # 'date_approve': approve_date,
-                'field_loc': True,
+                # 'field_loc': True,
                 'custom_sequence': True if values.get('seq_opt') == 'custom' else False,
                 'system_sequence': True if values.get('seq_opt') == 'system' else False,
             })
@@ -293,7 +293,7 @@ class ImportPurchaseOrder(models.TransientModel):
                     values.update({'ref': get_line[0],
                                    'vendor': get_line[1],
                                    'currency': get_line[2],
-                                #    'deliver': get_line[5],
+                                   'deliver': get_line[5],
                                    'location': get_line[6],
                                    'product': get_line[7],
                                    'uom': get_line[9],
