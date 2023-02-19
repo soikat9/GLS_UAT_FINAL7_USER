@@ -205,13 +205,13 @@ class ImportPurchaseOrder(models.TransientModel):
                 'name': name})
             return payment_id
     
-    def search_location(self, name):
-        location_obj = self.env['stock.location']
-        location_search = location_obj.search([('complete_name', '=', name)])
-        if location_search:
-            return location_search
-        else:
-            raise Warning(_(' "%s" Location Teams not present.') % name)
+    # def search_location(self, name):
+    #     location_obj = self.env['stock.location']
+    #     location_search = location_obj.search([('complete_name', '=', name)])
+    #     if location_search:
+    #         return location_search
+    #     else:
+    #         raise Warning(_(' "%s" Location Teams not present.') % name)
     
     def search_currency(self, name):
         currency_obj = self.env['res.currency']
