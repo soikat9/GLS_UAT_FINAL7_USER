@@ -208,6 +208,8 @@ class ImportPurchaseOrder(models.TransientModel):
     def search_location(self, name):
         location_obj = self.env['stock.location']
         location_search = location_obj.search([('complete_name', '=', name)])
+        if len(location_search) > 1:
+            location_search = location_obj.search([('name', '=', name)], limit=1)
         if location_search:
             return location_search
         else:
