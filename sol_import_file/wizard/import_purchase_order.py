@@ -84,6 +84,7 @@ class ImportPurchaseOrder(models.TransientModel):
                 'project_code': code,
                 'date_order': order_date,
                 'date_approve': approve_date,
+                'field_loc': True,
                 'custom_sequence': True if values.get('seq_opt') == 'custom' else False,
                 'system_sequence': True if values.get('seq_opt') == 'system' else False,
             })
