@@ -107,6 +107,7 @@ class ImportPurchaseOrder(models.TransientModel):
         product_obj = self.env['product.product']
         order_line_obj = self.env['purchase.order.line']
         product_uom = self.env['uom.uom'].search([('name', '=', values.get('uom'))])
+        account_analytic_id = self.env['account.analytic.account'].search([('name', '=', values.get('analytic'))])
         tax_ids = []
         product_id = ''
         # Search By Product
@@ -147,6 +148,8 @@ class ImportPurchaseOrder(models.TransientModel):
 
         if not product_uom:
             raise Warning(_(' "%s" Product UOM category is not present.') % values.get('uom'))
+        if not account_analytic_id:
+            raise Warning(_(' "%s" Account Analytic category is not present.') % values.get('analytic'))
 
         res = order_line_obj.create({
             'product_id': product_id.id,
@@ -154,6 +157,7 @@ class ImportPurchaseOrder(models.TransientModel):
             'price_unit': values.get('price'),
             # 'name': values.get('description'),
             'product_uom': product_uom.id,
+            'account_analytic_id': account_analytic_id.id, 
             'order_id': purchase_id.id,
             'discount': values.get('discount')
 
@@ -312,7 +316,7 @@ class ImportPurchaseOrder(models.TransientModel):
                                    'uom': get_line[9],
                                    'tax': get_line[10],
                                 #    'total': get_line[11],
-                                   'payment': get_line[12],
+                                   'analytic': get_line[12],
                                    'code': get_line[13],
                                    'price': get_line[15],
                                    'quantity': get_line[17],
