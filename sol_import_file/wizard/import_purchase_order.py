@@ -58,7 +58,19 @@ class ImportPurchaseOrder(models.TransientModel):
         purchase_search = purchase_obj.search([
             ('name', '=', values.get('ref'))
         ])
-        if not purchase_search:
+        if purchase_search:
+            # if sale_search.payment_term_id.name == values.get('payment'):
+            if purchase_search.partner_id.name == values.get('vendor'):
+                if purchase_search.currency_id.name == values.get('currency'):
+                    lines = self.make_purchase_order_line(values, purchase_search)
+                    return purchase_search
+                else:
+                    raise Warning(
+                        _('Pricelist is different for "%s" .\n Please define same.') % values.get('ref'))
+            else:
+                raise Warning(
+                    _('Customer name is different for "%s" .\n Please define same.') % values.get('ref'))
+        else:
             if values.get('seq_opt') == 'system':
                 name = self.env['ir.sequence'].next_by_code('purchase.order')
             elif values.get('seq_opt') == 'custom':
