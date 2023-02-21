@@ -266,6 +266,7 @@ class ImportPurchaseOrder(models.TransientModel):
                 fp.write(binascii.a2b_base64(self.file))
                 fp.seek(0)
                 values = {}
+                purchase_ids = []
                 workbook = xlrd.open_workbook(fp.name)
                 sheet = workbook.sheet_by_index(0)
             except Exception:
@@ -312,8 +313,10 @@ class ImportPurchaseOrder(models.TransientModel):
                                    })
 
                     res = self.make_purchase_order(values)
+                    purchase_ids.append(res)
                     if self.purchase_stage == 'confirm':
-                        # if res.state in ['draft']:
-                        res.button_confirm()
+                        for res in purchase_ids:
+                            if res.state in ['draft']:
+                                res.button_confirm()
                     return res
 
