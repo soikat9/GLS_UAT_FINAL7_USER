@@ -236,7 +236,7 @@
         </record>
 
 
-        <menuitem id="main_menu_simplify_access_management" name="Access Studio" action="action_access_management_ah" groups="group_access_management_spt" web_icon="simplify_access_management,static/description/icon.png" />
+        <menuitem id="main_menu_simplify_access_management" name="Access Studio" action="action_access_management_ah" groups="group_access_management_spt" />
 
     </data>
 </odoo>
