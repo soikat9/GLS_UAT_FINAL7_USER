@@ -334,5 +334,5 @@ class ImportPurchaseOrder(models.TransientModel):
                         for res in purchase_ids:
                             if res.state in ['draft']:
                                 res.button_confirm()
-                    return res
+        return res
 
