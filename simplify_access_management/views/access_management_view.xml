@@ -63,7 +63,7 @@
                             <page string='Hide Menu'>
                                 <field name="self_module_menu_ids" widget="many2many_tags" invisible="1" />
                                 <field name='hide_menu_ids' domain="[('id','not in',self_module_menu_ids)]" />
-                                <p class="fa fa-info-circle  alert alert-info alert-dismissible rounded-0 fade show d-print-none css_editable_mode_hidden" style="font-size: 15px;letter-spacing: 1px;"> The menu or submenu added on above list will be hidden from the defined user(s).<br/><br/>  More Info : <a href="https://www.terabits.xyz/simplify_access_management#bt-pills-menu" target="_blank" alt="Menu Access Right">https://www.terabits.xyz/simplify_access_management#bt-pills-menu</a></p>
+                                <!-- <p class="fa fa-info-circle  alert alert-info alert-dismissible rounded-0 fade show d-print-none css_editable_mode_hidden" style="font-size: 15px;letter-spacing: 1px;"> The menu or submenu added on above list will be hidden from the defined user(s).<br/><br/>  More Info : <a href="https://www.terabits.xyz/simplify_access_management#bt-pills-menu" target="_blank" alt="Menu Access Right">https://www.terabits.xyz/simplify_access_management#bt-pills-menu</a></p> -->
                             </page>
                             <page string='Model Access'>
                                 <field name='remove_action_ids'>
