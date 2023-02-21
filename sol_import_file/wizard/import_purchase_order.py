@@ -313,7 +313,7 @@ class ImportPurchaseOrder(models.TransientModel):
 
                     res = self.make_purchase_order(values)
                     if self.purchase_stage == 'confirm':
-                        if res.state in ['draft']:
-                            res.button_confirm()
+                        # if res.state in ['draft']:
+                        res.button_confirm()
                     return res
 
